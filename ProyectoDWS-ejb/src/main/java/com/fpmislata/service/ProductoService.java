@@ -7,6 +7,7 @@ package com.fpmislata.service;
 
 import com.fpmislata.domain.Producto;
 import java.util.ArrayList;
+import java.util.Iterator;
 import javax.ejb.Stateless;
 
 /**
@@ -17,11 +18,12 @@ import javax.ejb.Stateless;
 public class ProductoService implements ProductoServiceLocal {
     
     private static ArrayList<Producto> lista = new ArrayList<>();
+    private static int lastId = 6;
     
     static{
         lista.add(new Producto(1, "Patata", 50));
-        lista.add(new Producto(1, "Cebolla", 50));
-        lista.add(new Producto(1, "Tomate", 50));
+        lista.add(new Producto(2, "Cebolla", 50));
+        lista.add(new Producto(3, "Tomate", 50));
     }
 
     // Add business logic below. (Right-click in editor and choose
@@ -34,7 +36,20 @@ public class ProductoService implements ProductoServiceLocal {
 
     @Override
     public void addProducto(Producto producto) {
+        Iterator<Producto> it = lista.iterator();
+        boolean enc = false;
         
+        while((it.hasNext()) && (enc==false)){
+            if(it.next().getId() == producto.getId()){
+                enc = true;
+            }
+        }
+        
+        if(enc == false){
+            producto.setId(lastId);
+            lastId++;
+            lista.add(producto);
+        }
     }
 
     @Override

@@ -4,9 +4,17 @@
         <servlet-name>ListarProductos</servlet-name>
         <servlet-class>com.fpmislata.servlets.ListarProductos</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>AltaProducto</servlet-name>
+        <servlet-class>com.fpmislata.servlets.AltaProducto</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>ListarProductos</servlet-name>
         <url-pattern>/ListarProductos</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>AltaProducto</servlet-name>
+        <url-pattern>/AltaProducto</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>
