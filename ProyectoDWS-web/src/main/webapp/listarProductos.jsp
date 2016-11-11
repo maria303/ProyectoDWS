@@ -16,10 +16,12 @@
     <body>
         <h1>Hello World!</h1>
         
-        <table border="1">
+        <table>
             <tr>
                 <th>Nombre</th>
                 <th>Unidades</th>
+                <th></th>
+                <th></th>
             </tr>
             
             <%
@@ -33,8 +35,11 @@
             <tr>
                 <td><%=nombre%></td>
                 <td><%=unidades%></td>
+                <td><a href="ModificarProducto?accion=editar&id=<%=id%>">Mod</a></td>
+                <td><a href="EliminarProducto?id=<%=id%>">Del</a></td>
             </tr>
                 <%}%>
         </table>
+        <a href="agregarProducto.jsp">Add</a>
     </body>
 </html>

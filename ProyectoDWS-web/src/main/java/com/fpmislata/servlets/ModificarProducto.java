@@ -5,12 +5,12 @@
  */
 package com.fpmislata.servlets;
 
+import com.fpmislata.domain.Producto;
 import com.fpmislata.service.ProductoServiceLocal;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.ArrayList;
 import javax.ejb.EJB;
-import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -18,9 +18,9 @@ import javax.servlet.http.HttpServletResponse;
 
 /**
  *
- * @author Maria
+ * @author alumno
  */
-public class ListarProductos extends HttpServlet {
+public class ModificarProducto extends HttpServlet {
 
     @EJB
     private ProductoServiceLocal productoService;
@@ -37,14 +37,46 @@ public class ListarProductos extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
-        try{
-            ArrayList lista = productoService.listProductos();
-            request.getSession().setAttribute("productos", lista);
+        
+        String accion = request.getParameter("accion");
+        
+        if(accion != null && accion.equals("editar")){
+            String id = request.getParameter("id");
+            
+            if(id != null){
+                Producto producto = new Producto();
+            producto.setId(Integer.parseInt(id));
+            
+            try{
+                producto = this.productoService.findProductoById(producto);
+            }catch(Exception e){
+                e.printStackTrace();
+            }
 
-            RequestDispatcher rd = request.getRequestDispatcher("/listarProductos.jsp");
-            rd.forward(request, response);
-        }catch(Exception e){
-            e.printStackTrace();
+            request.setAttribute("producto", producto);
+            request.getRequestDispatcher("/modificarProducto.jsp").forward(request, response);
+            }
+            
+        }else if(accion != null && accion.equals("modificar")){
+            int id = Integer.parseInt(request.getParameter("id"));
+            String nombre = request.getParameter("nombre");
+            int unidades = Integer.parseInt("unidades");
+            
+            Producto producto = new Producto();
+            producto.setId(id);
+            producto.setNombre(nombre);
+            producto.setUnidades(unidades);
+            
+            try{
+                this.productoService.updateProducto(producto);
+            }catch(Exception e){
+                e.printStackTrace();
+            }
+            
+            ArrayList<Producto> lista = productoService.listProductos();
+            request.setAttribute("productos", lista);
+            
+            request.getRequestDispatcher("/listarProductos.jsp").forward(request, response);
         }
     }
 

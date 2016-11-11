@@ -5,6 +5,7 @@
  */
 package com.fpmislata.servlets;
 
+import com.fpmislata.domain.Producto;
 import com.fpmislata.service.ProductoServiceLocal;
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -18,9 +19,9 @@ import javax.servlet.http.HttpServletResponse;
 
 /**
  *
- * @author Maria
+ * @author alumno
  */
-public class ListarProductos extends HttpServlet {
+public class EliminarProducto extends HttpServlet {
 
     @EJB
     private ProductoServiceLocal productoService;
@@ -37,15 +38,23 @@ public class ListarProductos extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
+        
+        int id = Integer.parseInt(request.getParameter("id"));
+        
+        Producto producto = new Producto();
+        producto.setId(id);
+        
         try{
-            ArrayList lista = productoService.listProductos();
-            request.getSession().setAttribute("productos", lista);
-
-            RequestDispatcher rd = request.getRequestDispatcher("/listarProductos.jsp");
-            rd.forward(request, response);
+            this.productoService.deleteProducto(producto);
         }catch(Exception e){
             e.printStackTrace();
         }
+        
+        ArrayList lista = productoService.listProductos();
+        request.getSession().setAttribute("productos", lista);
+        
+        RequestDispatcher rd = request.getRequestDispatcher("/listarProductos.jsp");
+        rd.forward(request, response);
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">

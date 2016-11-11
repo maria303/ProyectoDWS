@@ -37,15 +37,15 @@ public class ProductoService implements ProductoServiceLocal {
     @Override
     public void addProducto(Producto producto) {
         Iterator<Producto> it = lista.iterator();
-        boolean enc = false;
+        boolean existe = false;
         
-        while((it.hasNext()) && (enc==false)){
+        while((it.hasNext()) && (existe==false)){
             if(it.next().getId() == producto.getId()){
-                enc = true;
+                existe = true;
             }
         }
         
-        if(enc == false){
+        if(existe == false){
             producto.setId(lastId);
             lastId++;
             lista.add(producto);
@@ -54,15 +54,51 @@ public class ProductoService implements ProductoServiceLocal {
 
     @Override
     public void updateProducto(Producto producto) {
+        boolean existe = false;
+        int i = 0;
+        
+        while((i < lista.size()) && (existe == false)){
+            if(lista.get(i).getId() == producto.getId()){
+                existe = true;
+            }else{
+                i++;
+            }
+        }
+        
+        if(existe == true){
+            lista.set(i, producto);
+        }
     }
 
     @Override
     public Producto findProductoById(Producto producto) {
+        Iterator<Producto> it = lista.iterator();
+        
+        while(it.hasNext()){
+            Producto p = it.next();
+            if(p.getId() == producto.getId()){
+                return p;
+            }
+        }
         return null;
     }
 
     @Override
     public void deleteProducto(Producto producto) {
+        boolean existe = false;
+        int i = 0;
+        
+        while((i<lista.size())&&(existe==false)){
+            if(lista.get(i).getId() == producto.getId()){
+                existe = true;
+            }else{
+                i++;
+            }
+        }
+        
+        if(existe == true){
+            lista.remove(i);
+        }
     }
 
     
