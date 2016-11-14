@@ -19,36 +19,39 @@
         <h1>Hello World!</h1>
         
         <table>
-            <thead>
             <tr>
                 <th>Nombre</th>
+                <th>Descripción</th>
                 <th>Unidades</th>
-                <th></th>
+                <th>Precio</th>
                 <th>
                     <a href="agregarProducto.jsp" class="boton">
-                        <i class="fa fa-plus" aria-hidden="true"></i>
+                        <i class="fa fa-plus-square" aria-hidden="true"></i>
                     </a></th>
             </tr>
-            </thead><tbody>
             <%
                 ArrayList<Producto> lista = (ArrayList) session.getAttribute("productos");
                 for(Producto producto : lista){
                     int id = producto.getId();
                     String nombre = producto.getNombre();
+                    String descripcion = producto.getDescripcion();
                     int unidades = producto.getUnidades();
+                    double precio = producto.getPrecio();
             %>
             
             <tr>
                 <td><%=nombre%></td>
+                <td><%=descripcion%></td>
                 <td><%=unidades%></td>
+                <td><%=precio%></td>
                 <td><a href="ModificarProducto?accion=editar&id=<%=id%>" class="boton">
                         <i class="fa fa-pencil" aria-hidden="true"></i>
-                    </a></td>
-                <td><a href="EliminarProducto?id=<%=id%>" class="boton">
+                    </a>
+                    <a href="EliminarProducto?id=<%=id%>" class="boton">
                         <i class="fa fa-trash" aria-hidden="true"></i>
                     </a></td>
                 </tr>
-                <%}%></tbody>
+                <%}%>
         </table>
     </body>
 </html>

@@ -10,10 +10,25 @@ and open the template in the editor.
 
 .boton{
     text-decoration: none;
-    color: black;
+    color: #607d8b;
 }
 
-tbody tr:nth-child(odd) {
-   background-color: #F2F2F2;
+.fa-plus-square{
+    color: white;
+}
+
+table{
+    border-collapse: collapse;
+    width: 50%;
+    text-align: left;
+}
+
+tr:nth-child(odd) {
+   background-color: #f1f1f1;
    padding: 10px;
+}
+
+th{
+    background-color: #607d8b;
+    color: #ffffff;
 }

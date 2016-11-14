@@ -39,11 +39,15 @@ public class AltaProducto extends HttpServlet {
         response.setContentType("text/html;charset=UTF-8");
         
         String nombre = request.getParameter("nombre");
+        String descripcion = request.getParameter("descripcion");
         int unidades = Integer.parseInt(request.getParameter("unidades"));
+        double precio = Double.parseDouble(request.getParameter("precio"));
         
         Producto producto = new Producto();
         producto.setNombre(nombre);
+        producto.setDescripcion(descripcion);
         producto.setUnidades(unidades);
+        producto.setPrecio(precio);
         
         try{
             productoService.addProducto(producto);
