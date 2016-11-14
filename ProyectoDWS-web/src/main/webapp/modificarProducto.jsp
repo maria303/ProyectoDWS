@@ -14,7 +14,7 @@
     <body>
         <h1>Hello World!</h1>
         
-        <form action="ModificarProducto?accion=modificar?id=${producto.id}" method="POST">
+        <form action="ModificarProducto?accion=modificar&id=${producto.id}" method="POST">
             <label for="nombre">Nombre:</label>
             <input type="text" name="nombre" value="${producto.nombre}" style="display: block"/>
             <label for="unidades">Unidades:</label>

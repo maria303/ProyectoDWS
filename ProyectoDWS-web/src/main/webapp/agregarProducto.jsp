@@ -15,7 +15,6 @@
         <h1>Hello World!</h1>
         
         <form action="AltaProducto" method="POST">
-            <input type="hidden" name="action" value="agregar"/>
             
             <label for="nombre">Nombre:</label>
             <input type="text" name="nombre" style="display: block"/>

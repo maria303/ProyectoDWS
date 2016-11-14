@@ -45,22 +45,22 @@ public class ModificarProducto extends HttpServlet {
             
             if(id != null){
                 Producto producto = new Producto();
-            producto.setId(Integer.parseInt(id));
-            
-            try{
-                producto = this.productoService.findProductoById(producto);
-            }catch(Exception e){
-                e.printStackTrace();
-            }
+                producto.setId(Integer.parseInt(id));
 
-            request.setAttribute("producto", producto);
-            request.getRequestDispatcher("/modificarProducto.jsp").forward(request, response);
+                try{
+                    producto = this.productoService.findProductoById(producto);
+                }catch(Exception e){
+                    e.printStackTrace();
+                }
+
+                request.setAttribute("producto", producto);
+                request.getRequestDispatcher("/modificarProducto.jsp").forward(request, response);
             }
             
         }else if(accion != null && accion.equals("modificar")){
             int id = Integer.parseInt(request.getParameter("id"));
             String nombre = request.getParameter("nombre");
-            int unidades = Integer.parseInt("unidades");
+            int unidades = Integer.parseInt(request.getParameter("unidades"));
             
             Producto producto = new Producto();
             producto.setId(id);

@@ -11,19 +11,25 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        <link href="css/main.css" rel="stylesheet" type="text/css"/>
+        <link href="font-awesome-4.7.0/css/font-awesome.min.css" rel="stylesheet" type="text/css"/>
         <title>JSP Page</title>
     </head>
     <body>
         <h1>Hello World!</h1>
         
         <table>
+            <thead>
             <tr>
                 <th>Nombre</th>
                 <th>Unidades</th>
                 <th></th>
-                <th></th>
+                <th>
+                    <a href="agregarProducto.jsp" class="boton">
+                        <i class="fa fa-plus" aria-hidden="true"></i>
+                    </a></th>
             </tr>
-            
+            </thead><tbody>
             <%
                 ArrayList<Producto> lista = (ArrayList) session.getAttribute("productos");
                 for(Producto producto : lista){
@@ -35,11 +41,14 @@
             <tr>
                 <td><%=nombre%></td>
                 <td><%=unidades%></td>
-                <td><a href="ModificarProducto?accion=editar&id=<%=id%>">Mod</a></td>
-                <td><a href="EliminarProducto?id=<%=id%>">Del</a></td>
-            </tr>
-                <%}%>
+                <td><a href="ModificarProducto?accion=editar&id=<%=id%>" class="boton">
+                        <i class="fa fa-pencil" aria-hidden="true"></i>
+                    </a></td>
+                <td><a href="EliminarProducto?id=<%=id%>" class="boton">
+                        <i class="fa fa-trash" aria-hidden="true"></i>
+                    </a></td>
+                </tr>
+                <%}%></tbody>
         </table>
-        <a href="agregarProducto.jsp">Add</a>
     </body>
 </html>
