@@ -13,16 +13,14 @@ import java.io.Serializable;
  */
 public class Producto implements Serializable{
     private static final long serialVersionUID = 1L;
-    private int id, unidades;
+    private int id, stock;
     private String nombre, descripcion;
-    private double precio;
 
-    public Producto(int id, int unidades, String nombre, String descripcion, double precio) {
+    public Producto(int id, int stock, String nombre, String descripcion) {
         this.id = id;
-        this.unidades = unidades;
+        this.stock = stock;
         this.nombre = nombre;
         this.descripcion = descripcion;
-        this.precio = precio;
     }
 
     public Producto() {
@@ -36,12 +34,12 @@ public class Producto implements Serializable{
         this.id = id;
     }
 
-    public int getUnidades() {
-        return unidades;
+    public int getStock() {
+        return stock;
     }
 
-    public void setUnidades(int unidades) {
-        this.unidades = unidades;
+    public void setStock(int stock) {
+        this.stock = stock;
     }
 
     public String getNombre() {
@@ -58,14 +56,6 @@ public class Producto implements Serializable{
 
     public void setDescripcion(String descripcion) {
         this.descripcion = descripcion;
-    }
-
-    public double getPrecio() {
-        return precio;
-    }
-
-    public void setPrecio(double precio) {
-        this.precio = precio;
     }
     
 }

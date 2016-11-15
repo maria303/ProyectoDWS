@@ -22,12 +22,12 @@
             <tr>
                 <th>Nombre</th>
                 <th>Descripción</th>
-                <th>Unidades</th>
-                <th>Precio</th>
+                <th>Stock</th>
                 <th>
                     <a href="agregarProducto.jsp" class="boton">
                         <i class="fa fa-plus-square" aria-hidden="true"></i>
-                    </a></th>
+                    </a>
+                </th>
             </tr>
             <%
                 ArrayList<Producto> lista = (ArrayList) session.getAttribute("productos");
@@ -35,15 +35,12 @@
                     int id = producto.getId();
                     String nombre = producto.getNombre();
                     String descripcion = producto.getDescripcion();
-                    int unidades = producto.getUnidades();
-                    double precio = producto.getPrecio();
+                    int stock = producto.getStock();
             %>
-            
             <tr>
                 <td><%=nombre%></td>
                 <td><%=descripcion%></td>
-                <td><%=unidades%></td>
-                <td><%=precio%></td>
+                <td><%=stock%></td>
                 <td><a href="ModificarProducto?accion=editar&id=<%=id%>" class="boton">
                         <i class="fa fa-pencil" aria-hidden="true"></i>
                     </a>

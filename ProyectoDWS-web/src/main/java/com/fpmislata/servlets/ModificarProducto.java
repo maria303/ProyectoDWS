@@ -62,15 +62,13 @@ public class ModificarProducto extends HttpServlet {
             int id = Integer.parseInt(request.getParameter("id"));
             String nombre = request.getParameter("nombre");
             String descripcion = request.getParameter("descripcion");
-            int unidades = Integer.parseInt(request.getParameter("unidades"));
-            double precio = Double.parseDouble(request.getParameter("precio"));
+            int stock = Integer.parseInt(request.getParameter("stock"));
             
             Producto producto = new Producto();
             producto.setId(id);
             producto.setNombre(nombre);
             producto.setDescripcion(descripcion);
-            producto.setUnidades(unidades);
-            producto.setPrecio(precio);
+            producto.setStock(stock);
             
             try{
                 this.productoService.updateProducto(producto);

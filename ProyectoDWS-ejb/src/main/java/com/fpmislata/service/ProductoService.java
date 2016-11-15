@@ -21,10 +21,10 @@ public class ProductoService implements ProductoServiceLocal {
     private static int lastId = 6;
     
     static{
-        lista.add(new Producto(1, 50, "Patatas", "Patatas1", 2.5));
-        lista.add(new Producto(2, 50, "Cebolla", "Cebolla1", 2));
-        lista.add(new Producto(3, 50, "Tomate", "Tomate1", 3));
-        lista.add(new Producto(4, 50, "Huevos", "Huevos1", 3.5));
+        lista.add(new Producto(1, 50, "Patatas", "Patatas1"));
+        lista.add(new Producto(2, 50, "Cebolla", "Cebolla1"));
+        lista.add(new Producto(3, 50, "Tomate", "Tomate1"));
+        lista.add(new Producto(4, 50, "Huevos", "Huevos1"));
     }
 
     // Add business logic below. (Right-click in editor and choose
@@ -37,11 +37,12 @@ public class ProductoService implements ProductoServiceLocal {
 
     @Override
     public void addProducto(Producto producto) {
+        
         Iterator<Producto> it = lista.iterator();
         boolean existe = false;
         
-        while((it.hasNext()) && (existe==false)){
-            if(it.next().getId() == producto.getId()){
+        while(it.hasNext()){
+            if(it.next().getNombre().equals(producto.getNombre())){
                 existe = true;
             }
         }
@@ -55,19 +56,11 @@ public class ProductoService implements ProductoServiceLocal {
 
     @Override
     public void updateProducto(Producto producto) {
-        boolean existe = false;
-        int i = 0;
         
-        while((i < lista.size()) && (existe == false)){
+        for(int i = 0; i<lista.size(); i++){
             if(lista.get(i).getId() == producto.getId()){
-                existe = true;
-            }else{
-                i++;
+                lista.set(i, producto);
             }
-        }
-        
-        if(existe == true){
-            lista.set(i, producto);
         }
     }
 
@@ -86,23 +79,12 @@ public class ProductoService implements ProductoServiceLocal {
 
     @Override
     public void deleteProducto(Producto producto) {
-        boolean existe = false;
-        int i = 0;
         
-        while((i<lista.size())&&(existe==false)){
+        for(int i=0; i<lista.size(); i++){
             if(lista.get(i).getId() == producto.getId()){
-                existe = true;
-            }else{
-                i++;
+                lista.remove(i);
             }
         }
-        
-        if(existe == true){
-            lista.remove(i);
-        }
     }
-
-    
-
     
 }

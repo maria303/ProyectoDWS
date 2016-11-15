@@ -19,10 +19,8 @@
             <input type="text" name="nombre" value="${producto.nombre}" style="display: block"/>
             <label for="descripcion">Descripción:</label>
             <input type="text" name="descripcion" value="${producto.descripcion}" style="display: block"/>
-            <label for="unidades">Unidades:</label>
-            <input type="text" name="unidades" value="${producto.unidades}" style="display: block"/>
-            <label for="precio">Precio:</label>
-            <input type="text" name="precio" value="${producto.precio}" style="display: block"/>
+            <label for="stock">Stock:</label>
+            <input type="text" name="stock" value="${producto.stock}" style="display: block"/>
             
             <input type="submit" value="Modificar"/>
         </form>

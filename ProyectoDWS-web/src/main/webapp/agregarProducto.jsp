@@ -20,10 +20,8 @@
             <input type="text" name="nombre" style="display: block"/>
             <label for="descripcion">Descripción:</label>
             <input type="text" name="descripcion" style="display: block"/>
-            <label for="unidades">Unidades:</label>
-            <input type="text" name="unidades" style="display: block"/>
-            <label for="precio">Precio:</label>
-            <input type="text" name="precio" style="display: block"/>
+            <label for="stock">Stock:</label>
+            <input type="text" name="stock" style="display: block"/>
             
             <input type="submit" value="Añadir"/>
         </form>
