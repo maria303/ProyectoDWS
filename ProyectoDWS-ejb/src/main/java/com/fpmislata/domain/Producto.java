@@ -15,12 +15,14 @@ public class Producto implements Serializable{
     private static final long serialVersionUID = 1L;
     private int id, stock;
     private String nombre, descripcion;
+    private double precio;
 
-    public Producto(int id, int stock, String nombre, String descripcion) {
+    public Producto(int id, int stock, String nombre, String descripcion, Double precio) {
         this.id = id;
         this.stock = stock;
         this.nombre = nombre;
         this.descripcion = descripcion;
+        this.precio = precio;
     }
 
     public Producto() {
@@ -56,6 +58,14 @@ public class Producto implements Serializable{
 
     public void setDescripcion(String descripcion) {
         this.descripcion = descripcion;
+    }
+
+    public double getPrecio() {
+        return precio;
+    }
+
+    public void setPrecio(double precio) {
+        this.precio = precio;
     }
     
 }

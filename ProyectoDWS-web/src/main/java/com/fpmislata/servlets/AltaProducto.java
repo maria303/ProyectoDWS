@@ -5,8 +5,8 @@
  */
 package com.fpmislata.servlets;
 
-import com.fpmislata.domain.Producto;
 import com.fpmislata.service.ProductoServiceLocal;
+import com.fpmislata.domain.Producto;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.ArrayList;
@@ -40,17 +40,33 @@ public class AltaProducto extends HttpServlet {
         
         String nombre = request.getParameter("nombre");
         String descripcion = request.getParameter("descripcion");
-        int stock = Integer.parseInt(request.getParameter("stock"));
+        String stockString = request.getParameter("stock");
+        String precioString = request.getParameter("precio");
         
-        Producto producto = new Producto();
-        producto.setNombre(nombre);
-        producto.setDescripcion(descripcion);
-        producto.setStock(stock);
+        if(stockString == null || stockString.equals("")){
+            stockString = "0";
+        }
+        if(precioString == null || precioString.equals("")){
+            precioString = "0";
+        }
         
-        try{
-            productoService.addProducto(producto);
-        }catch(Exception e){
-            e.printStackTrace();
+        int stock = Integer.parseInt(stockString);
+        double precio = Double.parseDouble(precioString);
+        
+        if(nombre != null && !nombre.equals("")){
+
+            Producto producto = new Producto();
+            producto.setNombre(nombre);
+            producto.setDescripcion(descripcion);
+            producto.setStock(stock);
+            producto.setPrecio(precio);
+
+            try{
+                productoService.addProducto(producto);
+            }catch(Exception e){
+                e.printStackTrace();
+            }
+
         }
         
         ArrayList<Producto> lista = productoService.listProductos();

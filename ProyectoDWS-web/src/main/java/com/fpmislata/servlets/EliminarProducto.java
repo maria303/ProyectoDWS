@@ -5,8 +5,8 @@
  */
 package com.fpmislata.servlets;
 
-import com.fpmislata.domain.Producto;
 import com.fpmislata.service.ProductoServiceLocal;
+import com.fpmislata.domain.Producto;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.ArrayList;

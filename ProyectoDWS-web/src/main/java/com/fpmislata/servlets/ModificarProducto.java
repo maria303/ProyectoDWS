@@ -5,8 +5,8 @@
  */
 package com.fpmislata.servlets;
 
-import com.fpmislata.domain.Producto;
 import com.fpmislata.service.ProductoServiceLocal;
+import com.fpmislata.domain.Producto;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.ArrayList;
@@ -62,20 +62,35 @@ public class ModificarProducto extends HttpServlet {
             int id = Integer.parseInt(request.getParameter("id"));
             String nombre = request.getParameter("nombre");
             String descripcion = request.getParameter("descripcion");
-            int stock = Integer.parseInt(request.getParameter("stock"));
+            String stockString = request.getParameter("stock");
+            String precioString = request.getParameter("precio");
             
-            Producto producto = new Producto();
-            producto.setId(id);
-            producto.setNombre(nombre);
-            producto.setDescripcion(descripcion);
-            producto.setStock(stock);
-            
-            try{
-                this.productoService.updateProducto(producto);
-            }catch(Exception e){
-                e.printStackTrace();
+            if(stockString == null || stockString.equals("")){
+                stockString = "0";
+            }
+            if(precioString == null || precioString.equals("")){
+                precioString = "0";
             }
             
+            int stock = Integer.parseInt(stockString);
+            double precio = Double.parseDouble(precioString);
+            
+            if(nombre != null && !nombre.equals("")){
+                
+                Producto producto = new Producto();
+                producto.setId(id);
+                producto.setNombre(nombre);
+                producto.setDescripcion(descripcion);
+                producto.setStock(stock);
+                producto.setPrecio(precio);
+                
+                try{
+                    this.productoService.updateProducto(producto);
+                }catch(Exception e){
+                    e.printStackTrace();
+                }
+                
+            }
             ArrayList<Producto> lista = productoService.listProductos();
             request.setAttribute("productos", lista);
             

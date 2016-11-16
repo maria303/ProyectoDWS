@@ -22,6 +22,8 @@
             <input type="text" name="descripcion" style="display: block"/>
             <label for="stock">Stock:</label>
             <input type="text" name="stock" style="display: block"/>
+            <label for="precio">Precio:</label>
+            <input type="text" name="precio" style="display: block"/>
             
             <input type="submit" value="Añadir"/>
         </form>
