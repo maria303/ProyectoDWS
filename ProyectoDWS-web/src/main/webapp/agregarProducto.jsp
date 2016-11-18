@@ -17,7 +17,7 @@
         <form action="AltaProducto" method="POST">
             
             <label for="nombre">Nombre:</label>
-            <input type="text" name="nombre" style="display: block"/>
+            <input type="text" name="nombre" value="${proveedor.nombre}" style="display: block"/>
             <label for="descripcion">Descripción:</label>
             <input type="text" name="descripcion" style="display: block"/>
             <label for="stock">Stock:</label>

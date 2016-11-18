@@ -5,8 +5,12 @@
  */
 package com.fpmislata.servlets;
 
+import com.fpmislata.domain.Proveedor;
+import com.fpmislata.service.ProveedorServiceLocal;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.ArrayList;
+import javax.ejb.EJB;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -17,6 +21,9 @@ import javax.servlet.http.HttpServletResponse;
  * @author alumno
  */
 public class AltaProveedor extends HttpServlet {
+
+    @EJB
+    private ProveedorServiceLocal proveedorService;
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -30,18 +37,34 @@ public class AltaProveedor extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
-        try (PrintWriter out = response.getWriter()) {
-            /* TODO output your page here. You may use following sample code. */
-            out.println("<!DOCTYPE html>");
-            out.println("<html>");
-            out.println("<head>");
-            out.println("<title>Servlet AltaProveedor</title>");            
-            out.println("</head>");
-            out.println("<body>");
-            out.println("<h1>Servlet AltaProveedor at " + request.getContextPath() + "</h1>");
-            out.println("</body>");
-            out.println("</html>");
+        
+        String nombre = request.getParameter("nombre");
+        String direccion = request.getParameter("direccion");
+        String ciudad = request.getParameter("ciudad");
+        String provincia = request.getParameter("provincia");
+        int cp = Integer.parseInt(request.getParameter("cp"));
+        int telefono = Integer.parseInt(request.getParameter("telefono"));
+        String email = request.getParameter("email");
+        
+        Proveedor proveedor = new Proveedor();
+        proveedor.setNombre(nombre);
+        proveedor.setDireccion(direccion);
+        proveedor.setCiudad(ciudad);
+        proveedor.setProvincia(provincia);
+        proveedor.setCp(cp);
+        proveedor.setTelefono(telefono);
+        proveedor.setEmail(email);
+        
+        try{
+            proveedorService.addProveedor(proveedor);
+        }catch(Exception e){
+            e.printStackTrace();
         }
+        
+        ArrayList<Proveedor> lista = proveedorService.listProveedores();
+        request.setAttribute("proveedores", lista);
+        
+        request.getRequestDispatcher("/listarProveedores.jsp").forward(request, response);
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
