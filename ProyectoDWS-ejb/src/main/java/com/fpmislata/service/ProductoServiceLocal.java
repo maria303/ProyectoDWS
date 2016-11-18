@@ -25,5 +25,7 @@ public interface ProductoServiceLocal {
     Producto findProductoById(Producto producto);
 
     void deleteProducto(Producto producto);
+
+    ArrayList findProductosByIdProveedores(int idProveedor);
     
 }

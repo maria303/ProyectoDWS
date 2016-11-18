@@ -24,6 +24,14 @@
         <servlet-name>ListarProveedores</servlet-name>
         <servlet-class>com.fpmislata.servlets.ListarProveedores</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>AltaProductoProveedor</servlet-name>
+        <servlet-class>com.fpmislata.servlets.AltaProductoProveedor</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>ListarProductosProveedores</servlet-name>
+        <servlet-class>com.fpmislata.servlets.ListarProductosProveedores</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>ListarProductos</servlet-name>
         <url-pattern>/ListarProductos</url-pattern>
@@ -47,6 +55,14 @@
     <servlet-mapping>
         <servlet-name>ListarProveedores</servlet-name>
         <url-pattern>/ListarProveedores</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>AltaProductoProveedor</servlet-name>
+        <url-pattern>/AltaProductoProveedor</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>ListarProductosProveedores</servlet-name>
+        <url-pattern>/ListarProductosProveedores</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

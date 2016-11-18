@@ -11,6 +11,8 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        <link href="css/main.css" rel="stylesheet" type="text/css"/>
+        <link href="font-awesome-4.7.0/css/font-awesome.min.css" rel="stylesheet" type="text/css"/>
         <title>JSP Page</title>
     </head>
     <body>
@@ -44,7 +46,7 @@
                     String email = proveedor.getEmail();
             %>
             <tr>
-                <td><a href="AltaProducto?accion=1&id=<%=id%>"><%=nombre%></a></td>
+                <td><a href="ListarProductosProveedores?id=<%=id%>"><%=nombre%></a></td>
                 <td><%=direccion%></td>
                 <td><%=ciudad%></td>
                 <td><%=provincia%></td>

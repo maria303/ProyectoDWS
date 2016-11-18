@@ -21,10 +21,10 @@ public class ProductoService implements ProductoServiceLocal {
     private static int lastId = 5;
     
     static{
-        lista.add(new Producto(1, 50, "Patatas", "Patatas1", 2.5));
-        lista.add(new Producto(2, 50, "Cebolla", "Cebolla1", 2.0));
-        lista.add(new Producto(3, 50, "Tomate", "Tomate1", 3.0));
-        lista.add(new Producto(4, 50, "Huevos", "Huevos1", 3.5));
+        lista.add(new Producto(1, 50, "Patatas", "Patatas1", 2.5, 1));
+        lista.add(new Producto(2, 50, "Cebolla", "Cebolla1", 2.0, 1));
+        lista.add(new Producto(3, 50, "Tomate", "Tomate1", 3.0, 2));
+        lista.add(new Producto(4, 50, "Huevos", "Huevos1", 3.5, 2));
     }
 
     // Add business logic below. (Right-click in editor and choose
@@ -85,6 +85,20 @@ public class ProductoService implements ProductoServiceLocal {
                 lista.remove(i);
             }
         }
+    }
+
+    @Override
+    public ArrayList findProductosByIdProveedores(int idProveedor) {
+        Iterator<Producto> it = lista.iterator();
+        ArrayList<Producto> listaProductosProveedores = new ArrayList();
+        
+        while(it.hasNext()){
+            Producto p = it.next();
+            if(p.getIdProveedor() == idProveedor){
+                listaProductosProveedores.add(p);
+            }
+        }
+        return listaProductosProveedores;
     }
     
 }
