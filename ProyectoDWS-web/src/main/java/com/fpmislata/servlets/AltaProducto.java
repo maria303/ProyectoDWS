@@ -102,10 +102,10 @@ public class AltaProducto extends HttpServlet {
 
         }
         
-        ArrayList<Producto> lista = productoService.listProductos();
-        request.setAttribute("productos", lista);
+        ArrayList<Producto> lista = productoService.findProductosByIdProveedores(idProveedor);
+        request.getSession().setAttribute("productos", lista);
         
-        request.getRequestDispatcher("/listarProductos.jsp").forward(request, response);
+        request.getRequestDispatcher("/listarProductosProveedores.jsp").forward(request, response);
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">

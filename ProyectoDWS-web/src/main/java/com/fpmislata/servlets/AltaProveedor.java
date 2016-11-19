@@ -62,7 +62,7 @@ public class AltaProveedor extends HttpServlet {
         }
         
         ArrayList<Proveedor> lista = proveedorService.listProveedores();
-        request.setAttribute("proveedores", lista);
+        request.getSession().setAttribute("proveedores", lista);
         
         request.getRequestDispatcher("/listarProveedores.jsp").forward(request, response);
     }

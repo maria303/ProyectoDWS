@@ -13,11 +13,11 @@
     </head>
     <body>
         <h1>Hello World!</h1>
-        
+        <% int idProveedor = (Integer) session.getAttribute("idProveedor"); %>
         <form action="AltaProducto" method="POST">
             
             <label for="nombre">Nombre:</label>
-            <input type="text" name="nombre" value="${proveedor.nombre}" style="display: block"/>
+            <input type="text" name="nombre" style="display: block"/>
             <label for="descripcion">Descripción:</label>
             <input type="text" name="descripcion" style="display: block"/>
             <label for="stock">Stock:</label>
@@ -25,7 +25,7 @@
             <label for="precio">Precio:</label>
             <input type="text" name="precio" style="display: block"/>
             <label for="idProveedor">ID:</label>
-            <input type="text" name="idProveedor" style="display: block"/>
+            <input type="text" name="idProveedor" value="<%=idProveedor%>" style="display: block"/>
             
             <input type="submit" value="Añadir"/>
         </form>

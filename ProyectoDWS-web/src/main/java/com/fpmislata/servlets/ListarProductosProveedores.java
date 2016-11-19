@@ -45,6 +45,7 @@ public class ListarProductosProveedores extends HttpServlet {
             int idProveedor = Integer.parseInt(request.getParameter("id"));
             ArrayList lista = productoService.findProductosByIdProveedores(idProveedor);
             request.getSession().setAttribute("productos", lista);
+            request.getSession().setAttribute("idProveedor", idProveedor);
 
             RequestDispatcher rd = request.getRequestDispatcher("/listarProductosProveedores.jsp");
             rd.forward(request, response);

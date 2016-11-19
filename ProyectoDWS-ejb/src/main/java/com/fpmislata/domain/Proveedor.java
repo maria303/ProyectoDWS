@@ -15,7 +15,7 @@ public class Proveedor implements Serializable{
     private static final long serialVersionUID = 2L;
     private int id, cp, telefono;
     private String nombre, direccion, ciudad, provincia, email;
-    private Producto producto;
+//    private Producto producto;
 
     public Proveedor(int id, int cp, int telefono, String nombre, String direccion, String ciudad, String provincia, String email) {
         this.id = id;
@@ -28,17 +28,17 @@ public class Proveedor implements Serializable{
         this.email = email;
     }
 
-    public Proveedor(int id, int cp, int telefono, String nombre, String direccion, String ciudad, String provincia, String email, Producto producto) {
-        this.id = id;
-        this.cp = cp;
-        this.telefono = telefono;
-        this.nombre = nombre;
-        this.direccion = direccion;
-        this.ciudad = ciudad;
-        this.provincia = provincia;
-        this.email = email;
-        this.producto = producto;
-    }
+//    public Proveedor(int id, int cp, int telefono, String nombre, String direccion, String ciudad, String provincia, String email, Producto producto) {
+//        this.id = id;
+//        this.cp = cp;
+//        this.telefono = telefono;
+//        this.nombre = nombre;
+//        this.direccion = direccion;
+//        this.ciudad = ciudad;
+//        this.provincia = provincia;
+//        this.email = email;
+//        this.producto = producto;
+//    }
 
     public Proveedor() {
     }
@@ -107,12 +107,12 @@ public class Proveedor implements Serializable{
         this.email = email;
     }
 
-    public Producto getProducto() {
-        return producto;
-    }
-
-    public void setProducto(Producto producto) {
-        this.producto = producto;
-    }
+//    public Producto getProducto() {
+//        return producto;
+//    }
+//
+//    public void setProducto(Producto producto) {
+//        this.producto = producto;
+//    }
     
 }
