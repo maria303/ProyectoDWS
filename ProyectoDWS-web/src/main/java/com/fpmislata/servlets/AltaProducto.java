@@ -7,10 +7,7 @@ package com.fpmislata.servlets;
 
 import com.fpmislata.service.ProductoServiceLocal;
 import com.fpmislata.domain.Producto;
-import com.fpmislata.domain.Proveedor;
-import com.fpmislata.service.ProveedorServiceLocal;
 import java.io.IOException;
-import java.io.PrintWriter;
 import java.util.ArrayList;
 import javax.ejb.EJB;
 import javax.servlet.ServletException;
@@ -23,9 +20,6 @@ import javax.servlet.http.HttpServletResponse;
  * @author Maria
  */
 public class AltaProducto extends HttpServlet {
-
-    @EJB
-    private ProveedorServiceLocal proveedorService;
 
     @EJB
     private ProductoServiceLocal productoService;
@@ -43,27 +37,6 @@ public class AltaProducto extends HttpServlet {
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         
-//        String accion = request.getParameter("accion");
-//        if(accion != null && accion.equals("1")){
-//            int idProveedor = Integer.parseInt(request.getParameter("id"));
-//            Proveedor proveedor = new Proveedor();
-//            proveedor.setId(idProveedor);
-//            
-//            try{
-//                proveedor = this.proveedorService.findProveedorById(proveedor);
-//            }catch(Exception e){
-//                e.printStackTrace();
-//            }
-//            
-//            request.setAttribute("proveedor", proveedor);
-//            request.getRequestDispatcher("/agregarProducto.jsp").forward(request, response);
-//            
-//            
-//        }
-//            Proveedor proveedor = new Proveedor();
-            
-            
-            
         String nombre = request.getParameter("nombre");
         String descripcion = request.getParameter("descripcion");
         String stockString = request.getParameter("stock");
@@ -77,7 +50,7 @@ public class AltaProducto extends HttpServlet {
             precioString = "0";
         }
         if(idProveedorString == null || idProveedorString.equals("")){
-            precioString = "0";
+            precioString = "1";
         }
         
         int stock = Integer.parseInt(stockString);
@@ -93,13 +66,11 @@ public class AltaProducto extends HttpServlet {
             producto.setPrecio(precio);
             producto.setIdProveedor(idProveedor);
             
-//proveedor.setProducto(producto);
             try{
                 productoService.addProducto(producto);
             }catch(Exception e){
                 e.printStackTrace();
             }
-
         }
         
         ArrayList<Producto> lista = productoService.findProductosByIdProveedores(idProveedor);

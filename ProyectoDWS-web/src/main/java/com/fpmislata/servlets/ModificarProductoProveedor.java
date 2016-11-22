@@ -8,7 +8,6 @@ package com.fpmislata.servlets;
 import com.fpmislata.domain.Producto;
 import com.fpmislata.service.ProductoServiceLocal;
 import java.io.IOException;
-import java.io.PrintWriter;
 import java.util.ArrayList;
 import javax.ejb.EJB;
 import javax.servlet.ServletException;

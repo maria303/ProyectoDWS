@@ -14,7 +14,7 @@
         <title>JSP Page</title>
     </head>
     <body>
-        <h1>Hello World!</h1>
+        <h1>Agregar proveedor</h1>
         <form action="AltaProveedor" method="POST">
             <label for="nombre">Nombre:</label>
             <input type="text" name="nombre" style="display: block"/>
@@ -30,18 +30,8 @@
             <input type="text" name="telefono" style="display: block"/>
             <label for="email">Email:</label>
             <input type="text" name="email" style="display: block"/>
-            <!--<label for="producto">Producto:</label>
-            <select name="producto">
-                <%/*
-                ArrayList<Producto> lista = (ArrayList) session.getAttribute("productos");
-                for(Producto producto : lista){
-                    String nombreProducto = producto.getNombre();*/
-                %>
-                <option><%/*=nombreProducto*/%></option>
-                <%/* } */%>
-            </select>-->
-                
-                <input type="submit" value="Añadir"/>
+            
+            <input type="submit" value="Añadir"/>
         </form>
     </body>
 </html>

@@ -21,8 +21,8 @@ public class ProveedorService implements ProveedorServiceLocal {
     private static int lastId = 3;
     
     static{
-        lista.add(new Proveedor(1, 46970, 961234567, "Verduras SL", "c/ Bajo 4", "Alaquàs", "València", "asdf@asd.com"));
-        lista.add(new Proveedor(2, 12345, 961234569, "Frutas SL", "c/ Puerto 7", "Mislata", "València", "dfsg@fbv.com"));
+        lista.add(new Proveedor(1, 46970, 961234567, "Frutas SL", "C/ Bajo 4", "Alaquàs", "València", "frutas@frutas.com"));
+        lista.add(new Proveedor(2, 12345, 961234569, "Verduras SL", "C/ Puerto 7", "Mislata", "València", "verduras@verduras.com"));
     }
 
     // Add business logic below. (Right-click in editor and choose

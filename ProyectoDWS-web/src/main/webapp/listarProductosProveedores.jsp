@@ -16,7 +16,7 @@
         <title>JSP Page</title>
     </head>
     <body>
-        <h1>Hello World!</h1>
+        <h1>Listado de productos por proveedor</h1>
         
         <table>
             <tr>
@@ -44,14 +44,17 @@
                 <td><%=descripcion%></td>
                 <td><%=stock%></td>
                 <td><%=precio%></td>
-                <td><a href="ModificarProductoProveedor?accion=editar&id=<%=id%>" class="boton">
+                <td>
+                    <a href="ModificarProductoProveedor?accion=editar&id=<%=id%>" class="boton">
                         <i class="fa fa-pencil" aria-hidden="true"></i>
                     </a>
                     <a href="EliminarProducto?id=<%=id%>" class="boton">
                         <i class="fa fa-trash" aria-hidden="true"></i>
-                    </a></td>
-                </tr>
-                <%}%>
+                    </a>
+                </td>
+            </tr>
+            <%}%>
         </table>
+        <a href="listarProveedores.jsp">Volver atrás</a>
     </body>
 </html>

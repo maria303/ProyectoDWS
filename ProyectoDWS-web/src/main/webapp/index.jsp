@@ -14,7 +14,6 @@
     <body>
         <h1>Restaurante</h1>
         <a href="ListarProductos">Listado de productos</a>
-        <a href="agregarProveedor.jsp">Agregar proveedores</a>
         <a href="ListarProveedores">Listado de proveedores</a>
     </body>
 </html>

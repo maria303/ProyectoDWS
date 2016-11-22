@@ -6,9 +6,7 @@
 package com.fpmislata.servlets;
 
 import com.fpmislata.service.ProductoServiceLocal;
-import com.fpmislata.service.ProveedorServiceLocal;
 import java.io.IOException;
-import java.io.PrintWriter;
 import java.util.ArrayList;
 import javax.ejb.EJB;
 import javax.servlet.RequestDispatcher;
@@ -22,9 +20,6 @@ import javax.servlet.http.HttpServletResponse;
  * @author Maria
  */
 public class ListarProductosProveedores extends HttpServlet {
-
-    @EJB
-    private ProveedorServiceLocal proveedorService;
 
     @EJB
     private ProductoServiceLocal productoService;

@@ -12,7 +12,7 @@
         <title>JSP Page</title>
     </head>
     <body>
-        <h1>Hello World!</h1>
+        <h1>Agregar producto</h1>
         <% int idProveedor = (Integer) session.getAttribute("idProveedor"); %>
         <form action="AltaProducto" method="POST">
             

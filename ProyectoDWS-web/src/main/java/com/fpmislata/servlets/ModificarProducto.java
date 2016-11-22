@@ -8,7 +8,6 @@ package com.fpmislata.servlets;
 import com.fpmislata.service.ProductoServiceLocal;
 import com.fpmislata.domain.Producto;
 import java.io.IOException;
-import java.io.PrintWriter;
 import java.util.ArrayList;
 import javax.ejb.EJB;
 import javax.servlet.ServletException;
@@ -53,7 +52,7 @@ public class ModificarProducto extends HttpServlet {
                     e.printStackTrace();
                 }
 
-                request.setAttribute("producto", producto);
+                request.getSession().setAttribute("producto", producto);
                 request.getRequestDispatcher("/modificarProducto.jsp").forward(request, response);
             }
             
@@ -69,13 +68,8 @@ public class ModificarProducto extends HttpServlet {
             if(stockString == null || stockString.equals("")){
                 stockString = "0";
             }
-//            if(precioString == null || precioString.equals("")){
-//                precioString = "0";
-//            }
             
             int stock = Integer.parseInt(stockString);
-//            double precio = Double.parseDouble(precioString);
-//            int idProveedor = (Integer) request.getSession().getAttribute("idProveedor");
             
             if(nombre != null && !nombre.equals("")){
                 

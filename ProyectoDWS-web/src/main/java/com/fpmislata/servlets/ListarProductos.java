@@ -37,9 +37,10 @@ public class ListarProductos extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
+        
         try{
             ArrayList lista = productoService.listProductos();
-            request.setAttribute("productos", lista);
+            request.getSession().setAttribute("productos", lista);
 
             RequestDispatcher rd = request.getRequestDispatcher("/listarProductos.jsp");
             rd.forward(request, response);

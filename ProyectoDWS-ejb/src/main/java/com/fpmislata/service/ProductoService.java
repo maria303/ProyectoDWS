@@ -21,10 +21,10 @@ public class ProductoService implements ProductoServiceLocal {
     private static int lastId = 5;
     
     static{
-        lista.add(new Producto(1, 50, "Patatas", "Patatas1", 2.5, 1));
-        lista.add(new Producto(2, 50, "Cebolla", "Cebolla1", 2.0, 1));
-        lista.add(new Producto(3, 50, "Tomate", "Tomate1", 3.0, 2));
-        lista.add(new Producto(4, 50, "Huevos", "Huevos1", 3.5, 2));
+        lista.add(new Producto(1, 50, "Naranjas", "Naranjas lane late", 2.5, 1));
+        lista.add(new Producto(2, 50, "Manzanas", "Manzanas golden", 2.0, 1));
+        lista.add(new Producto(3, 50, "Patatas", "Patata jaerla", 3.0, 2));
+        lista.add(new Producto(4, 50, "Pimientos", "Pimiento rojo", 3.5, 2));
     }
 
     // Add business logic below. (Right-click in editor and choose

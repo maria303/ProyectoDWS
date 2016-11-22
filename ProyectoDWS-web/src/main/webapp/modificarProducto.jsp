@@ -12,7 +12,7 @@
         <title>JSP Page</title>
     </head>
     <body>
-        <h1>Hello World!</h1>
+        <h1>Modificar producto</h1>
         
         <form action="ModificarProducto?accion=modificar&id=${producto.id}" method="POST">
             <label for="nombre">Nombre:</label>
