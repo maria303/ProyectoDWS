@@ -44,7 +44,7 @@
                 <td><%=descripcion%></td>
                 <td><%=stock%></td>
                 <td><%=precio%></td>
-                <td><a href="ModificarProducto?accion=editar&id=<%=id%>" class="boton">
+                <td><a href="ModificarProductoProveedor?accion=editar&id=<%=id%>" class="boton">
                         <i class="fa fa-pencil" aria-hidden="true"></i>
                     </a>
                     <a href="EliminarProducto?id=<%=id%>" class="boton">

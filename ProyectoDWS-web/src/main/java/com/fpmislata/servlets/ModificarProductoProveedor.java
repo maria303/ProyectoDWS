@@ -5,8 +5,8 @@
  */
 package com.fpmislata.servlets;
 
-import com.fpmislata.service.ProductoServiceLocal;
 import com.fpmislata.domain.Producto;
+import com.fpmislata.service.ProductoServiceLocal;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.ArrayList;
@@ -18,9 +18,9 @@ import javax.servlet.http.HttpServletResponse;
 
 /**
  *
- * @author alumno
+ * @author Maria
  */
-public class ModificarProducto extends HttpServlet {
+public class ModificarProductoProveedor extends HttpServlet {
 
     @EJB
     private ProductoServiceLocal productoService;
@@ -54,7 +54,7 @@ public class ModificarProducto extends HttpServlet {
                 }
 
                 request.setAttribute("producto", producto);
-                request.getRequestDispatcher("/modificarProducto.jsp").forward(request, response);
+                request.getRequestDispatcher("/modificarProductoProveedor.jsp").forward(request, response);
             }
             
         }else if(accion != null && accion.equals("modificar")){
@@ -63,19 +63,18 @@ public class ModificarProducto extends HttpServlet {
             String nombre = request.getParameter("nombre");
             String descripcion = request.getParameter("descripcion");
             String stockString = request.getParameter("stock");
-            double precio = Double.parseDouble(request.getParameter("precio"));
-            int idProveedor = Integer.parseInt(request.getParameter("idProveedor"));
+            String precioString = request.getParameter("precio");
             
             if(stockString == null || stockString.equals("")){
                 stockString = "0";
             }
-//            if(precioString == null || precioString.equals("")){
-//                precioString = "0";
-//            }
+            if(precioString == null || precioString.equals("")){
+                precioString = "0";
+            }
             
             int stock = Integer.parseInt(stockString);
-//            double precio = Double.parseDouble(precioString);
-//            int idProveedor = (Integer) request.getSession().getAttribute("idProveedor");
+            double precio = Double.parseDouble(precioString);
+            int idProveedor = (Integer) request.getSession().getAttribute("idProveedor");
             
             if(nombre != null && !nombre.equals("")){
                 
@@ -94,10 +93,10 @@ public class ModificarProducto extends HttpServlet {
                 }
                 
             }
-            ArrayList<Producto> lista = productoService.listProductos();
-            request.setAttribute("productos", lista);
+            ArrayList<Producto> lista = productoService.findProductosByIdProveedores(idProveedor);
+            request.getSession().setAttribute("productos", lista);
             
-            request.getRequestDispatcher("/listarProductos.jsp").forward(request, response);
+            request.getRequestDispatcher("/listarProductosProveedores.jsp").forward(request, response);
         }
     }
 

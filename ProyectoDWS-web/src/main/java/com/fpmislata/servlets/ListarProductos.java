@@ -39,7 +39,7 @@ public class ListarProductos extends HttpServlet {
         response.setContentType("text/html;charset=UTF-8");
         try{
             ArrayList lista = productoService.listProductos();
-            request.getSession().setAttribute("productos", lista);
+            request.setAttribute("productos", lista);
 
             RequestDispatcher rd = request.getRequestDispatcher("/listarProductos.jsp");
             rd.forward(request, response);

@@ -32,6 +32,10 @@
         <servlet-name>ListarProductosProveedores</servlet-name>
         <servlet-class>com.fpmislata.servlets.ListarProductosProveedores</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>ModificarProductoProveedor</servlet-name>
+        <servlet-class>com.fpmislata.servlets.ModificarProductoProveedor</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>ListarProductos</servlet-name>
         <url-pattern>/ListarProductos</url-pattern>
@@ -63,6 +67,10 @@
     <servlet-mapping>
         <servlet-name>ListarProductosProveedores</servlet-name>
         <url-pattern>/ListarProductosProveedores</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>ModificarProductoProveedor</servlet-name>
+        <url-pattern>/ModificarProductoProveedor</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

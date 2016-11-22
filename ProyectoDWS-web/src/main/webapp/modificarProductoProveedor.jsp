@@ -1,7 +1,7 @@
 <%-- 
-    Document   : modificarProducto
-    Created on : 11-nov-2016, 9:07:02
-    Author     : alumno
+    Document   : modificarProductoProveedor
+    Created on : 22-nov-2016, 21:16:18
+    Author     : Maria
 --%>
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
@@ -14,16 +14,15 @@
     <body>
         <h1>Hello World!</h1>
         
-        <form action="ModificarProducto?accion=modificar&id=${producto.id}" method="POST">
+        <form action="ModificarProductoProveedor?accion=modificar&id=${producto.id}" method="POST">
             <label for="nombre">Nombre:</label>
             <input type="text" name="nombre" value="${producto.nombre}" style="display: block"/>
             <label for="descripcion">Descripción:</label>
             <input type="text" name="descripcion" value="${producto.descripcion}" style="display: block"/>
             <label for="stock">Stock:</label>
             <input type="text" name="stock" value="${producto.stock}" style="display: block"/>
-            
-            <input type="hidden" name="precio" value="${producto.precio}"/>
-            <input type="hidden" name="idProveedor" value="${producto.idProveedor}"/>
+            <label for="precio">Precio:</label>
+            <input type="text" name="precio" value="${producto.precio}" style="display: block"/>
             
             <input type="submit" value="Modificar"/>
         </form>

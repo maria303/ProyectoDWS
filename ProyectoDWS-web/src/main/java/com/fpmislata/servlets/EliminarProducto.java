@@ -50,10 +50,10 @@ public class EliminarProducto extends HttpServlet {
             e.printStackTrace();
         }
         
-        ArrayList lista = productoService.listProductos();
+        ArrayList lista = productoService.findProductosByIdProveedores((Integer) request.getSession().getAttribute("idProveedor"));
         request.getSession().setAttribute("productos", lista);
         
-        RequestDispatcher rd = request.getRequestDispatcher("/listarProductos.jsp");
+        RequestDispatcher rd = request.getRequestDispatcher("/listarProductosProveedores.jsp");
         rd.forward(request, response);
     }
 
