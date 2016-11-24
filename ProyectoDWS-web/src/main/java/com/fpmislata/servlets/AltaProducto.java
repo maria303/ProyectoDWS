@@ -41,7 +41,7 @@ public class AltaProducto extends HttpServlet {
         String descripcion = request.getParameter("descripcion");
         String stockString = request.getParameter("stock");
         String precioString = request.getParameter("precio");
-        String idProveedorString = request.getParameter("idProveedor");
+        int idProveedor = (Integer) request.getSession().getAttribute("idProveedor");
         
         if(stockString == null || stockString.equals("")){
             stockString = "0";
@@ -49,13 +49,9 @@ public class AltaProducto extends HttpServlet {
         if(precioString == null || precioString.equals("")){
             precioString = "0";
         }
-        if(idProveedorString == null || idProveedorString.equals("")){
-            precioString = "1";
-        }
         
         int stock = Integer.parseInt(stockString);
         double precio = Double.parseDouble(precioString);
-        int idProveedor = Integer.parseInt(idProveedorString);
         
         if(nombre != null && !nombre.equals("")){
 

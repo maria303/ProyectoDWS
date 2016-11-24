@@ -41,23 +41,33 @@ public class AltaProveedor extends HttpServlet {
         String direccion = request.getParameter("direccion");
         String ciudad = request.getParameter("ciudad");
         String provincia = request.getParameter("provincia");
-        int cp = Integer.parseInt(request.getParameter("cp"));
-        int telefono = Integer.parseInt(request.getParameter("telefono"));
+        String cpString = request.getParameter("cp");
+        String telefonoString = request.getParameter("telefono");
         String email = request.getParameter("email");
         
-        Proveedor proveedor = new Proveedor();
-        proveedor.setNombre(nombre);
-        proveedor.setDireccion(direccion);
-        proveedor.setCiudad(ciudad);
-        proveedor.setProvincia(provincia);
-        proveedor.setCp(cp);
-        proveedor.setTelefono(telefono);
-        proveedor.setEmail(email);
-        
-        try{
-            proveedorService.addProveedor(proveedor);
-        }catch(Exception e){
-            e.printStackTrace();
+        if((nombre != null && !nombre.equals("")) && (direccion != null && !direccion.equals(""))
+                && (ciudad != null && !ciudad.equals("")) && (provincia != null && !provincia.equals(""))
+                && (cpString != null && !cpString.equals("")) && (telefonoString != null && !telefonoString.equals(""))
+                && (email != null && !email.equals(""))){
+            
+            int cp = Integer.parseInt(cpString);
+            int telefono = Integer.parseInt(telefonoString);
+
+            Proveedor proveedor = new Proveedor();
+            proveedor.setNombre(nombre);
+            proveedor.setDireccion(direccion);
+            proveedor.setCiudad(ciudad);
+            proveedor.setProvincia(provincia);
+            proveedor.setCp(cp);
+            proveedor.setTelefono(telefono);
+            proveedor.setEmail(email);
+
+            try{
+                proveedorService.addProveedor(proveedor);
+            }catch(Exception e){
+                e.printStackTrace();
+            }
+            
         }
         
         ArrayList<Proveedor> lista = proveedorService.listProveedores();

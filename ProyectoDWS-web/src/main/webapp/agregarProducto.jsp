@@ -24,8 +24,6 @@
             <input type="text" name="stock" style="display: block"/>
             <label for="precio">Precio:</label>
             <input type="text" name="precio" style="display: block"/>
-            <label for="idProveedor">ID:</label>
-            <input type="text" name="idProveedor" value="<%=idProveedor%>" style="display: block"/>
             
             <input type="submit" value="Añadir"/>
         </form>
