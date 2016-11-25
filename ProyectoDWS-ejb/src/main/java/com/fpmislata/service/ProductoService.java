@@ -19,14 +19,7 @@ import javax.ejb.Stateless;
 public class ProductoService implements ProductoServiceLocal {
     
     private static ArrayList<Producto> lista = new ArrayList<>();
-    private static int lastId = 5;
-    
-//    static{
-//        lista.add(new Producto(1, 50, "Naranjas", "Naranjas lane late", 2.5, 1));
-//        lista.add(new Producto(2, 50, "Manzanas", "Manzanas golden", 2.0, 1));
-//        lista.add(new Producto(3, 50, "Patatas", "Patata jaerla", 3.0, 2));
-//        lista.add(new Producto(4, 50, "Pimientos", "Pimiento rojo", 3.5, 2));
-//    }
+    private static int lastId = 1;
 
     // Add business logic below. (Right-click in editor and choose
     // "Insert Code > Add Business Method")
