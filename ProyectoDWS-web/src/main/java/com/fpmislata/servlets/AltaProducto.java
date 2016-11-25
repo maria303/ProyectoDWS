@@ -7,6 +7,8 @@ package com.fpmislata.servlets;
 
 import com.fpmislata.service.ProductoServiceLocal;
 import com.fpmislata.domain.Producto;
+import com.fpmislata.domain.Proveedor;
+import com.fpmislata.service.ProveedorServiceLocal;
 import java.io.IOException;
 import java.util.ArrayList;
 import javax.ejb.EJB;
@@ -20,6 +22,9 @@ import javax.servlet.http.HttpServletResponse;
  * @author Maria
  */
 public class AltaProducto extends HttpServlet {
+
+    @EJB
+    private ProveedorServiceLocal proveedorService;
 
     @EJB
     private ProductoServiceLocal productoService;
@@ -53,6 +58,11 @@ public class AltaProducto extends HttpServlet {
         int stock = Integer.parseInt(stockString);
         double precio = Double.parseDouble(precioString);
         
+        
+        Proveedor proveedor = new Proveedor();
+        proveedor.setId(idProveedor);
+        proveedor = proveedorService.findProveedorById(proveedor);
+        
         if(nombre != null && !nombre.equals("")){
 
             Producto producto = new Producto();
@@ -60,8 +70,8 @@ public class AltaProducto extends HttpServlet {
             producto.setDescripcion(descripcion);
             producto.setStock(stock);
             producto.setPrecio(precio);
-            producto.setIdProveedor(idProveedor);
-            
+            producto.setProveedor(proveedor);
+
             try{
                 productoService.addProducto(producto);
             }catch(Exception e){
@@ -69,7 +79,7 @@ public class AltaProducto extends HttpServlet {
             }
         }
         
-        ArrayList<Producto> lista = productoService.findProductosByIdProveedores(idProveedor);
+        ArrayList<Producto> lista = productoService.findProductosByProveedores(proveedor);
         request.getSession().setAttribute("productos", lista);
         
         request.getRequestDispatcher("/listarProductosProveedores.jsp").forward(request, response);

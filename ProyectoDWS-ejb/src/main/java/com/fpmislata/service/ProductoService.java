@@ -6,6 +6,7 @@
 package com.fpmislata.service;
 
 import com.fpmislata.domain.Producto;
+import com.fpmislata.domain.Proveedor;
 import java.util.ArrayList;
 import java.util.Iterator;
 import javax.ejb.Stateless;
@@ -20,12 +21,12 @@ public class ProductoService implements ProductoServiceLocal {
     private static ArrayList<Producto> lista = new ArrayList<>();
     private static int lastId = 5;
     
-    static{
-        lista.add(new Producto(1, 50, "Naranjas", "Naranjas lane late", 2.5, 1));
-        lista.add(new Producto(2, 50, "Manzanas", "Manzanas golden", 2.0, 1));
-        lista.add(new Producto(3, 50, "Patatas", "Patata jaerla", 3.0, 2));
-        lista.add(new Producto(4, 50, "Pimientos", "Pimiento rojo", 3.5, 2));
-    }
+//    static{
+//        lista.add(new Producto(1, 50, "Naranjas", "Naranjas lane late", 2.5, 1));
+//        lista.add(new Producto(2, 50, "Manzanas", "Manzanas golden", 2.0, 1));
+//        lista.add(new Producto(3, 50, "Patatas", "Patata jaerla", 3.0, 2));
+//        lista.add(new Producto(4, 50, "Pimientos", "Pimiento rojo", 3.5, 2));
+//    }
 
     // Add business logic below. (Right-click in editor and choose
     // "Insert Code > Add Business Method")
@@ -88,17 +89,19 @@ public class ProductoService implements ProductoServiceLocal {
     }
 
     @Override
-    public ArrayList findProductosByIdProveedores(int idProveedor) {
+    public ArrayList findProductosByProveedores(Proveedor proveedor) {
         Iterator<Producto> it = lista.iterator();
         ArrayList<Producto> listaProductosProveedores = new ArrayList();
         
         while(it.hasNext()){
             Producto p = it.next();
-            if(p.getIdProveedor() == idProveedor){
+            if(p.getProveedor().equals(proveedor)){
                 listaProductosProveedores.add(p);
             }
         }
         return listaProductosProveedores;
     }
+    
+    
     
 }

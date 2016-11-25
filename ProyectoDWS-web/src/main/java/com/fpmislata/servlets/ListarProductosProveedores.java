@@ -5,7 +5,10 @@
  */
 package com.fpmislata.servlets;
 
+import com.fpmislata.domain.Producto;
+import com.fpmislata.domain.Proveedor;
 import com.fpmislata.service.ProductoServiceLocal;
+import com.fpmislata.service.ProveedorServiceLocal;
 import java.io.IOException;
 import java.util.ArrayList;
 import javax.ejb.EJB;
@@ -20,6 +23,9 @@ import javax.servlet.http.HttpServletResponse;
  * @author Maria
  */
 public class ListarProductosProveedores extends HttpServlet {
+
+    @EJB
+    private ProveedorServiceLocal proveedorService;
 
     @EJB
     private ProductoServiceLocal productoService;
@@ -38,7 +44,13 @@ public class ListarProductosProveedores extends HttpServlet {
         response.setContentType("text/html;charset=UTF-8");
         try{
             int idProveedor = Integer.parseInt(request.getParameter("id"));
-            ArrayList lista = productoService.findProductosByIdProveedores(idProveedor);
+            
+            Proveedor proveedor = new Proveedor();
+            proveedor.setId(idProveedor);
+            proveedor = proveedorService.findProveedorById(proveedor);
+            
+            ArrayList<Producto> lista = productoService.findProductosByProveedores(proveedor);
+            
             request.getSession().setAttribute("productos", lista);
             request.getSession().setAttribute("idProveedor", idProveedor);
 

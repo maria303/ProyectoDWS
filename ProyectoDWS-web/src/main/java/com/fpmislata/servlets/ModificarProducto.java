@@ -7,6 +7,8 @@ package com.fpmislata.servlets;
 
 import com.fpmislata.service.ProductoServiceLocal;
 import com.fpmislata.domain.Producto;
+import com.fpmislata.domain.Proveedor;
+import com.fpmislata.service.ProveedorServiceLocal;
 import java.io.IOException;
 import java.util.ArrayList;
 import javax.ejb.EJB;
@@ -20,6 +22,9 @@ import javax.servlet.http.HttpServletResponse;
  * @author alumno
  */
 public class ModificarProducto extends HttpServlet {
+
+    @EJB
+    private ProveedorServiceLocal proveedorService;
 
     @EJB
     private ProductoServiceLocal productoService;
@@ -79,7 +84,11 @@ public class ModificarProducto extends HttpServlet {
                 producto.setDescripcion(descripcion);
                 producto.setStock(stock);
                 producto.setPrecio(precio);
-                producto.setIdProveedor(idProveedor);
+                
+                Proveedor proveedor = new Proveedor();
+                proveedor.setId(idProveedor);
+                proveedor = proveedorService.findProveedorById(proveedor);
+                producto.setProveedor(proveedor);
                 
                 try{
                     this.productoService.updateProducto(producto);

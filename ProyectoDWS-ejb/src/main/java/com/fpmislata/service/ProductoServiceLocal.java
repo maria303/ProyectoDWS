@@ -6,6 +6,7 @@
 package com.fpmislata.service;
 
 import com.fpmislata.domain.Producto;
+import com.fpmislata.domain.Proveedor;
 import java.util.ArrayList;
 import javax.ejb.Local;
 
@@ -26,6 +27,6 @@ public interface ProductoServiceLocal {
 
     void deleteProducto(Producto producto);
 
-    ArrayList findProductosByIdProveedores(int idProveedor);
+    ArrayList findProductosByProveedores(Proveedor proveedor);
     
 }

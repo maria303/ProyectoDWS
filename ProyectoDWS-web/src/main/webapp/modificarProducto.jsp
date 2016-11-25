@@ -23,7 +23,7 @@
             <input type="text" name="stock" value="${producto.stock}" style="display: block"/>
             
             <input type="hidden" name="precio" value="${producto.precio}"/>
-            <input type="hidden" name="idProveedor" value="${producto.idProveedor}"/>
+            <input type="hidden" name="idProveedor" value="${producto.proveedor.id}"/>
             
             <input type="submit" value="Modificar"/>
         </form>

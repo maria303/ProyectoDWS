@@ -6,6 +6,7 @@
 package com.fpmislata.domain;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 
 /**
  *
@@ -15,6 +16,19 @@ public class Proveedor implements Serializable{
     private static final long serialVersionUID = 2L;
     private int id, cp, telefono;
     private String nombre, direccion, ciudad, provincia, email;
+    private ArrayList<Producto> listaProductos;
+
+    public Proveedor(int id, int cp, int telefono, String nombre, String direccion, String ciudad, String provincia, String email, ArrayList<Producto> listaProductos) {
+        this.id = id;
+        this.cp = cp;
+        this.telefono = telefono;
+        this.nombre = nombre;
+        this.direccion = direccion;
+        this.ciudad = ciudad;
+        this.provincia = provincia;
+        this.email = email;
+        this.listaProductos = listaProductos;
+    }
 
     public Proveedor(int id, int cp, int telefono, String nombre, String direccion, String ciudad, String provincia, String email) {
         this.id = id;
@@ -92,6 +106,14 @@ public class Proveedor implements Serializable{
 
     public void setEmail(String email) {
         this.email = email;
+    }
+
+    public ArrayList<Producto> getListaProductos() {
+        return listaProductos;
+    }
+
+    public void setListaProductos(ArrayList<Producto> listaProductos) {
+        this.listaProductos = listaProductos;
     }
     
 }
