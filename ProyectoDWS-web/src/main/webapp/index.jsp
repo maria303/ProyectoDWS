@@ -14,6 +14,13 @@
     <body>
         <h1>Restaurante</h1>
         <a href="ListarProductos">Listado de productos</a>
+        <br><br>
         <a href="ListarProveedores">Listado de proveedores</a>
+        <br><br>
+        Entrar a Productos y Notas -->
+        <a href="productosynotas.jsp">Entrar</a>
+        <br><br>
+        Entrar a la gestión de Productos y Pedidos -->
+        <a href="gestionprodypedid.jsp">Entrar</a>
     </body>
 </html>
