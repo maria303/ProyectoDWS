@@ -52,6 +52,22 @@
         <servlet-name>Notas</servlet-name>
         <servlet-class>com.fpmislata.servlets.Notas</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>EliminarPedido</servlet-name>
+        <servlet-class>com.fpmislata.servlets.EliminarPedido</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>PedidoMod</servlet-name>
+        <servlet-class>com.fpmislata.servlets.PedidoMod</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>PedidoNuevo</servlet-name>
+        <servlet-class>com.fpmislata.servlets.PedidoNuevo</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>PedidosProductos</servlet-name>
+        <servlet-class>com.fpmislata.servlets.PedidosProductos</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>ListarProductos</servlet-name>
         <url-pattern>/ListarProductos</url-pattern>
@@ -103,6 +119,22 @@
     <servlet-mapping>
         <servlet-name>Notas</servlet-name>
         <url-pattern>/Notas</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>EliminarPedido</servlet-name>
+        <url-pattern>/EliminarPedido</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>PedidoMod</servlet-name>
+        <url-pattern>/PedidoMod</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>PedidoNuevo</servlet-name>
+        <url-pattern>/PedidoNuevo</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>PedidosProductos</servlet-name>
+        <url-pattern>/PedidosProductos</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

@@ -22,5 +22,8 @@
         <br><br>
         Entrar a la gestión de Productos y Pedidos -->
         <a href="gestionprodypedid.jsp">Entrar</a>
+        <br><br>
+        Ver los pedidos de los productos -->
+        <a href="PedidosProductos">Entrar</a>
     </body>
 </html>
