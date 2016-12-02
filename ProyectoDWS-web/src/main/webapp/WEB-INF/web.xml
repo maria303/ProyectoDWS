@@ -68,6 +68,22 @@
         <servlet-name>PedidosProductos</servlet-name>
         <servlet-class>com.fpmislata.servlets.PedidosProductos</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>AltaUsuario</servlet-name>
+        <servlet-class>com.fpmislata.servlets.AltaUsuario</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>EliminarUsuario</servlet-name>
+        <servlet-class>com.fpmislata.servlets.EliminarUsuario</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>ListarUsuarios</servlet-name>
+        <servlet-class>com.fpmislata.servlets.ListarUsuarios</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>EliminarProveedor</servlet-name>
+        <servlet-class>com.fpmislata.servlets.EliminarProveedor</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>ListarProductos</servlet-name>
         <url-pattern>/ListarProductos</url-pattern>
@@ -135,6 +151,22 @@
     <servlet-mapping>
         <servlet-name>PedidosProductos</servlet-name>
         <url-pattern>/PedidosProductos</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>AltaUsuario</servlet-name>
+        <url-pattern>/AltaUsuario</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>EliminarUsuario</servlet-name>
+        <url-pattern>/EliminarUsuario</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>ListarUsuarios</servlet-name>
+        <url-pattern>/ListarUsuarios</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>EliminarProveedor</servlet-name>
+        <url-pattern>/EliminarProveedor</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

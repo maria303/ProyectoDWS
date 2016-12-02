@@ -53,7 +53,11 @@
                 <td><%=cp%></td>
                 <td><%=telefono%></td>
                 <td><%=email%></td>
-                <td></td>
+                <td>
+                    <a href="EliminarProveedor?id=<%=id%>" class="boton">
+                        <i class="fa fa-trash" aria-hidden="true"></i>
+                    </a>
+                </td>
             </tr>
             <%}%>
         </table>

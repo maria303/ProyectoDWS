@@ -25,6 +25,8 @@
         <br><br>
         Ver los pedidos de los productos -->
         <a href="PedidosProductos">Entrar</a>
+        <br><br>
+        <a href="ListarUsuarios">Listado de usuarios</a>
         
     </body>
 </html>
