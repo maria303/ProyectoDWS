@@ -5,13 +5,14 @@
  */
 package com.fpmislata.domain;
 
+import java.io.Serializable;
 import java.util.Date;
 
 /**
  *
  * @author alumno
  */
-public class NotasPedido {
+public class NotasPedido implements Serializable {
     
     private static final long serialVersionUID = 1L;
     int id, num_mesa;

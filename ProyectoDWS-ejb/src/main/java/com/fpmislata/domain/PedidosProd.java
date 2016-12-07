@@ -5,11 +5,13 @@
  */
 package com.fpmislata.domain;
 
+import java.io.Serializable;
+
 /**
  *
  * @author alumno
  */
-public class PedidosProd {
+public class PedidosProd implements Serializable {
     
     int id, idproducto, cantidad;
 
