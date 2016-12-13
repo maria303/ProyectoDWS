@@ -5,14 +5,17 @@
  */
 package com.fpmislata.servlets;
 
-import com.fpmislata.service.ProductoServiceLocal;
 import com.fpmislata.domain.Producto;
 import com.fpmislata.domain.Proveedor;
+import com.fpmislata.service.ProductoServiceLocal;
 import com.fpmislata.service.ProveedorServiceLocal;
 import java.io.IOException;
+import java.io.PrintWriter;
 import java.util.ArrayList;
 import javax.ejb.EJB;
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
+import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -21,7 +24,9 @@ import javax.servlet.http.HttpServletResponse;
  *
  * @author alumno
  */
-public class ModificarProducto extends HttpServlet {
+@WebServlet(name="ControladorProducto", loadOnStartup=3, urlPatterns={"/AltaProducto", "/ModificarProducto",
+        "/ListarProductos", "/EliminarProducto"})
+public class ControladorProducto extends HttpServlet {
 
     @EJB
     private ProveedorServiceLocal proveedorService;
@@ -41,7 +46,65 @@ public class ModificarProducto extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
+        String url = request.getServletPath();
+        if(url.equals("/AltaProducto")){
+            AltaProducto(request, response);
+        }
         
+        if(url.equals("/ModificarProducto")){
+            ModificarProducto(request, response);
+        }
+        
+        if(url.equals("/ListarProductos")){
+            ListarProductos(request, response);
+        }
+    }
+    
+    private void AltaProducto(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        String nombre = request.getParameter("nombre");
+        String descripcion = request.getParameter("descripcion");
+        String stockString = request.getParameter("stock");
+        String precioString = request.getParameter("precio");
+        int idProveedor = (Integer) request.getSession().getAttribute("idProveedor");
+        
+        if(stockString == null || stockString.equals("")){
+            stockString = "0";
+        }
+        if(precioString == null || precioString.equals("")){
+            precioString = "0";
+        }
+        
+        int stock = Integer.parseInt(stockString);
+        double precio = Double.parseDouble(precioString);
+        
+        
+        Proveedor proveedor = new Proveedor();
+        proveedor.setId(idProveedor);
+        proveedor = proveedorService.findProveedorById(proveedor);
+        
+        if(nombre != null && !nombre.equals("")){
+
+            Producto producto = new Producto();
+            producto.setNombre(nombre);
+            producto.setDescripcion(descripcion);
+            producto.setStock(stock);
+            producto.setPrecio(precio);
+            producto.setProveedor(proveedor);
+
+            try{
+                productoService.addProducto(producto);
+            }catch(Exception e){
+                e.printStackTrace();
+            }
+        }
+        
+        ArrayList<Producto> lista = productoService.findProductosByProveedores(proveedor);
+        request.getSession().setAttribute("productos", lista);
+        
+        request.getRequestDispatcher("/listarProductosProveedores.jsp").forward(request, response);
+    }
+    
+    private void ModificarProducto(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         String accion = request.getParameter("accion");
         
         if(accion != null && accion.equals("editar")){
@@ -101,6 +164,18 @@ public class ModificarProducto extends HttpServlet {
             request.setAttribute("productos", lista);
             
             request.getRequestDispatcher("/listarProductos.jsp").forward(request, response);
+        }
+    }
+    
+    private void ListarProductos(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        try{
+            ArrayList lista = productoService.listProductos();
+            request.getSession().setAttribute("productos", lista);
+
+            RequestDispatcher rd = request.getRequestDispatcher("/listarProductos.jsp");
+            rd.forward(request, response);
+        }catch(Exception e){
+            e.printStackTrace();
         }
     }
 

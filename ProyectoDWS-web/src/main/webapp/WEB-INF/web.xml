@@ -1,18 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <web-app version="3.1" xmlns="http://xmlns.jcp.org/xml/ns/javaee" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-app_3_1.xsd">
     <servlet>
-        <servlet-name>ListarProductos</servlet-name>
-        <servlet-class>com.fpmislata.servlets.ListarProductos</servlet-class>
-    </servlet>
-    <servlet>
-        <servlet-name>AltaProducto</servlet-name>
-        <servlet-class>com.fpmislata.servlets.AltaProducto</servlet-class>
-    </servlet>
-    <servlet>
-        <servlet-name>ModificarProducto</servlet-name>
-        <servlet-class>com.fpmislata.servlets.ModificarProducto</servlet-class>
-    </servlet>
-    <servlet>
         <servlet-name>EliminarProducto</servlet-name>
         <servlet-class>com.fpmislata.servlets.EliminarProducto</servlet-class>
     </servlet>
@@ -84,18 +72,10 @@
         <servlet-name>EliminarProveedor</servlet-name>
         <servlet-class>com.fpmislata.servlets.EliminarProveedor</servlet-class>
     </servlet>
-    <servlet-mapping>
-        <servlet-name>ListarProductos</servlet-name>
-        <url-pattern>/ListarProductos</url-pattern>
-    </servlet-mapping>
-    <servlet-mapping>
-        <servlet-name>AltaProducto</servlet-name>
-        <url-pattern>/AltaProducto</url-pattern>
-    </servlet-mapping>
-    <servlet-mapping>
-        <servlet-name>ModificarProducto</servlet-name>
-        <url-pattern>/ModificarProducto</url-pattern>
-    </servlet-mapping>
+    <servlet>
+        <servlet-name>ControladorProducto</servlet-name>
+        <servlet-class>com.fpmislata.servlets.ControladorProducto</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>EliminarProducto</servlet-name>
         <url-pattern>/EliminarProducto</url-pattern>
@@ -167,6 +147,22 @@
     <servlet-mapping>
         <servlet-name>EliminarProveedor</servlet-name>
         <url-pattern>/EliminarProveedor</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>ControladorProducto</servlet-name>
+        <url-pattern>/ControladorProducto</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>ControladorProducto</servlet-name>
+        <url-pattern>/ListarProductos</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>ControladorProducto</servlet-name>
+        <url-pattern>/AltaProducto</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>ControladorProducto</servlet-name>
+        <url-pattern>/ModificarProducto</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>
