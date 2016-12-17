@@ -58,6 +58,10 @@ public class ControladorProducto extends HttpServlet {
         if(url.equals("/ListarProductos")){
             ListarProductos(request, response);
         }
+        
+        if(url.equals("/EliminarProducto")){
+            EliminarProducto(request, response);
+        }
     }
     
     private void AltaProducto(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -177,6 +181,29 @@ public class ControladorProducto extends HttpServlet {
         }catch(Exception e){
             e.printStackTrace();
         }
+    }
+    
+    private void EliminarProducto(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException{
+        int id = Integer.parseInt(request.getParameter("id"));
+        
+        Producto producto = new Producto();
+        producto.setId(id);
+        
+        try{
+            this.productoService.deleteProducto(producto);
+        }catch(Exception e){
+            e.printStackTrace();
+        }
+        
+        int idProveedor = (Integer) request.getSession().getAttribute("idProveedor");
+        Proveedor proveedor = new Proveedor();
+        proveedor.setId(idProveedor);
+        proveedor = proveedorService.findProveedorById(proveedor);
+        ArrayList<Producto> lista = productoService.findProductosByProveedores(proveedor);
+        request.getSession().setAttribute("productos", lista);
+        
+        RequestDispatcher rd = request.getRequestDispatcher("/listarProductosProveedores.jsp");
+        rd.forward(request, response);
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
