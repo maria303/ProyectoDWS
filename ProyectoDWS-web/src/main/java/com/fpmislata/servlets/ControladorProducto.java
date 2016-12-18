@@ -176,7 +176,8 @@ public class ControladorProducto extends HttpServlet {
             ArrayList lista = productoService.listProductos();
             request.getSession().setAttribute("productos", lista);
 
-            RequestDispatcher rd = request.getRequestDispatcher("/listarProductos.jsp");
+//            RequestDispatcher rd = request.getRequestDispatcher("/listarProductos.jsp");
+RequestDispatcher rd = request.getRequestDispatcher("/inicio.jsp");
             rd.forward(request, response);
         }catch(Exception e){
             e.printStackTrace();

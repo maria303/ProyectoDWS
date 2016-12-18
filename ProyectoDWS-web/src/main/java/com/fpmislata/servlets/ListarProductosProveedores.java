@@ -49,12 +49,18 @@ public class ListarProductosProveedores extends HttpServlet {
             proveedor.setId(idProveedor);
             proveedor = proveedorService.findProveedorById(proveedor);
             
+            //////////////////
+            String nombreProveedor = proveedor.getNombre();
+            request.getSession().setAttribute("nombreProveedor", nombreProveedor);
+            /////////////
+            
             ArrayList<Producto> lista = productoService.findProductosByProveedores(proveedor);
             
             request.getSession().setAttribute("productos", lista);
             request.getSession().setAttribute("idProveedor", idProveedor);
 
-            RequestDispatcher rd = request.getRequestDispatcher("/listarProductosProveedores.jsp");
+//            RequestDispatcher rd = request.getRequestDispatcher("/listarProductosProveedores.jsp");
+RequestDispatcher rd = request.getRequestDispatcher("/prueba1.jsp");
             rd.forward(request, response);
         }catch(Exception e){
             e.printStackTrace();

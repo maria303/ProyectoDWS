@@ -131,7 +131,17 @@ public class ControladorProveedor extends HttpServlet {
             ArrayList lista = proveedorService.listProveedores();
             request.getSession().setAttribute("proveedores", lista);
             
-            RequestDispatcher rd = request.getRequestDispatcher("/listarProveedores.jsp");
+            
+            ///////////////////
+            ArrayList<Producto> listaProductos = new ArrayList<>();
+            request.getSession().setAttribute("productos", listaProductos);
+            request.getSession().setAttribute("idProveedor", 0);
+            request.getSession().setAttribute("nombreProveedor", "null");
+            /////////////////////
+            
+            
+//            RequestDispatcher rd = request.getRequestDispatcher("/listarProveedores.jsp");
+RequestDispatcher rd = request.getRequestDispatcher("/prueba1.jsp");
             rd.forward(request, response);
         }catch(Exception e){
             e.printStackTrace();
