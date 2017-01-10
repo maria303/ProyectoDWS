@@ -7,6 +7,7 @@ package com.fpmislata.servlets;
 
 import com.fpmislata.domain.Producto;
 import com.fpmislata.domain.Proveedor;
+import com.fpmislata.domain.Usuario;
 import com.fpmislata.service.ProductoServiceLocal;
 import com.fpmislata.service.ProveedorServiceLocal;
 import java.io.IOException;
@@ -97,7 +98,8 @@ public class ControladorProveedor extends HttpServlet {
         ArrayList<Proveedor> lista = proveedorService.listProveedores();
         request.getSession().setAttribute("proveedores", lista);
         
-        request.getRequestDispatcher("/listarProveedores.jsp").forward(request, response);
+//        request.getRequestDispatcher("/listarProveedores.jsp").forward(request, response);
+        request.getRequestDispatcher("/proveedoresProductos.jsp").forward(request, response);
     }
     
     private void EliminarProveedor(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException{
@@ -118,8 +120,15 @@ public class ControladorProveedor extends HttpServlet {
             
             ArrayList lista = proveedorService.listProveedores();
             request.getSession().setAttribute("proveedores", lista);
+            ///////////
+            listaProductos = new ArrayList<>();
+            request.getSession().setAttribute("productos", listaProductos);
+            request.getSession().setAttribute("idProveedor", 0);
+            request.getSession().setAttribute("nombreProveedor", "null");
+            //////////////
             
-            RequestDispatcher rd = request.getRequestDispatcher("/listarProveedores.jsp");
+//            RequestDispatcher rd = request.getRequestDispatcher("/listarProveedores.jsp");
+            RequestDispatcher rd = request.getRequestDispatcher("/proveedoresProductos.jsp");
             rd.forward(request, response);
         }catch(Exception e){
             e.printStackTrace();
@@ -138,10 +147,13 @@ public class ControladorProveedor extends HttpServlet {
             request.getSession().setAttribute("idProveedor", 0);
             request.getSession().setAttribute("nombreProveedor", "null");
             /////////////////////
+            Usuario usuario = (Usuario) request.getSession().getAttribute("usuario");
+            request.getSession().setAttribute("usuario", usuario);
+            ///////////////////
             
             
 //            RequestDispatcher rd = request.getRequestDispatcher("/listarProveedores.jsp");
-RequestDispatcher rd = request.getRequestDispatcher("/prueba1.jsp");
+RequestDispatcher rd = request.getRequestDispatcher("/proveedoresProductos.jsp");
             rd.forward(request, response);
         }catch(Exception e){
             e.printStackTrace();

@@ -24,8 +24,8 @@ import javax.servlet.http.HttpServletResponse;
  *
  * @author alumno
  */
-@WebServlet(name="ControladorProducto", loadOnStartup=3, urlPatterns={"/AltaProducto", "/ModificarProducto",
-        "/ListarProductos", "/EliminarProducto"})
+@WebServlet(name = "ControladorProducto", loadOnStartup = 3, urlPatterns = {"/AltaProducto", "/ModificarProducto",
+    "/ListarProductos", "/EliminarProducto"})
 public class ControladorProducto extends HttpServlet {
 
     @EJB
@@ -47,46 +47,45 @@ public class ControladorProducto extends HttpServlet {
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         String url = request.getServletPath();
-        if(url.equals("/AltaProducto")){
+        if (url.equals("/AltaProducto")) {
             AltaProducto(request, response);
         }
-        
-        if(url.equals("/ModificarProducto")){
+
+        if (url.equals("/ModificarProducto")) {
             ModificarProducto(request, response);
         }
-        
-        if(url.equals("/ListarProductos")){
+
+        if (url.equals("/ListarProductos")) {
             ListarProductos(request, response);
         }
-        
-        if(url.equals("/EliminarProducto")){
+
+        if (url.equals("/EliminarProducto")) {
             EliminarProducto(request, response);
         }
     }
-    
+
     private void AltaProducto(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         String nombre = request.getParameter("nombre");
         String descripcion = request.getParameter("descripcion");
         String stockString = request.getParameter("stock");
         String precioString = request.getParameter("precio");
         int idProveedor = (Integer) request.getSession().getAttribute("idProveedor");
-        
-        if(stockString == null || stockString.equals("")){
+
+        if (stockString == null || stockString.equals("")) {
             stockString = "0";
         }
-        if(precioString == null || precioString.equals("")){
+        if (precioString == null || precioString.equals("")) {
             precioString = "0";
         }
-        
+
         int stock = Integer.parseInt(stockString);
         double precio = Double.parseDouble(precioString);
-        
-        
+
         Proveedor proveedor = new Proveedor();
         proveedor.setId(idProveedor);
         proveedor = proveedorService.findProveedorById(proveedor);
-        
-        if(nombre != null && !nombre.equals("")){
+
+        if (nombre != null && !nombre.equals("")) {
 
             Producto producto = new Producto();
             producto.setNombre(nombre);
@@ -95,115 +94,119 @@ public class ControladorProducto extends HttpServlet {
             producto.setPrecio(precio);
             producto.setProveedor(proveedor);
 
-            try{
+            try {
                 productoService.addProducto(producto);
-            }catch(Exception e){
+            } catch (Exception e) {
                 e.printStackTrace();
             }
         }
-        
+
         ArrayList<Producto> lista = productoService.findProductosByProveedores(proveedor);
         request.getSession().setAttribute("productos", lista);
-        
-        request.getRequestDispatcher("/listarProductosProveedores.jsp").forward(request, response);
+
+        //request.getRequestDispatcher("/listarProductosProveedores.jsp").forward(request, response);
+        request.getRequestDispatcher("/proveedoresProductos.jsp").forward(request, response);
     }
-    
+
     private void ModificarProducto(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         String accion = request.getParameter("accion");
-        
-        if(accion != null && accion.equals("editar")){
+
+        if (accion != null && accion.equals("editar")) {
             String id = request.getParameter("id");
-            
-            if(id != null){
+
+            if (id != null) {
                 Producto producto = new Producto();
                 producto.setId(Integer.parseInt(id));
 
-                try{
+                try {
                     producto = this.productoService.findProductoById(producto);
-                }catch(Exception e){
+                } catch (Exception e) {
                     e.printStackTrace();
                 }
 
                 request.getSession().setAttribute("producto", producto);
                 request.getRequestDispatcher("/modificarProducto.jsp").forward(request, response);
             }
-            
-        }else if(accion != null && accion.equals("modificar")){
-            
+
+        } else if (accion != null && accion.equals("modificar")) {
+
             int id = Integer.parseInt(request.getParameter("id"));
             String nombre = request.getParameter("nombre");
             String descripcion = request.getParameter("descripcion");
             String stockString = request.getParameter("stock");
             double precio = Double.parseDouble(request.getParameter("precio"));
             int idProveedor = Integer.parseInt(request.getParameter("idProveedor"));
-            
-            if(stockString == null || stockString.equals("")){
+
+            if (stockString == null || stockString.equals("")) {
                 stockString = "0";
             }
-            
+
             int stock = Integer.parseInt(stockString);
-            
-            if(nombre != null && !nombre.equals("")){
-                
+
+            if (nombre != null && !nombre.equals("")) {
+
                 Producto producto = new Producto();
                 producto.setId(id);
                 producto.setNombre(nombre);
                 producto.setDescripcion(descripcion);
                 producto.setStock(stock);
                 producto.setPrecio(precio);
-                
+
                 Proveedor proveedor = new Proveedor();
                 proveedor.setId(idProveedor);
                 proveedor = proveedorService.findProveedorById(proveedor);
                 producto.setProveedor(proveedor);
-                
-                try{
+
+                try {
                     this.productoService.updateProducto(producto);
-                }catch(Exception e){
+                } catch (Exception e) {
                     e.printStackTrace();
                 }
-                
+
             }
             ArrayList<Producto> lista = productoService.listProductos();
             request.setAttribute("productos", lista);
-            
-            request.getRequestDispatcher("/listarProductos.jsp").forward(request, response);
+
+//            request.getRequestDispatcher("/listarProductos.jsp").forward(request, response);
+//            request.getRequestDispatcher("/proveedoresProductos.jsp").forward(request, response);
+            request.getRequestDispatcher("/productos.jsp").forward(request, response);
         }
     }
-    
+
     private void ListarProductos(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        try{
+        try {
             ArrayList lista = productoService.listProductos();
             request.getSession().setAttribute("productos", lista);
 
 //            RequestDispatcher rd = request.getRequestDispatcher("/listarProductos.jsp");
-RequestDispatcher rd = request.getRequestDispatcher("/inicio.jsp");
+            RequestDispatcher rd = request.getRequestDispatcher("/productos.jsp");
             rd.forward(request, response);
-        }catch(Exception e){
+        } catch (Exception e) {
             e.printStackTrace();
         }
     }
-    
-    private void EliminarProducto(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException{
+
+    private void EliminarProducto(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         int id = Integer.parseInt(request.getParameter("id"));
-        
+
         Producto producto = new Producto();
         producto.setId(id);
-        
-        try{
+
+        try {
             this.productoService.deleteProducto(producto);
-        }catch(Exception e){
+        } catch (Exception e) {
             e.printStackTrace();
         }
-        
+
         int idProveedor = (Integer) request.getSession().getAttribute("idProveedor");
         Proveedor proveedor = new Proveedor();
         proveedor.setId(idProveedor);
         proveedor = proveedorService.findProveedorById(proveedor);
         ArrayList<Producto> lista = productoService.findProductosByProveedores(proveedor);
         request.getSession().setAttribute("productos", lista);
-        
-        RequestDispatcher rd = request.getRequestDispatcher("/listarProductosProveedores.jsp");
+
+//        RequestDispatcher rd = request.getRequestDispatcher("/listarProductosProveedores.jsp");
+        RequestDispatcher rd = request.getRequestDispatcher("/proveedoresProductos.jsp");
         rd.forward(request, response);
     }
 

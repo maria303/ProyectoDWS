@@ -39,7 +39,7 @@
                             <i class="fa fa-user fa-fw"></i> <i class="fa fa-caret-down"></i>
                         </a>
                         <ul class="dropdown-menu">
-                            <li><a href="#"><i class="fa fa-sign-in fa-fw"></i> Acceder</a>
+                            <li><a href="login.jsp"><i class="fa fa-sign-in fa-fw"></i> Acceder</a>
                             </li>
                         </ul>
                         <!-- /.dropdown-user -->

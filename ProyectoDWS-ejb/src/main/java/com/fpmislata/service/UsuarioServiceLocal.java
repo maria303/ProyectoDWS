@@ -21,5 +21,7 @@ public interface UsuarioServiceLocal {
     ArrayList listUsuarios();
 
     void deleteUsuario(Usuario usuario);
+
+    Usuario login(Usuario usuario);
     
 }

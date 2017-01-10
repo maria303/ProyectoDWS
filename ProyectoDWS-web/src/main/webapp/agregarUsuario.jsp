@@ -18,8 +18,8 @@
             <input type="text" name="nombre" style="display: block"/>
             <label for="apellidos">Apellidos:</label>
             <input type="text" name="apellidos" style="display: block"/>
-            <label for="contrasenya">Contraseña:</label>
-            <input type="text" name="contrasenya" style="display: block"/>
+            <label for="password">Contraseña:</label>
+            <input type="text" name="password" style="display: block"/>
             
             <input type="submit" value="Añadir"/>
         </form>

@@ -56,6 +56,18 @@
         <servlet-name>ControladorUsuario</servlet-name>
         <servlet-class>com.fpmislata.servlets.ControladorUsuario</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>LoginServlet</servlet-name>
+        <servlet-class>com.fpmislata.servlets.Login2</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>Login2</servlet-name>
+        <servlet-class>com.fpmislata.servlets.Login2</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>Logout</servlet-name>
+        <servlet-class>com.fpmislata.servlets.Logout</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>AltaProductoProveedor</servlet-name>
         <url-pattern>/AltaProductoProveedor</url-pattern>
@@ -151,6 +163,18 @@
     <servlet-mapping>
         <servlet-name>ControladorUsuario</servlet-name>
         <url-pattern>/ListarUsuarios</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>LoginServlet</servlet-name>
+        <url-pattern>/LoginServlet</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>Login2</servlet-name>
+        <url-pattern>/Login2</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>Logout</servlet-name>
+        <url-pattern>/Logout</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

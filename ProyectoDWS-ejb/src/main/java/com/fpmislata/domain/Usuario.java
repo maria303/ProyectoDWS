@@ -14,13 +14,13 @@ import java.io.Serializable;
 public class Usuario implements Serializable{
     private static final long serialVersionUID = 3L;
     private int id;
-    private String nombre, apellidos, contrasenya;
+    private String nombre, apellidos, password;
 
-    public Usuario(int id, String nombre, String apellidos, String contrasenya) {
+    public Usuario(int id, String nombre, String apellidos, String password) {
         this.id = id;
         this.nombre = nombre;
         this.apellidos = apellidos;
-        this.contrasenya = contrasenya;
+        this.password = password;
     }
 
     public Usuario() {
@@ -50,12 +50,12 @@ public class Usuario implements Serializable{
         this.apellidos = apellidos;
     }
 
-    public String getContrasenya() {
-        return contrasenya;
+    public String getPassword() {
+        return password;
     }
 
-    public void setContrasenya(String contrasenya) {
-        this.contrasenya = contrasenya;
+    public void setPassword(String password) {
+        this.password = password;
     }
     
     

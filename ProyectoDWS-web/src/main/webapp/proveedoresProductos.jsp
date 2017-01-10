@@ -4,6 +4,7 @@
     Author     : Maria
 --%>
 
+<%@page import="com.fpmislata.domain.Usuario"%>
 <%@page import="com.fpmislata.domain.Producto"%>
 <%@page import="com.fpmislata.domain.Proveedor"%>
 <%@page import="java.util.ArrayList"%>
@@ -34,12 +35,13 @@
                     <a class="navbar-brand" href="index.html">SB Admin v2.0</a>
                 </div>
                 <!-- /.navbar-header -->
-
+                <% Usuario usuarioSesion = (Usuario) session.getAttribute("usuario");
+                String nombreUsuario = usuarioSesion.getNombre(); %>
                 <ul class="nav navbar-top-links navbar-right">
                     <!-- /.dropdown -->
                     <li class="dropdown">
                         <a class="dropdown-toggle" data-toggle="dropdown" href="#">
-                            <i class="fa fa-user fa-fw"></i> <i class="fa fa-caret-down"></i>
+                            <i class="fa fa-user fa-fw"></i> <%=nombreUsuario%> <i class="fa fa-caret-down"></i>
                         </a>
                         <ul class="dropdown-menu">
                             <li><a href="#"><i class="fa fa-user fa-fw"></i> User Profile</a>
@@ -47,7 +49,7 @@
                             <li><a href="#"><i class="fa fa-gear fa-fw"></i> Settings</a>
                             </li>
                             <li class="divider"></li>
-                            <li><a href="#"><i class="fa fa-sign-out fa-fw"></i> Logout</a>
+                            <li><a href="Logout"><i class="fa fa-sign-out fa-fw"></i> Logout</a>
                             </li>
                         </ul>
                         <!-- /.dropdown-user -->
@@ -60,25 +62,16 @@
                     <div class="sidebar-nav navbar-collapse">
                         <ul class="nav" id="side-menu">
                             <li>
-                                <a href="#"><i class="fa fa-dashboard fa-fw"></i> Dashboard</a>
+                                <a href="ListarProveedores"><i class="fa fa-dashboard fa-fw"></i> Proveedores y Productos</a>
                             </li>
                             <li>
-                                <a href="#"><i class="fa fa-bar-chart-o fa-fw"></i> Charts<span class="fa arrow"></span></a>
-                                <ul class="nav nav-second-level">
-                                    <li>
-                                        <a href="#">Flot Charts</a>
-                                    </li>
-                                    <li>
-                                        <a href="#">Morris.js Charts</a>
-                                    </li>
-                                </ul>
-                                <!-- /.nav-second-level -->
+                                <a href="#"><i class="fa fa-dashboard fa-fw"></i> Notas</a>
                             </li>
                             <li>
-                                <a href="#"><i class="fa fa-table fa-fw"></i> Tables</a>
+                                <a href="#"><i class="fa fa-table fa-fw"></i> Pedidos</a>
                             </li>
                             <li>
-                                <a href="#"><i class="fa fa-edit fa-fw"></i> Forms</a>
+                                <a href="ListarUsuarios"><i class="fa fa-edit fa-fw"></i> Usuarios</a>
                             </li>
                             <li>
                                 <a href="#"><i class="fa fa-wrench fa-fw"></i> UI Elements<span class="fa arrow"></span></a>
@@ -195,6 +188,8 @@
                                                 int cp = proveedor.getCp();
                                                 int telefono = proveedor.getTelefono();
                                                 String email = proveedor.getEmail();
+                                                
+
                                         %>
                                         <tr>
                                             <td><a href="ListarProductosProveedores?id=<%=id%>"><%=nombre%></a></td>

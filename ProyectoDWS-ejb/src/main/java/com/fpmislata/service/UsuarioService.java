@@ -34,7 +34,7 @@ public class UsuarioService implements UsuarioServiceLocal {
         
         while(it.hasNext()){
             if(it.next().getNombre().equals(usuario.getNombre()) && 
-                    it.next().getContrasenya().equals(usuario.getContrasenya())){
+                    it.next().getPassword().equals(usuario.getPassword())){
                 existe = true;
             }
         }
@@ -58,6 +58,22 @@ public class UsuarioService implements UsuarioServiceLocal {
                 lista.remove(i);
             }
         }
+    }
+
+    @Override
+    public Usuario login(Usuario usuario) {
+        boolean encontrado=false;
+        
+        Usuario retorno = null;
+        for(int i=0;i<lista.size() && encontrado==false ;i++){
+            if((lista.get(i).getNombre().equals(usuario.getNombre()))&&
+              (lista.get(i).getPassword().equals(usuario.getPassword()))){
+                retorno = lista.get(i);
+                encontrado=true;
+            }
+        }
+        
+        return retorno;
     }
     
 }

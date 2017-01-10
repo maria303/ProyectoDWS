@@ -13,9 +13,9 @@
     </head>
     <body>
         <h1>Restaurante</h1>
-        <a href="ListarProductos">Listado de productos</a>
+        <a href="login.jsp">Login</a>
         <br><br>
-        <a href="ListarProveedores">Listado de proveedores</a>
+        <a href="ListarProductos">Listado de productos</a>
         <br><br>
         Entrar a Productos y Notas -->
         <a href="productosynotas.jsp">Entrar</a>
@@ -27,6 +27,7 @@
         <a href="PedidosProductos">Entrar</a>
         <br><br>
         <a href="ListarUsuarios">Listado de usuarios</a>
+        
         
     </body>
 </html>

@@ -105,7 +105,8 @@ public class ModificarProductoProveedor extends HttpServlet {
             ArrayList<Producto> lista = productoService.findProductosByProveedores(proveedor);
             request.getSession().setAttribute("productos", lista);
             
-            request.getRequestDispatcher("/listarProductosProveedores.jsp").forward(request, response);
+//            request.getRequestDispatcher("/listarProductosProveedores.jsp").forward(request, response);
+            request.getRequestDispatcher("/proveedoresProductos.jsp").forward(request, response);
         }
     }
 

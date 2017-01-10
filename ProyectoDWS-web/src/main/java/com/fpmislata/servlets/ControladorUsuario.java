@@ -59,14 +59,14 @@ public class ControladorUsuario extends HttpServlet {
     private void AltaUsuario(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException{
         String nombre = request.getParameter("nombre");
         String apellidos = request.getParameter("apellidos");
-        String contrasenya = request.getParameter("contrasenya");
+        String password = request.getParameter("password");
         
         if((nombre != null && !nombre.equals("")) && (apellidos != null && !apellidos.equals(""))
-                && (contrasenya != null && !contrasenya.equals(""))){
+                && (password != null && !password.equals(""))){
             Usuario usuario = new Usuario();
             usuario.setNombre(nombre);
             usuario.setApellidos(apellidos);
-            usuario.setContrasenya(contrasenya);
+            usuario.setPassword(password);
             
             try{
                 usuarioService.addUsuario(usuario);
