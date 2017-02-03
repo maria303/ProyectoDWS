@@ -15,7 +15,7 @@ body, html {
     height: 100%;
     background-repeat: no-repeat;
     /*background-image: linear-gradient(135deg, rgba(31,123,229,1) 0%, rgba(58,139,232,1) 47%, rgba(70,153,234,1) 92%, rgba(72,156,234,1) 100%);*/
-    background-image: url("http://p1.pichost.me/640/54/1777799.jpg"); 
+    /*background-image: url("http://p1.pichost.me/640/54/1777799.jpg");*/ 
     background-size: 100% 100%;
 }
 
@@ -142,4 +142,16 @@ body, html {
 .forgot-password:active,
 .forgot-password:focus{
     color: rgb(12, 97, 33);
+}
+
+.form-login {
+    background-color: #EDEDED;
+    padding-top: 10px;
+    padding-bottom: 20px;
+    padding-left: 20px;
+    padding-right: 20px;
+    border-radius: 15px;
+    border-color:#d2d2d2;
+    border-width: 5px;
+    box-shadow:0 1px 0 #cfcfcf;
 }

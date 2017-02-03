@@ -106,7 +106,7 @@ public class ModificarProductoProveedor extends HttpServlet {
             request.getSession().setAttribute("productos", lista);
             
 //            request.getRequestDispatcher("/listarProductosProveedores.jsp").forward(request, response);
-            request.getRequestDispatcher("/proveedoresProductos.jsp").forward(request, response);
+            request.getRequestDispatcher("/listarProveedoresProductos.jsp").forward(request, response);
         }
     }
 

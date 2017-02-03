@@ -6,8 +6,11 @@
 package com.fpmislata.service;
 
 import com.fpmislata.domain.Usuario;
+import com.fpmislata.repository.UsuarioDAOLocal;
 import java.util.ArrayList;
 import java.util.Iterator;
+import java.util.List;
+import javax.ejb.EJB;
 import javax.ejb.Stateless;
 
 /**
@@ -16,52 +19,60 @@ import javax.ejb.Stateless;
  */
 @Stateless
 public class UsuarioService implements UsuarioServiceLocal {
+
+    @EJB
+    private UsuarioDAOLocal usuarioDAO;
     
-    private static ArrayList<Usuario> lista = new ArrayList<>();
-    private static int lastId = 2;
-    
-    static{
-        lista.add(new Usuario(1, "Pepe", "Perez", "1234"));
-    }
+//    private static ArrayList<Usuario> lista = new ArrayList<>();
+//    private static int lastId = 2;
+//    
+//    static{
+//        lista.add(new Usuario(1, "Pepe", "Perez", "1234"));
+//    }
 
     // Add business logic below. (Right-click in editor and choose
     // "Insert Code > Add Business Method")
     
     @Override
     public void addUsuario(Usuario usuario) {
-        Iterator<Usuario> it = lista.iterator();
-        boolean existe = false;
-        
-        while(it.hasNext()){
-            if(it.next().getNombre().equals(usuario.getNombre()) && 
-                    it.next().getPassword().equals(usuario.getPassword())){
-                existe = true;
-            }
-        }
-        
-        if(existe == false){
-            usuario.setId(lastId);
-            lastId++;
-            lista.add(usuario);
-        }
+        usuarioDAO.addUsuario(usuario);
+//        Iterator<Usuario> it = lista.iterator();
+//        boolean existe = false;
+//        
+//        while(it.hasNext()){
+//            if(it.next().getNombre().equals(usuario.getNombre()) && 
+//                    it.next().getPassword().equals(usuario.getPassword())){
+//                existe = true;
+//            }
+//        }
+//        
+//        if(existe == false){
+//            usuario.setId(lastId);
+//            lastId++;
+//            lista.add(usuario);
+//        }
     }
 
     @Override
-    public ArrayList listUsuarios() {
-        return lista;
+    public List listUsuarios() {
+        return usuarioDAO.listUsuarios();
+//        return lista;
     }
 
     @Override
     public void deleteUsuario(Usuario usuario) {
-        for(int i=0; i<lista.size(); i++){
-            if(lista.get(i).getId() == usuario.getId()){
-                lista.remove(i);
-            }
-        }
+        usuarioDAO.deleteUsuario(usuario);
+//        for(int i=0; i<lista.size(); i++){
+//            if(lista.get(i).getId() == usuario.getId()){
+//                lista.remove(i);
+//            }
+//        }
     }
 
     @Override
     public Usuario login(Usuario usuario) {
+        List<Usuario> lista = usuarioDAO.listUsuarios();
+        
         boolean encontrado=false;
         
         Usuario retorno = null;

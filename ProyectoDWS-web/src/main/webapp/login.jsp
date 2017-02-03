@@ -9,9 +9,9 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        <link href="dist/css/sb-admin-2.css" rel="stylesheet" type="text/css"/>
         <link href="css/login.css" rel="stylesheet" type="text/css"/>
         <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet" type="text/css"/>
-        <link href="dist/css/sb-admin-2.css" rel="stylesheet" type="text/css"/>
         <link href="vendor/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css"/>
         <title>JSP Page</title>
     </head>

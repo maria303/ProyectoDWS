@@ -68,7 +68,7 @@
                                 <a href="#"><i class="fa fa-dashboard fa-fw"></i> Notas</a>
                             </li>
                             <li>
-                                <a href="#"><i class="fa fa-table fa-fw"></i> Pedidos</a>
+                                <a href="PedidosProductos"><i class="fa fa-table fa-fw"></i> Pedidos</a>
                             </li>
                             <li>
                                 <a href="ListarUsuarios"><i class="fa fa-edit fa-fw"></i> Usuarios</a>
@@ -192,7 +192,7 @@
 
                                         %>
                                         <tr>
-                                            <td><a href="ListarProductosProveedores?id=<%=id%>"><%=nombre%></a></td>
+                                            <td><a href="ListarProductosPorProveedores?id=<%=id%>"><%=nombre%></a></td>
                                             <td><%=direccion%></td>
                                             <td><%=ciudad%></td>
                                             <td><%=provincia%></td>

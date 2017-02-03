@@ -99,7 +99,7 @@ public class ControladorProveedor extends HttpServlet {
         request.getSession().setAttribute("proveedores", lista);
         
 //        request.getRequestDispatcher("/listarProveedores.jsp").forward(request, response);
-        request.getRequestDispatcher("/proveedoresProductos.jsp").forward(request, response);
+        request.getRequestDispatcher("/listarProveedoresProductos.jsp").forward(request, response);
     }
     
     private void EliminarProveedor(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException{
@@ -128,7 +128,7 @@ public class ControladorProveedor extends HttpServlet {
             //////////////
             
 //            RequestDispatcher rd = request.getRequestDispatcher("/listarProveedores.jsp");
-            RequestDispatcher rd = request.getRequestDispatcher("/proveedoresProductos.jsp");
+            RequestDispatcher rd = request.getRequestDispatcher("/listarProveedoresProductos.jsp");
             rd.forward(request, response);
         }catch(Exception e){
             e.printStackTrace();
@@ -153,7 +153,7 @@ public class ControladorProveedor extends HttpServlet {
             
             
 //            RequestDispatcher rd = request.getRequestDispatcher("/listarProveedores.jsp");
-RequestDispatcher rd = request.getRequestDispatcher("/proveedoresProductos.jsp");
+RequestDispatcher rd = request.getRequestDispatcher("/listarProveedoresProductos.jsp");
             rd.forward(request, response);
         }catch(Exception e){
             e.printStackTrace();

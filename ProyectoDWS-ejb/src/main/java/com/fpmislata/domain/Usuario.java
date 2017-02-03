@@ -6,18 +6,41 @@
 package com.fpmislata.domain;
 
 import java.io.Serializable;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.NamedQueries;
+import javax.persistence.NamedQuery;
+import javax.persistence.Table;
 
 /**
  *
  * @author alumno
  */
+@Entity
+@NamedQueries({
+    @NamedQuery(name = "Usuario.findAll", query = "SELECT u FROM Usuario u ORDER BY u.id")})
+@Table(name = "usuarios")
 public class Usuario implements Serializable{
-    private static final long serialVersionUID = 3L;
+    private static final long serialVersionUID = 1L;
+    
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "id_usuario")
     private int id;
-    private String nombre, apellidos, password;
+    
+    @Column(nullable = false, length = 45)
+    private String nombre;
+    
+    @Column(nullable = false, length = 45)
+    private String apellidos;
+    
+    @Column(nullable = false, length = 45)
+    private String password;
 
-    public Usuario(int id, String nombre, String apellidos, String password) {
-        this.id = id;
+    public Usuario(String nombre, String apellidos, String password) {
         this.nombre = nombre;
         this.apellidos = apellidos;
         this.password = password;

@@ -10,6 +10,7 @@ import com.fpmislata.service.UsuarioServiceLocal;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.ArrayList;
+import java.util.List;
 import javax.ejb.EJB;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -22,8 +23,8 @@ import javax.servlet.http.HttpServletResponse;
  *
  * @author Maria
  */
-@WebServlet(name="ControladorUsuario", loadOnStartup=3, urlPatterns={"/AltaUsuario", "/EliminarUsuario", 
-"ListarUsuarios"})
+@WebServlet(name = "ControladorUsuario", loadOnStartup = 3, urlPatterns = {"/AltaUsuario", "/EliminarUsuario",
+    "ListarUsuarios"})
 public class ControladorUsuario extends HttpServlet {
 
     @EJB
@@ -41,72 +42,75 @@ public class ControladorUsuario extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
-        
+
         String url = request.getServletPath();
-        if(url.equals("/AltaUsuario")){
+        if (url.equals("/AltaUsuario")) {
             AltaUsuario(request, response);
         }
-        
-        if(url.equals("/EliminarUsuario")){
+
+        if (url.equals("/EliminarUsuario")) {
             EliminarUsuario(request, response);
         }
-        
-        if(url.equals("/ListarUsuarios")){
+
+        if (url.equals("/ListarUsuarios")) {
             ListarUsuarios(request, response);
         }
     }
-    
-    private void AltaUsuario(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException{
+
+    private void AltaUsuario(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         String nombre = request.getParameter("nombre");
         String apellidos = request.getParameter("apellidos");
         String password = request.getParameter("password");
-        
-        if((nombre != null && !nombre.equals("")) && (apellidos != null && !apellidos.equals(""))
-                && (password != null && !password.equals(""))){
+
+        if ((nombre != null && !nombre.equals("")) && (apellidos != null && !apellidos.equals(""))
+                && (password != null && !password.equals(""))) {
             Usuario usuario = new Usuario();
             usuario.setNombre(nombre);
             usuario.setApellidos(apellidos);
             usuario.setPassword(password);
-            
-            try{
+
+            try {
                 usuarioService.addUsuario(usuario);
-            }catch(Exception e){
+            } catch (Exception e) {
                 e.printStackTrace();
             }
         }
-        
-        ArrayList<Usuario> lista = usuarioService.listUsuarios();
-        request.getSession().setAttribute("usuarios", lista);
-        
+
+        List lista = usuarioService.listUsuarios();
+        ArrayList<Usuario> listaArray = new ArrayList<>(lista);
+        request.getSession().setAttribute("usuarios", listaArray);
+
         request.getRequestDispatcher("/listarUsuarios.jsp").forward(request, response);
     }
-    
-    private void EliminarUsuario(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException{
+
+    private void EliminarUsuario(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         int id = Integer.parseInt(request.getParameter("id"));
-        
+
         Usuario usuario = new Usuario();
         usuario.setId(id);
-        
-        try{
+
+        try {
             this.usuarioService.deleteUsuario(usuario);
-        }catch(Exception e){
+        } catch (Exception e) {
             e.printStackTrace();
         }
-        
-        ArrayList<Usuario> lista = usuarioService.listUsuarios();
-        request.getSession().setAttribute("usuarios", lista);
-        
+
+        List lista = usuarioService.listUsuarios();
+        ArrayList<Usuario> listaArray = new ArrayList<>(lista);
+        request.getSession().setAttribute("usuarios", listaArray);
+
         request.getRequestDispatcher("/listarUsuarios.jsp").forward(request, response);
     }
-    
-    private void ListarUsuarios(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException{
-        try{
-            ArrayList lista = usuarioService.listUsuarios();
-            request.getSession().setAttribute("usuarios", lista);
-            
+
+    private void ListarUsuarios(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        try {
+            List lista = usuarioService.listUsuarios();
+            ArrayList<Usuario> listaArray = new ArrayList<>(lista);
+            request.getSession().setAttribute("usuarios", listaArray);
+
             RequestDispatcher rd = request.getRequestDispatcher("/listarUsuarios.jsp");
             rd.forward(request, response);
-        }catch(Exception e){
+        } catch (Exception e) {
             e.printStackTrace();
         }
     }

@@ -13,7 +13,7 @@ import java.util.ArrayList;
  * @author alumno
  */
 public class Proveedor implements Serializable{
-    private static final long serialVersionUID = 2L;
+    private static final long serialVersionUID = 1L;
     private int id, cp, telefono;
     private String nombre, direccion, ciudad, provincia, email;
     private ArrayList<Producto> listaProductos;

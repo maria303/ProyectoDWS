@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package com.fpmislata.service;
+package com.fpmislata.repository;
 
 import com.fpmislata.domain.Usuario;
 import java.util.ArrayList;
@@ -12,17 +12,17 @@ import javax.ejb.Local;
 
 /**
  *
- * @author alumno
+ * @author Maria
  */
 @Local
-public interface UsuarioServiceLocal {
-
-    void addUsuario(Usuario usuario);
+public interface UsuarioDAOLocal {
 
     List listUsuarios();
 
+    void addUsuario(Usuario usuario);
+
     void deleteUsuario(Usuario usuario);
 
-    Usuario login(Usuario usuario);
+    Usuario findUsuarioById(Usuario usuario);
     
 }

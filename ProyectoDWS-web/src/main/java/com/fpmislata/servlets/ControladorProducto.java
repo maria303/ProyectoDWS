@@ -7,6 +7,7 @@ package com.fpmislata.servlets;
 
 import com.fpmislata.domain.Producto;
 import com.fpmislata.domain.Proveedor;
+import com.fpmislata.domain.Usuario;
 import com.fpmislata.service.ProductoServiceLocal;
 import com.fpmislata.service.ProveedorServiceLocal;
 import java.io.IOException;
@@ -62,6 +63,10 @@ public class ControladorProducto extends HttpServlet {
         if (url.equals("/EliminarProducto")) {
             EliminarProducto(request, response);
         }
+        
+        if(url.equals("/ListarProductosPorProveedores")){
+            ListarProductosPorProveedores(request, response);
+        }
     }
 
     private void AltaProducto(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -105,7 +110,7 @@ public class ControladorProducto extends HttpServlet {
         request.getSession().setAttribute("productos", lista);
 
         //request.getRequestDispatcher("/listarProductosProveedores.jsp").forward(request, response);
-        request.getRequestDispatcher("/proveedoresProductos.jsp").forward(request, response);
+        request.getRequestDispatcher("/listarProveedoresProductos.jsp").forward(request, response);
     }
 
     private void ModificarProducto(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -169,7 +174,7 @@ public class ControladorProducto extends HttpServlet {
 
 //            request.getRequestDispatcher("/listarProductos.jsp").forward(request, response);
 //            request.getRequestDispatcher("/proveedoresProductos.jsp").forward(request, response);
-            request.getRequestDispatcher("/productos.jsp").forward(request, response);
+            request.getRequestDispatcher("/listarProductos.jsp").forward(request, response);
         }
     }
 
@@ -179,7 +184,7 @@ public class ControladorProducto extends HttpServlet {
             request.getSession().setAttribute("productos", lista);
 
 //            RequestDispatcher rd = request.getRequestDispatcher("/listarProductos.jsp");
-            RequestDispatcher rd = request.getRequestDispatcher("/productos.jsp");
+            RequestDispatcher rd = request.getRequestDispatcher("/listarProductos.jsp");
             rd.forward(request, response);
         } catch (Exception e) {
             e.printStackTrace();
@@ -206,7 +211,7 @@ public class ControladorProducto extends HttpServlet {
         request.getSession().setAttribute("productos", lista);
 
 //        RequestDispatcher rd = request.getRequestDispatcher("/listarProductosProveedores.jsp");
-        RequestDispatcher rd = request.getRequestDispatcher("/proveedoresProductos.jsp");
+        RequestDispatcher rd = request.getRequestDispatcher("/listarProveedoresProductos.jsp");
         rd.forward(request, response);
     }
 
@@ -248,5 +253,33 @@ public class ControladorProducto extends HttpServlet {
     public String getServletInfo() {
         return "Short description";
     }// </editor-fold>
+
+    private void ListarProductosPorProveedores(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        try{
+            int idProveedor = Integer.parseInt(request.getParameter("id"));
+            
+            Proveedor proveedor = new Proveedor();
+            proveedor.setId(idProveedor);
+            proveedor = proveedorService.findProveedorById(proveedor);
+            
+            //////////////////
+            String nombreProveedor = proveedor.getNombre();
+            request.getSession().setAttribute("nombreProveedor", nombreProveedor);
+            Usuario usuario = (Usuario) request.getSession().getAttribute("usuario");
+            request.getSession().setAttribute("usuario", usuario);
+            /////////////
+            
+            ArrayList<Producto> lista = productoService.findProductosByProveedores(proveedor);
+            
+            request.getSession().setAttribute("productos", lista);
+            request.getSession().setAttribute("idProveedor", idProveedor);
+
+//            RequestDispatcher rd = request.getRequestDispatcher("/listarProductosProveedores.jsp");
+            RequestDispatcher rd = request.getRequestDispatcher("/listarProveedoresProductos.jsp");
+            rd.forward(request, response);
+        }catch(Exception e){
+            e.printStackTrace();
+        }
+    }
 
 }

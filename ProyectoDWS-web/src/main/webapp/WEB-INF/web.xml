@@ -133,6 +133,10 @@
         <url-pattern>/EliminarProducto</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
+        <servlet-name>ControladorProducto</servlet-name>
+        <url-pattern>/ListarProductosPorProveedores</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
         <servlet-name>ControladorProveedor</servlet-name>
         <url-pattern>/ControladorProveedor</url-pattern>
     </servlet-mapping>
