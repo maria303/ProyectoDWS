@@ -3,11 +3,10 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package com.fpmislata.service;
+package com.fpmislata.repository;
 
 import com.fpmislata.domain.Producto;
 import com.fpmislata.domain.Proveedor;
-import java.util.ArrayList;
 import java.util.List;
 import javax.ejb.Local;
 
@@ -16,8 +15,8 @@ import javax.ejb.Local;
  * @author Maria
  */
 @Local
-public interface ProductoServiceLocal {
-
+public interface ProductoDAOLocal {
+    
     List listProductos();
 
     void addProducto(Producto producto);

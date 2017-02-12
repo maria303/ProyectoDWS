@@ -6,37 +6,76 @@
 package com.fpmislata.domain;
 
 import java.io.Serializable;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.NamedQueries;
+import javax.persistence.NamedQuery;
+import javax.persistence.Table;
 
 /**
  *
  * @author Maria
  */
-public class Producto implements Serializable{
+@Entity
+@NamedQueries({
+    @NamedQuery(name = "Producto.findAll", query = "SELECT p FROM Producto p ORDER BY p.id")})
+@Table(name = "productos")
+public class Producto implements Serializable {
+
     private static final long serialVersionUID = 1L;
-    private int id, stock;
-    private String nombre, descripcion;
-    private double precio;
+    
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "id_producto")
+    private int id;
+    
+    @Column(nullable = false, length = 20)
+    private String nombre;
+    
+    @Column(nullable = false, length = 45)
+    private String descripcion;
+    
+    @Column(nullable = false)
+    private int stock;
+    
+    @Column(nullable = false)
+    private Float precio;
+    
+    @ManyToOne
+    @JoinColumn(name = "proveedor")
     private Proveedor proveedor;
 
-    public Producto(int id, int stock, String nombre, String descripcion, Double precio) {
-        this.id = id;
-        this.stock = stock;
-        this.nombre = nombre;
-        this.descripcion = descripcion;
-        this.precio = precio;
-    }
-
-    public Producto(int id, int stock, String nombre, String descripcion, double precio, Proveedor proveedor) {
-        this.id = id;
-        this.stock = stock;
-        this.nombre = nombre;
-        this.descripcion = descripcion;
-        this.precio = precio;
-//        this.idProveedor = idProveedor;
-        this.proveedor = proveedor;
-    }
+//    public Producto(int id, int stock, String nombre, String descripcion, Float precio) {
+//        this.id = id;
+//        this.stock = stock;
+//        this.nombre = nombre;
+//        this.descripcion = descripcion;
+//        this.precio = precio;
+//    }
+//
+//    public Producto(int id, int stock, String nombre, String descripcion, Float precio, Proveedor proveedor) {
+//        this.id = id;
+//        this.stock = stock;
+//        this.nombre = nombre;
+//        this.descripcion = descripcion;
+//        this.precio = precio;
+////        this.idProveedor = idProveedor;
+//        this.proveedor = proveedor;
+//    }
 
     public Producto() {
+    }
+
+    public Producto(String nombre, String descripcion, int stock, Float precio) {
+        this.nombre = nombre;
+        this.descripcion = descripcion;
+        this.stock = stock;
+        this.precio = precio;
     }
 
     public int getId() {
@@ -75,7 +114,7 @@ public class Producto implements Serializable{
         return precio;
     }
 
-    public void setPrecio(double precio) {
+    public void setPrecio(Float precio) {
         this.precio = precio;
     }
 
@@ -86,5 +125,5 @@ public class Producto implements Serializable{
     public void setProveedor(Proveedor proveedor) {
         this.proveedor = proveedor;
     }
-    
+
 }

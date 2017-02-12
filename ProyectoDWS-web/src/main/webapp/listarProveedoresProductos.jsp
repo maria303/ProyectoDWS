@@ -185,7 +185,7 @@
                                                 String direccion = proveedor.getDireccion();
                                                 String ciudad = proveedor.getCiudad();
                                                 String provincia = proveedor.getProvincia();
-                                                int cp = proveedor.getCp();
+                                                int cp = proveedor.getCodigoPostal();
                                                 int telefono = proveedor.getTelefono();
                                                 String email = proveedor.getEmail();
                                                 

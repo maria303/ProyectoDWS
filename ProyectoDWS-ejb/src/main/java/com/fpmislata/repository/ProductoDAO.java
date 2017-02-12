@@ -3,58 +3,56 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package com.fpmislata.service;
+package com.fpmislata.repository;
 
 import com.fpmislata.domain.Producto;
 import com.fpmislata.domain.Proveedor;
-import com.fpmislata.repository.ProductoDAOLocal;
-import java.util.ArrayList;
-import java.util.Iterator;
 import java.util.List;
-import javax.ejb.EJB;
 import javax.ejb.Stateless;
+import javax.persistence.EntityManager;
+import javax.persistence.PersistenceContext;
 
 /**
  *
  * @author Maria
  */
 @Stateless
-public class ProductoService implements ProductoServiceLocal {
+public class ProductoDAO implements ProductoDAOLocal {
 
-    @EJB
-    private ProductoDAOLocal productoDAO;
-
+    @PersistenceContext(unitName = "ProductoPU")
+    EntityManager em;
+    
     // Add business logic below. (Right-click in editor and choose
     // "Insert Code > Add Business Method")
-
+    
     @Override
     public List listProductos() {
-        return productoDAO.listProductos();
+        return em.createNamedQuery("Producto.findAll").getResultList();
     }
 
     @Override
     public void addProducto(Producto producto) {
-        productoDAO.addProducto(producto);
+        em.persist(producto);
     }
 
     @Override
     public void updateProducto(Producto producto) {
-        productoDAO.updateProducto(producto);
+        em.merge(producto);
     }
 
     @Override
     public Producto findProductoById(Producto producto) {
-        return productoDAO.findProductoById(producto);
+        return em.find(Producto.class, producto.getId());
     }
 
     @Override
     public void deleteProducto(Producto producto) {
-        productoDAO.deleteProducto(producto);
+        producto = findProductoById(producto);
+        em.remove(producto);
     }
 
 //    @Override
 //    public List findProductosByProveedores(Proveedor proveedor) {
 //        
 //    }
-    
 }

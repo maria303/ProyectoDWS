@@ -3,52 +3,51 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package com.fpmislata.service;
+package com.fpmislata.repository;
 
 import com.fpmislata.domain.Proveedor;
-import com.fpmislata.repository.ProveedorDAOLocal;
 import java.util.ArrayList;
-import java.util.Iterator;
 import java.util.List;
-import javax.ejb.EJB;
 import javax.ejb.Stateless;
+import javax.persistence.EntityManager;
+import javax.persistence.PersistenceContext;
 
 /**
  *
- * @author alumno
+ * @author Maria
  */
 @Stateless
-public class ProveedorService implements ProveedorServiceLocal {
+public class ProveedorDAO implements ProveedorDAOLocal {
 
-    @EJB
-    private ProveedorDAOLocal proveedorDAO;
-
+    @PersistenceContext(unitName = "RestaurantePU")
+    EntityManager em;
+    
     // Add business logic below. (Right-click in editor and choose
     // "Insert Code > Add Business Method")
     
     @Override
     public List listProveedores() {
-        return proveedorDAO.listProveedores();
+        return em.createNamedQuery("Proveedor.findAll").getResultList();
     }
 
     @Override
     public void addProveedor(Proveedor proveedor) {
-        proveedorDAO.addProveedor(proveedor);
+        em.persist(proveedor);
     }
 
     @Override
     public void updateProveedor(Proveedor proveedor) {
-        proveedorDAO.updateProveedor(proveedor);
+        em.merge(proveedor);
     }
 
     @Override
     public Proveedor findProveedorById(Proveedor proveedor) {
-        return proveedorDAO.findProveedorById(proveedor);
+        return em.find(Proveedor.class, proveedor.getId());
     }
 
     @Override
     public void deleteProveedor(Proveedor proveedor) {
-        proveedorDAO.deleteProveedor(proveedor);
+        proveedor = findProveedorById(proveedor);
+        em.remove(proveedor);
     }
-    
 }
