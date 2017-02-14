@@ -24,7 +24,7 @@ import javax.servlet.http.HttpServletResponse;
  * @author Maria
  */
 @WebServlet(name = "ControladorUsuario", loadOnStartup = 3, urlPatterns = {"/AltaUsuario", "/EliminarUsuario",
-    "ListarUsuarios"})
+    "ListarUsuarios", "/Login", "/Logout"})
 public class ControladorUsuario extends HttpServlet {
 
     @EJB
@@ -54,6 +54,14 @@ public class ControladorUsuario extends HttpServlet {
 
         if (url.equals("/ListarUsuarios")) {
             ListarUsuarios(request, response);
+        }
+        
+        if(url.equals("/Login")){
+            Login(request, response);
+        }
+        
+        if(url.equals("/Logout")){
+            Logout(request, response);
         }
     }
 
@@ -153,5 +161,32 @@ public class ControladorUsuario extends HttpServlet {
     public String getServletInfo() {
         return "Short description";
     }// </editor-fold>
+
+    private void Login(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        String nombre = request.getParameter("usuario");
+        String password = request.getParameter("password");
+
+        Usuario usuario = new Usuario();
+        usuario.setNombre(nombre);
+        usuario.setPassword(password);
+
+        usuario = usuarioService.login(usuario);
+
+        if (usuario == null) {
+            RequestDispatcher rd = request.getRequestDispatcher("login.jsp");
+            rd.forward(request, response);
+        } else {
+            request.getSession().setAttribute("usuario", usuario);
+            RequestDispatcher rd = request.getRequestDispatcher("ListarProveedores");
+            rd.forward(request, response);
+        }
+    }
+
+    private void Logout(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        request.getSession().setAttribute("usuario", "");
+        
+        RequestDispatcher rd = request.getRequestDispatcher("index.jsp");
+        rd.forward(request, response);
+    }
 
 }

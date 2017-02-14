@@ -21,14 +21,6 @@
         <servlet-class>com.fpmislata.servlets.EliminarPedido</servlet-class>
     </servlet>
     <servlet>
-        <servlet-name>Login2</servlet-name>
-        <servlet-class>com.fpmislata.servlets.Login2</servlet-class>
-    </servlet>
-    <servlet>
-        <servlet-name>Logout</servlet-name>
-        <servlet-class>com.fpmislata.servlets.Logout</servlet-class>
-    </servlet>
-    <servlet>
         <servlet-name>NotaMod</servlet-name>
         <servlet-class>com.fpmislata.servlets.NotaMod</servlet-class>
     </servlet>
@@ -74,6 +66,8 @@
         <url-pattern>/AltaUsuario</url-pattern>
         <url-pattern>/EliminarUsuario</url-pattern>
         <url-pattern>/ListarUsuarios</url-pattern>
+        <url-pattern>/Login</url-pattern>
+        <url-pattern>/Logout</url-pattern>
         <url-pattern>/ControladorUsuario</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
@@ -83,14 +77,6 @@
     <servlet-mapping>
         <servlet-name>EliminarPedido</servlet-name>
         <url-pattern>/EliminarPedido</url-pattern>
-    </servlet-mapping>
-    <servlet-mapping>
-        <servlet-name>Login2</servlet-name>
-        <url-pattern>/Login2</url-pattern>
-    </servlet-mapping>
-    <servlet-mapping>
-        <servlet-name>Logout</servlet-name>
-        <url-pattern>/Logout</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
         <servlet-name>NotaMod</servlet-name>

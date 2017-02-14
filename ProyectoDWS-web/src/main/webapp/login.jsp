@@ -21,7 +21,7 @@
                 <!-- <img class="profile-img-card" src="//lh3.googleusercontent.com/-6V8xOA6M7BA/AAAAAAAAAAI/AAAAAAAAAAA/rzlHcD0KYwo/photo.jpg?sz=120" alt="" /> -->
                 <img id="profile-img" class="profile-img-card" src="//ssl.gstatic.com/accounts/ui/avatar_2x.png" />
                 <p id="profile-name" class="profile-name-card"></p>
-                <form action="Login2" method="POST" class="form-signin">
+                <form action="Login" method="POST" class="form-signin">
                     <span id="reauth-email" class="reauth-email"></span>
                     <input name="usuario" type="text" id="inputEmail" class="form-control" placeholder="Usuario" required autofocus>
                     <input name="password" type="password" id="inputPassword" class="form-control" placeholder="Contraseña" required>

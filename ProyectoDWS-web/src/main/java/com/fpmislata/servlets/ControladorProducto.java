@@ -372,8 +372,10 @@ public class ControladorProducto extends HttpServlet {
                 }
                 
             }
-            
-            ArrayList<Producto> listaProductos = new ArrayList<>(proveedor.getProductos());
+            Proveedor prov = new Proveedor();
+            prov.setId(idProveedor);
+            prov = proveedorService.findProveedorById(prov);
+            ArrayList<Producto> listaProductos = new ArrayList<>(prov.getProductos());
 
             request.getSession().setAttribute("productos", listaProductos);
 
