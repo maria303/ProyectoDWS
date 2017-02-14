@@ -80,7 +80,7 @@ public class ControladorProducto extends HttpServlet {
         String nombre = request.getParameter("nombre");
         String descripcion = request.getParameter("descripcion");
         int stock = Integer.parseInt(request.getParameter("stock"));
-        Float precio = Float.parseFloat(request.getParameter("precio"));
+        double precio = Double.parseDouble(request.getParameter("precio"));
         int idProveedor = (Integer) request.getSession().getAttribute("idProveedor");
 
         Producto producto = new Producto(nombre, descripcion, stock, precio);
@@ -108,7 +108,7 @@ public class ControladorProducto extends HttpServlet {
 //        String nombre = request.getParameter("nombre");
 //        String descripcion = request.getParameter("descripcion");
 //        int stock = Integer.parseInt(request.getParameter("stock"));
-//        Float precio = Float.parseFloat(request.getParameter("precio"));
+//        double precio = Double.parseDouble(request.getParameter("precio"));
 //        int idProveedor = (Integer) request.getSession().getAttribute("idProveedor");
 //        
 //        Producto producto = new Producto(nombre, descripcion, stock, precio);
@@ -156,7 +156,7 @@ public class ControladorProducto extends HttpServlet {
             String nombre = request.getParameter("nombre");
             String descripcion = request.getParameter("descripcion");
             String stockString = request.getParameter("stock");
-            Float precio = Float.parseFloat(request.getParameter("precio"));
+            double precio = Double.parseDouble(request.getParameter("precio"));
             int idProveedor = Integer.parseInt(request.getParameter("idProveedor"));
 
             if (stockString == null || stockString.equals("")) {
@@ -348,7 +348,7 @@ public class ControladorProducto extends HttpServlet {
             }
             
             int stock = Integer.parseInt(stockString);
-            Float precio = Float.parseFloat(precioString);
+            double precio = Double.parseDouble(precioString);
             int idProveedor = (Integer) request.getSession().getAttribute("idProveedor");
             
             Proveedor proveedor = new Proveedor();

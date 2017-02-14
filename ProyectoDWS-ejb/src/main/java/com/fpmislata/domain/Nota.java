@@ -7,24 +7,56 @@ package com.fpmislata.domain;
 
 import java.io.Serializable;
 import java.util.Date;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.NamedQueries;
+import javax.persistence.NamedQuery;
+import javax.persistence.Table;
 
 /**
  *
  * @author alumno
  */
-public class NotasPedido implements Serializable {
+@Entity
+@NamedQueries({
+    @NamedQuery(name = "Nota.findAll", query = "SELECT n FROM Nota n ORDER BY n.id")})
+@Table(name = "notas")
+public class Nota implements Serializable {
     
     private static final long serialVersionUID = 1L;
-    int id, num_mesa;
-    Date fecha;
-    double cuenta;
-    String hora;
+    
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "id_nota")
+    private int id;
+    
+    @Column(nullable = false)
+    private int num_mesa;
+    
+    @Column(nullable = false)
+    private Date fecha;
+    
+    @Column(nullable = false)
+    private double cuenta;
+    
+    @Column(nullable = false, length = 5)
+    private String hora;
+
+    public Nota() {
+    }
+
+    public Nota(int num_mesa, Date fecha, String hora, double cuenta) {
+        this.num_mesa = num_mesa;
+        this.fecha = fecha;
+        this.hora = hora;
+        this.cuenta = cuenta;
+    }
 
     public String getHora() {
         return hora;
-    }
-
-    public NotasPedido() {
     }
 
     public void setHora(String hora) {
@@ -61,19 +93,6 @@ public class NotasPedido implements Serializable {
 
     public void setCuenta(double cuenta) {
         this.cuenta = cuenta;
-    }
-
-    public NotasPedido(int num_mesa, Date fecha, String hora) {
-        this.num_mesa = num_mesa;
-        this.fecha = fecha;
-        this.hora = hora;
-    }
-
-    public NotasPedido(int id, int num_mesa, Date fecha, String hora) {
-        this.id = id;
-        this.num_mesa = num_mesa;
-        this.fecha = fecha;
-        this.hora = hora;
     }
 
     @Override

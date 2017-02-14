@@ -13,24 +13,8 @@
         <servlet-class>com.fpmislata.servlets.ControladorUsuario</servlet-class>
     </servlet>
     <servlet>
-        <servlet-name>EliminarNota</servlet-name>
-        <servlet-class>com.fpmislata.servlets.EliminarNota</servlet-class>
-    </servlet>
-    <servlet>
         <servlet-name>EliminarPedido</servlet-name>
         <servlet-class>com.fpmislata.servlets.EliminarPedido</servlet-class>
-    </servlet>
-    <servlet>
-        <servlet-name>NotaMod</servlet-name>
-        <servlet-class>com.fpmislata.servlets.NotaMod</servlet-class>
-    </servlet>
-    <servlet>
-        <servlet-name>NotaNueva</servlet-name>
-        <servlet-class>com.fpmislata.servlets.NotaNueva</servlet-class>
-    </servlet>
-    <servlet>
-        <servlet-name>Notas</servlet-name>
-        <servlet-class>com.fpmislata.servlets.Notas</servlet-class>
     </servlet>
     <servlet>
         <servlet-name>PedidoMod</servlet-name>
@@ -43,6 +27,10 @@
     <servlet>
         <servlet-name>PedidosProductos</servlet-name>
         <servlet-class>com.fpmislata.servlets.PedidosProductos</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>ControladorNota</servlet-name>
+        <servlet-class>com.fpmislata.servlets.ControladorNota</servlet-class>
     </servlet>
     <servlet-mapping>
         <servlet-name>ControladorProducto</servlet-name>
@@ -71,24 +59,16 @@
         <url-pattern>/ControladorUsuario</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
-        <servlet-name>EliminarNota</servlet-name>
+        <servlet-name>ControladorNota</servlet-name>
+        <url-pattern>/NotaNueva</url-pattern>
+        <url-pattern>/NotaMod</url-pattern>
+        <url-pattern>/Notas</url-pattern>
         <url-pattern>/EliminarNota</url-pattern>
+        <url-pattern>/ControladorNota</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
         <servlet-name>EliminarPedido</servlet-name>
         <url-pattern>/EliminarPedido</url-pattern>
-    </servlet-mapping>
-    <servlet-mapping>
-        <servlet-name>NotaMod</servlet-name>
-        <url-pattern>/NotaMod</url-pattern>
-    </servlet-mapping>
-    <servlet-mapping>
-        <servlet-name>NotaNueva</servlet-name>
-        <url-pattern>/NotaNueva</url-pattern>
-    </servlet-mapping>
-    <servlet-mapping>
-        <servlet-name>Notas</servlet-name>
-        <url-pattern>/Notas</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
         <servlet-name>PedidoMod</servlet-name>

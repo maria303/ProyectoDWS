@@ -44,7 +44,7 @@ public class Producto implements Serializable {
     private int stock;
     
     @Column(nullable = false)
-    private Float precio;
+    private double precio;
     
     @ManyToOne
     @JoinColumn(name = "proveedor")
@@ -71,7 +71,7 @@ public class Producto implements Serializable {
     public Producto() {
     }
 
-    public Producto(String nombre, String descripcion, int stock, Float precio) {
+    public Producto(String nombre, String descripcion, int stock, double precio) {
         this.nombre = nombre;
         this.descripcion = descripcion;
         this.stock = stock;
@@ -114,7 +114,7 @@ public class Producto implements Serializable {
         return precio;
     }
 
-    public void setPrecio(Float precio) {
+    public void setPrecio(double precio) {
         this.precio = precio;
     }
 

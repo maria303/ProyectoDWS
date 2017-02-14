@@ -4,8 +4,8 @@
     Author     : alumno
 --%>
 
+<%@page import="com.fpmislata.domain.Nota"%>
 <%@page import="java.util.Date"%>
-<%@page import="com.fpmislata.domain.NotasPedido"%>
 <%@page import="java.text.SimpleDateFormat"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
@@ -18,7 +18,7 @@
         <%
 
             SimpleDateFormat formatoFecha = new SimpleDateFormat("yyyy-MM-dd");
-            NotasPedido nota = (NotasPedido) session.getAttribute("notaP");
+            Nota nota = (Nota) session.getAttribute("notaP");
             Date fechaNuev = nota.getFecha();
             String fechaFormateada = formatoFecha.format(fechaNuev);
             int id = nota.getId();
