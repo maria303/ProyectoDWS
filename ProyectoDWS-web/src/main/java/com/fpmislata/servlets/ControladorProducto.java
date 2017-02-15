@@ -101,7 +101,7 @@ public class ControladorProducto extends HttpServlet {
 
         ArrayList<Producto> listaProductos = new ArrayList<>(proveedor.getProductos());
         request.getSession().setAttribute("productos", listaProductos);
-        
+
         RequestDispatcher rd = request.getRequestDispatcher("/listarProveedoresProductos.jsp");
         rd.forward(request, response);
 
@@ -208,7 +208,6 @@ public class ControladorProducto extends HttpServlet {
 //
 //            ArrayList<Proveedor> listaArrayProveedores = new ArrayList<>(listaProveedores);
 //            request.getSession().setAttribute("proveedores", listaArrayProveedores);
-
 //            RequestDispatcher rd = request.getRequestDispatcher("/listarProductos.jsp");
             RequestDispatcher rd = request.getRequestDispatcher("/listarProductos.jsp");
             rd.forward(request, response);
@@ -229,12 +228,8 @@ public class ControladorProducto extends HttpServlet {
 //        } catch (Exception e) {
 //            e.printStackTrace();
 //        }
-
-        int idProveedor = (Integer) request.getSession().getAttribute("idProveedor");
-        Proveedor proveedor = new Proveedor();
-        proveedor.setId(idProveedor);
-        proveedor = proveedorService.findProveedorById(proveedor);
-        
+        Proveedor proveedor = producto.getProveedor();
+        producto.getProveedor().getProductos().remove(producto);
 //        proveedor.getProductos().remove(producto);
 //        
 //            proveedorService.updateProveedor(proveedor);
@@ -243,23 +238,24 @@ public class ControladorProducto extends HttpServlet {
 //
 //        RequestDispatcher rd = request.getRequestDispatcher("/listarProveedoresProductos.jsp");
 //        rd.forward(request, response);
-            proveedor.getProductos().remove(producto);       
-try {
+//            proveedor.getProductos().remove(producto);       
+        try {
             productoService.deleteProducto(producto);
             proveedorService.updateProveedor(proveedor);
         } catch (Exception e) {
             e.printStackTrace();
         }
-        
+
+        int idProveedor = (Integer) request.getSession().getAttribute("idProveedor");
         Proveedor prov = new Proveedor();
-            prov.setId(idProveedor);
-            prov = proveedorService.findProveedorById(prov);
-            ArrayList<Producto> listaProductos = new ArrayList<>(prov.getProductos());
+        prov.setId(idProveedor);
+        prov = proveedorService.findProveedorById(prov);
+        ArrayList<Producto> listaProductos = new ArrayList<>(prov.getProductos());
 
-            request.getSession().setAttribute("productos", listaProductos);
+        request.getSession().setAttribute("productos", listaProductos);
 
-            RequestDispatcher rd = request.getRequestDispatcher("/listarProveedoresProductos.jsp");
-            rd.forward(request, response);
+        RequestDispatcher rd = request.getRequestDispatcher("/listarProveedoresProductos.jsp");
+        rd.forward(request, response);
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
@@ -331,49 +327,49 @@ try {
 
     private void ModificarProductoProveedor(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         String accion = request.getParameter("accion");
-        
-        if(accion != null && accion.equals("editar")){
+
+        if (accion != null && accion.equals("editar")) {
             String id = request.getParameter("id");
-            
-            if(id != null){
+
+            if (id != null) {
                 Producto producto = new Producto();
                 producto.setId(Integer.parseInt(id));
 
-                try{
+                try {
                     producto = productoService.findProductoById(producto);
-                }catch(Exception e){
+                } catch (Exception e) {
                     e.printStackTrace();
                 }
 
                 request.setAttribute("producto", producto);
                 request.getRequestDispatcher("/modificarProductoProveedor.jsp").forward(request, response);
             }
-            
-        }else if(accion != null && accion.equals("modificar")){
-            
+
+        } else if (accion != null && accion.equals("modificar")) {
+
             int id = Integer.parseInt(request.getParameter("id"));
             String nombre = request.getParameter("nombre");
             String descripcion = request.getParameter("descripcion");
             String stockString = request.getParameter("stock");
             String precioString = request.getParameter("precio");
-            
-            if(stockString == null || stockString.equals("")){
+
+            if (stockString == null || stockString.equals("")) {
                 stockString = "0";
             }
-            if(precioString == null || precioString.equals("")){
+            if (precioString == null || precioString.equals("")) {
                 precioString = "0";
             }
-            
+
             int stock = Integer.parseInt(stockString);
             double precio = Double.parseDouble(precioString);
             int idProveedor = (Integer) request.getSession().getAttribute("idProveedor");
-            
+
             Proveedor proveedor = new Proveedor();
             proveedor.setId(idProveedor);
             proveedor = proveedorService.findProveedorById(proveedor);
 
-            if(nombre != null && !nombre.equals("")){
-                
+            if (nombre != null && !nombre.equals("")) {
+
                 Producto producto = new Producto();
                 producto.setId(id);
                 producto.setNombre(nombre);
@@ -381,13 +377,13 @@ try {
                 producto.setStock(stock);
                 producto.setPrecio(precio);
                 producto.setProveedor(proveedor);
-                
-                try{
+
+                try {
                     productoService.updateProducto(producto);
-                }catch(Exception e){
+                } catch (Exception e) {
                     e.printStackTrace();
                 }
-                
+
             }
             Proveedor prov = new Proveedor();
             prov.setId(idProveedor);
@@ -398,7 +394,7 @@ try {
 
             RequestDispatcher rd = request.getRequestDispatcher("/listarProveedoresProductos.jsp");
             rd.forward(request, response);
-            
+
 //            ArrayList<Producto> lista = productoService.findProductosByProveedores(proveedor);
 //            request.getSession().setAttribute("productos", lista);
 //            
