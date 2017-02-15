@@ -141,7 +141,7 @@ public class ControladorProducto extends HttpServlet {
                 producto.setId(Integer.parseInt(id));
 
                 try {
-                    producto = this.productoService.findProductoById(producto);
+                    producto = productoService.findProductoById(producto);
                 } catch (Exception e) {
                     e.printStackTrace();
                 }
@@ -180,7 +180,7 @@ public class ControladorProducto extends HttpServlet {
                 producto.setProveedor(proveedor);
 
                 try {
-                    this.productoService.updateProducto(producto);
+                    productoService.updateProducto(producto);
                 } catch (Exception e) {
                     e.printStackTrace();
                 }
@@ -224,25 +224,42 @@ public class ControladorProducto extends HttpServlet {
         producto.setId(id);
         producto = productoService.findProductoById(producto);
 
-        try {
-            productoService.deleteProducto(producto);
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
+//        try {
+//            productoService.deleteProducto(producto);
+//        } catch (Exception e) {
+//            e.printStackTrace();
+//        }
 
         int idProveedor = (Integer) request.getSession().getAttribute("idProveedor");
         Proveedor proveedor = new Proveedor();
         proveedor.setId(idProveedor);
         proveedor = proveedorService.findProveedorById(proveedor);
         
-        proveedor.getProductos().remove(producto);
-        
+//        proveedor.getProductos().remove(producto);
+//        
+//            proveedorService.updateProveedor(proveedor);
+//        ArrayList<Producto> listaProductos = new ArrayList<>(proveedor.getProductos());
+//        request.getSession().setAttribute("productos", listaProductos);
+//
+//        RequestDispatcher rd = request.getRequestDispatcher("/listarProveedoresProductos.jsp");
+//        rd.forward(request, response);
+            proveedor.getProductos().remove(producto);       
+try {
+            productoService.deleteProducto(producto);
             proveedorService.updateProveedor(proveedor);
-        ArrayList<Producto> listaProductos = new ArrayList<>(proveedor.getProductos());
-        request.getSession().setAttribute("productos", listaProductos);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        
+        Proveedor prov = new Proveedor();
+            prov.setId(idProveedor);
+            prov = proveedorService.findProveedorById(prov);
+            ArrayList<Producto> listaProductos = new ArrayList<>(prov.getProductos());
 
-        RequestDispatcher rd = request.getRequestDispatcher("/listarProveedoresProductos.jsp");
-        rd.forward(request, response);
+            request.getSession().setAttribute("productos", listaProductos);
+
+            RequestDispatcher rd = request.getRequestDispatcher("/listarProveedoresProductos.jsp");
+            rd.forward(request, response);
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">

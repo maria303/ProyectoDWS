@@ -65,9 +65,6 @@
                                 <a href="ListarProveedores"><i class="fa fa-dashboard fa-fw"></i> Proveedores y Productos</a>
                             </li>
                             <li>
-                                <a href="Notas"><i class="fa fa-dashboard fa-fw"></i> Notas</a>
-                            </li>
-                            <li>
                                 <a href="PedidosProductos"><i class="fa fa-table fa-fw"></i> Pedidos</a>
                             </li>
                             <li>
