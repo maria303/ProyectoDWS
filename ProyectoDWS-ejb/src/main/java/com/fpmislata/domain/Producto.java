@@ -28,45 +28,27 @@ import javax.persistence.Table;
 public class Producto implements Serializable {
 
     private static final long serialVersionUID = 1L;
-    
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id_producto")
     private int id;
-    
+
     @Column(nullable = false, length = 20)
     private String nombre;
-    
+
     @Column(nullable = false, length = 45)
     private String descripcion;
-    
+
     @Column(nullable = false)
     private int stock;
-    
+
     @Column(nullable = false)
     private double precio;
-    
+
     @ManyToOne
     @JoinColumn(name = "proveedor")
     private Proveedor proveedor;
-
-//    public Producto(int id, int stock, String nombre, String descripcion, Float precio) {
-//        this.id = id;
-//        this.stock = stock;
-//        this.nombre = nombre;
-//        this.descripcion = descripcion;
-//        this.precio = precio;
-//    }
-//
-//    public Producto(int id, int stock, String nombre, String descripcion, Float precio, Proveedor proveedor) {
-//        this.id = id;
-//        this.stock = stock;
-//        this.nombre = nombre;
-//        this.descripcion = descripcion;
-//        this.precio = precio;
-////        this.idProveedor = idProveedor;
-//        this.proveedor = proveedor;
-//    }
 
     public Producto() {
     }

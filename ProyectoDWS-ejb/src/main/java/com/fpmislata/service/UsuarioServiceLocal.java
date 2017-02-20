@@ -25,4 +25,8 @@ public interface UsuarioServiceLocal {
 
     Usuario login(Usuario usuario);
     
+    Usuario findUsuarioById(Usuario usuario);
+
+    void updateUsuario(Usuario usuario);
+    
 }

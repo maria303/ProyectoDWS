@@ -12,22 +12,6 @@
         <title>JSP Page</title>
     </head>
     <body>
-        <h1>Restaurante</h1>
-        <a href="login.jsp">Login</a>
-        <br><br>
-        <a href="ListarProductos">Listado de productos</a>
-        <br><br>
-        Entrar a Productos y Notas -->
-        <a href="productosynotas.jsp">Entrar</a>
-        <br><br>
-        Entrar a la gestión de Productos y Pedidos -->
-        <a href="gestionprodypedid.jsp">Entrar</a>
-        <br><br>
-        Ver los pedidos de los productos -->
-        <a href="PedidosProductos">Entrar</a>
-        <br><br>
-        <a href="ListarUsuarios">Listado de usuarios</a>
-        
-        
+        <a href="ListarProductos">Restaurante</a>
     </body>
 </html>

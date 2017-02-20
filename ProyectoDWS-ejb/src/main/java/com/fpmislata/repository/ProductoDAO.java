@@ -50,9 +50,4 @@ public class ProductoDAO implements ProductoDAOLocal {
         producto = findProductoById(producto);
         em.remove(producto);
     }
-
-//    @Override
-//    public List findProductosByProveedores(Proveedor proveedor) {
-//        
-//    }
 }

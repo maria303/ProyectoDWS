@@ -24,14 +24,10 @@
             Nota nota = (Nota) session.getAttribute("notaP");
             Date fechaNuev = nota.getFecha();
             String fechaFormateada = formatoFecha.format(fechaNuev);
-            int id = nota.getId();
-            String hora = nota.getHora();
-            double cuenta = nota.getCuenta();
-            int numMesa = nota.getNum_mesa();
         %>
         <div class="row">
             <div class="col-md-4 col-md-offset-4">
-                <form class="form-horizontal" role="form" action="NotaMod?accion=modificar&id=<%=id%>" method="POST">
+                <form class="form-horizontal" role="form" action="NotaMod?accion=modificar&id=${notaP.id}" method="POST">
                     <fieldset>
 
                         <!-- Form Name -->
@@ -41,7 +37,7 @@
                         <div class="form-group">
                             <label class="col-sm-4 control-label" for="numMesa">Num. Mesa:</label>
                             <div class="col-sm-6">
-                                <input type="text" name="numMesa" value="<%=numMesa%>" class="form-control">
+                                <input type="text" name="numMesa" value="${notaP.num_mesa}" class="form-control">
                             </div>
                         </div>
 
@@ -57,7 +53,7 @@
                         <div class="form-group">
                             <label class="col-sm-4 control-label" for="hora">Hora:</label>
                             <div class="col-sm-6">
-                                <input type="text" name="hora" value="<%=hora%>" class="form-control">
+                                <input type="text" name="hora" value="${notaP.hora}" class="form-control">
                             </div>
                         </div>
 
@@ -65,7 +61,7 @@
                         <div class="form-group">
                             <label class="col-sm-4 control-label" for="cuenta">Cuenta:</label>
                             <div class="col-sm-6">
-                                <input type="text" name="cuenta" value="<%=cuenta%>" class="form-control">
+                                <input type="text" name="cuenta" value="${notaP.cuenta}" class="form-control">
                             </div>
                         </div>
 

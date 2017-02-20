@@ -12,7 +12,6 @@
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>JSP Page</title>
-        <!--<link href="css/main.css" rel="stylesheet" type="text/css"/>-->
 
         <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet" type="text/css"/>
         <link href="dist/css/sb-admin-2.css" rel="stylesheet" type="text/css"/>
@@ -30,7 +29,7 @@
                         <span class="icon-bar"></span>
                         <span class="icon-bar"></span>
                     </button>
-                    <a class="navbar-brand" href="index.html">SB Admin v2.0</a>
+                    <a class="navbar-brand" href="#">Administración Restaurante</a>
                 </div>
                 <!-- /.navbar-header -->
                 <% Usuario usuarioSesion = (Usuario) session.getAttribute("usuario");
@@ -56,9 +55,6 @@
                         <ul class="nav" id="side-menu">
                             <li>
                                 <a href="ListarProveedores"><i class="fa fa-dashboard fa-fw"></i> Proveedores y Productos</a>
-                            </li>
-                            <li>
-                                <a href="PedidosProductos"><i class="fa fa-table fa-fw"></i> Pedidos</a>
                             </li>
                             <li>
                                 <a href="ListarUsuarios"><i class="fa fa-edit fa-fw"></i> Usuarios</a>
@@ -105,7 +101,11 @@
                                         <tr>
                                             <td><%=nombre%></td>
                                             <td><%=apellidos%></td>
-                                            <td><% if(!usuario.getNombre().equals(usuarioSesion.getNombre())){ %>
+                                            <td>
+                                                <a href="ModificarUsuario?accion=editar&id=<%=id%>" class="boton">
+                                                        <i class="fa fa-pencil" aria-hidden="true"></i>
+                                                    </a>
+                                                <% if(!usuario.getNombre().equals(usuarioSesion.getNombre())){ %>
                                                 <a href="EliminarUsuario?id=<%=id%>">
                                                     <i class="fa fa-trash" aria-hidden="true"></i>
                                                 </a><% } %>

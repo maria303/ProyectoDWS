@@ -52,31 +52,31 @@ public class ControladorProducto extends HttpServlet {
         String url = request.getServletPath();
 
         if (url.equals("/AltaProducto")) {
-            AltaProducto(request, response);
+            altaProducto(request, response);
         }
 
         if (url.equals("/ModificarProducto")) {
-            ModificarProducto(request, response);
+            modificarProducto(request, response);
         }
 
         if (url.equals("/ListarProductos")) {
-            ListarProductos(request, response);
+            listarProductos(request, response);
         }
 
         if (url.equals("/EliminarProducto")) {
-            EliminarProducto(request, response);
+            eliminarProducto(request, response);
         }
 
         if (url.equals("/ListarProductosPorProveedores")) {
-            ListarProductosPorProveedores(request, response);
+            listarProductosPorProveedores(request, response);
         }
 
         if (url.equals("/ModificarProductoProveedor")) {
-            ModificarProductoProveedor(request, response);
+            modificarProductoProveedor(request, response);
         }
     }
 
-    private void AltaProducto(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+    private void altaProducto(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         String nombre = request.getParameter("nombre");
         String descripcion = request.getParameter("descripcion");
         int stock = Integer.parseInt(request.getParameter("stock"));
@@ -104,33 +104,9 @@ public class ControladorProducto extends HttpServlet {
 
         RequestDispatcher rd = request.getRequestDispatcher("/listarProveedoresProductos.jsp");
         rd.forward(request, response);
-
-//        String nombre = request.getParameter("nombre");
-//        String descripcion = request.getParameter("descripcion");
-//        int stock = Integer.parseInt(request.getParameter("stock"));
-//        double precio = Double.parseDouble(request.getParameter("precio"));
-//        int idProveedor = (Integer) request.getSession().getAttribute("idProveedor");
-//        
-//        Producto producto = new Producto(nombre, descripcion, stock, precio);
-//        
-//        Proveedor proveedor = new Proveedor();
-//        proveedor.setId(idProveedor);
-//        proveedor = proveedorService.findProveedorById(proveedor);
-//        
-//        producto.setProveedor(proveedor);
-//        proveedor.getProductos().add(producto);
-//        
-//        try {
-//            productoService.addProducto(producto);
-//            proveedorService.updateProveedor(proveedor);
-//        } catch (Exception e) {
-//            e.printStackTrace();
-//        }
-//
-//        ListarProductosProveedores(request, response);
     }
 
-    private void ModificarProducto(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+    private void modificarProducto(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         String accion = request.getParameter("accion");
 
         if (accion != null && accion.equals("editar")) {
@@ -185,30 +161,19 @@ public class ControladorProducto extends HttpServlet {
                     e.printStackTrace();
                 }
 
+            listarProductos(request, response);
+
             }
-            ListarProductos(request, response);
-//            List listaProductos = productoService.listProductos();
-//            ArrayList<Producto> listaArrayProductos = new ArrayList<>(listaProductos);
-//            request.setAttribute("productos", listaArrayProductos);
-//
-////            request.getRequestDispatcher("/listarProductos.jsp").forward(request, response);
-////            request.getRequestDispatcher("/proveedoresProductos.jsp").forward(request, response);
-//            request.getRequestDispatcher("/listarProductos.jsp").forward(request, response);
         }
     }
 
-    private void ListarProductos(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+    private void listarProductos(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         try {
             List listaProductos = productoService.listProductos();
 
             ArrayList<Producto> listaArrayProductos = new ArrayList<>(listaProductos);
             request.getSession().setAttribute("productos", listaArrayProductos);
 
-//            List listaProveedores = proveedorService.listProveedores();
-//
-//            ArrayList<Proveedor> listaArrayProveedores = new ArrayList<>(listaProveedores);
-//            request.getSession().setAttribute("proveedores", listaArrayProveedores);
-//            RequestDispatcher rd = request.getRequestDispatcher("/listarProductos.jsp");
             RequestDispatcher rd = request.getRequestDispatcher("/listarProductos.jsp");
             rd.forward(request, response);
         } catch (Exception e) {
@@ -216,29 +181,16 @@ public class ControladorProducto extends HttpServlet {
         }
     }
 
-    private void EliminarProducto(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+    private void eliminarProducto(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         int id = Integer.parseInt(request.getParameter("id"));
 
         Producto producto = new Producto();
         producto.setId(id);
         producto = productoService.findProductoById(producto);
 
-//        try {
-//            productoService.deleteProducto(producto);
-//        } catch (Exception e) {
-//            e.printStackTrace();
-//        }
         Proveedor proveedor = producto.getProveedor();
         producto.getProveedor().getProductos().remove(producto);
-//        proveedor.getProductos().remove(producto);
-//        
-//            proveedorService.updateProveedor(proveedor);
-//        ArrayList<Producto> listaProductos = new ArrayList<>(proveedor.getProductos());
-//        request.getSession().setAttribute("productos", listaProductos);
-//
-//        RequestDispatcher rd = request.getRequestDispatcher("/listarProveedoresProductos.jsp");
-//        rd.forward(request, response);
-//            proveedor.getProductos().remove(producto);       
+
         try {
             productoService.deleteProducto(producto);
             proveedorService.updateProveedor(proveedor);
@@ -297,7 +249,7 @@ public class ControladorProducto extends HttpServlet {
         return "Short description";
     }// </editor-fold>
 
-    private void ListarProductosPorProveedores(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+    private void listarProductosPorProveedores(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         try {
             int idProveedor = Integer.parseInt(request.getParameter("id"));
 
@@ -305,19 +257,16 @@ public class ControladorProducto extends HttpServlet {
             proveedor.setId(idProveedor);
             proveedor = proveedorService.findProveedorById(proveedor);
 
-            //////////////////
             String nombreProveedor = proveedor.getNombre();
             request.getSession().setAttribute("nombreProveedor", nombreProveedor);
             Usuario usuario = (Usuario) request.getSession().getAttribute("usuario");
             request.getSession().setAttribute("usuario", usuario);
-            /////////////
 
             ArrayList<Producto> listaProductos = new ArrayList<>(proveedor.getProductos());
 
             request.getSession().setAttribute("productos", listaProductos);
             request.getSession().setAttribute("idProveedor", idProveedor);
 
-//            RequestDispatcher rd = request.getRequestDispatcher("/listarProductosProveedores.jsp");
             RequestDispatcher rd = request.getRequestDispatcher("/listarProveedoresProductos.jsp");
             rd.forward(request, response);
         } catch (Exception e) {
@@ -325,7 +274,7 @@ public class ControladorProducto extends HttpServlet {
         }
     }
 
-    private void ModificarProductoProveedor(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+    private void modificarProductoProveedor(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         String accion = request.getParameter("accion");
 
         if (accion != null && accion.equals("editar")) {
@@ -394,12 +343,6 @@ public class ControladorProducto extends HttpServlet {
 
             RequestDispatcher rd = request.getRequestDispatcher("/listarProveedoresProductos.jsp");
             rd.forward(request, response);
-
-//            ArrayList<Producto> lista = productoService.findProductosByProveedores(proveedor);
-//            request.getSession().setAttribute("productos", lista);
-//            
-////            request.getRequestDispatcher("/listarProductosProveedores.jsp").forward(request, response);
-//            request.getRequestDispatcher("/listarProveedoresProductos.jsp").forward(request, response);
         }
     }
 }

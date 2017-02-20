@@ -24,5 +24,7 @@ public interface UsuarioDAOLocal {
     void deleteUsuario(Usuario usuario);
 
     Usuario findUsuarioById(Usuario usuario);
+
+    void updateUsuario(Usuario usuario);
     
 }

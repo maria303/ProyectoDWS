@@ -13,22 +13,6 @@
         <servlet-class>com.fpmislata.servlets.ControladorUsuario</servlet-class>
     </servlet>
     <servlet>
-        <servlet-name>EliminarPedido</servlet-name>
-        <servlet-class>com.fpmislata.servlets.EliminarPedido</servlet-class>
-    </servlet>
-    <servlet>
-        <servlet-name>PedidoMod</servlet-name>
-        <servlet-class>com.fpmislata.servlets.PedidoMod</servlet-class>
-    </servlet>
-    <servlet>
-        <servlet-name>PedidoNuevo</servlet-name>
-        <servlet-class>com.fpmislata.servlets.PedidoNuevo</servlet-class>
-    </servlet>
-    <servlet>
-        <servlet-name>PedidosProductos</servlet-name>
-        <servlet-class>com.fpmislata.servlets.PedidosProductos</servlet-class>
-    </servlet>
-    <servlet>
         <servlet-name>ControladorNota</servlet-name>
         <servlet-class>com.fpmislata.servlets.ControladorNota</servlet-class>
     </servlet>
@@ -47,6 +31,7 @@
         <url-pattern>/AltaProveedor</url-pattern>
         <url-pattern>/EliminarProveedor</url-pattern>
         <url-pattern>/ListarProveedores</url-pattern>
+        <url-pattern>/ModificarProveedor</url-pattern>
         <url-pattern>/ControladorProveedor</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
@@ -56,6 +41,7 @@
         <url-pattern>/ListarUsuarios</url-pattern>
         <url-pattern>/Login</url-pattern>
         <url-pattern>/Logout</url-pattern>
+        <url-pattern>/ModificarUsuario</url-pattern>
         <url-pattern>/ControladorUsuario</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
@@ -65,22 +51,6 @@
         <url-pattern>/Notas</url-pattern>
         <url-pattern>/EliminarNota</url-pattern>
         <url-pattern>/ControladorNota</url-pattern>
-    </servlet-mapping>
-    <servlet-mapping>
-        <servlet-name>EliminarPedido</servlet-name>
-        <url-pattern>/EliminarPedido</url-pattern>
-    </servlet-mapping>
-    <servlet-mapping>
-        <servlet-name>PedidoMod</servlet-name>
-        <url-pattern>/PedidoMod</url-pattern>
-    </servlet-mapping>
-    <servlet-mapping>
-        <servlet-name>PedidoNuevo</servlet-name>
-        <url-pattern>/PedidoNuevo</url-pattern>
-    </servlet-mapping>
-    <servlet-mapping>
-        <servlet-name>PedidosProductos</servlet-name>
-        <url-pattern>/PedidosProductos</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

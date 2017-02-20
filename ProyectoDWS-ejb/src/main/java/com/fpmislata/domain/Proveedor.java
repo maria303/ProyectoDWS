@@ -28,61 +28,38 @@ import javax.persistence.Table;
 @NamedQueries({
     @NamedQuery(name = "Proveedor.findAll", query = "SELECT p FROM Proveedor p ORDER BY p.id")})
 @Table(name = "proveedores")
-public class Proveedor implements Serializable{
+public class Proveedor implements Serializable {
+
     private static final long serialVersionUID = 1L;
-    
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id_proveedor")
     private int id;
-    
+
     @Column(nullable = false, length = 20)
     private String nombre;
-    
+
     @Column(nullable = false, length = 45)
     private String direccion;
-    
+
     @Column(nullable = false, length = 45)
     private String ciudad;
-    
+
     @Column(nullable = false)
     private int codigoPostal;
-    
+
     @Column(nullable = false, length = 45)
     private String provincia;
-    
+
     @Column(nullable = false)
     private int telefono;
-    
+
     @Column(nullable = false, length = 45)
     private String email;
-    
+
     @OneToMany(mappedBy = "proveedor", cascade = {CascadeType.ALL}, fetch = FetchType.EAGER)
     private Set<Producto> productos;
-//    private ArrayList<Producto> listaProductos;
-
-//    public Proveedor(int id, int cp, int telefono, String nombre, String direccion, String ciudad, String provincia, String email, ArrayList<Producto> listaProductos) {
-//        this.id = id;
-//        this.cp = cp;
-//        this.telefono = telefono;
-//        this.nombre = nombre;
-//        this.direccion = direccion;
-//        this.ciudad = ciudad;
-//        this.provincia = provincia;
-//        this.email = email;
-//        this.listaProductos = listaProductos;
-//    }
-//
-//    public Proveedor(int id, int cp, int telefono, String nombre, String direccion, String ciudad, String provincia, String email) {
-//        this.id = id;
-//        this.cp = cp;
-//        this.telefono = telefono;
-//        this.nombre = nombre;
-//        this.direccion = direccion;
-//        this.ciudad = ciudad;
-//        this.provincia = provincia;
-//        this.email = email;
-//    }
 
     public Proveedor() {
     }
@@ -160,14 +137,6 @@ public class Proveedor implements Serializable{
     public void setEmail(String email) {
         this.email = email;
     }
-
-//    public ArrayList<Producto> getListaProductos() {
-//        return listaProductos;
-//    }
-//
-//    public void setListaProductos(ArrayList<Producto> listaProductos) {
-//        this.listaProductos = listaProductos;
-//    }
 
     public Set<Producto> getProductos() {
         return productos;

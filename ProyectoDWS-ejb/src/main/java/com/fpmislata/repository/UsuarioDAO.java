@@ -45,4 +45,9 @@ public class UsuarioDAO implements UsuarioDAOLocal {
     public Usuario findUsuarioById(Usuario usuario) {
         return em.find(Usuario.class, usuario.getId());
     }
+
+    @Override
+    public void updateUsuario(Usuario usuario) {
+        em.merge(usuario);
+    }
 }

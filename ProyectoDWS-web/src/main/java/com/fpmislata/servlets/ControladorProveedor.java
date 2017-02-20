@@ -28,7 +28,7 @@ import javax.servlet.http.HttpServletResponse;
  * @author Maria
  */
 @WebServlet(name = "ControladorProveedor", loadOnStartup = 3, urlPatterns = {"/AltaProveedor", "/EliminarProveedor",
-    "ListarProveedores"})
+    "/ListarProveedores", "/ModificarProveedor"})
 public class ControladorProveedor extends HttpServlet {
 
     @EJB
@@ -51,19 +51,23 @@ public class ControladorProveedor extends HttpServlet {
         response.setContentType("text/html;charset=UTF-8");
         String url = request.getServletPath();
         if (url.equals("/AltaProveedor")) {
-            AltaProveedor(request, response);
+            altaProveedor(request, response);
         }
 
         if (url.equals("/EliminarProveedor")) {
-            EliminarProveedor(request, response);
+            eliminarProveedor(request, response);
         }
 
         if (url.equals("/ListarProveedores")) {
-            ListarProveedores(request, response);
+            listarProveedores(request, response);
+        }
+
+        if (url.equals("/ModificarProveedor")) {
+            modificarProveedor(request, response);
         }
     }
 
-    private void AltaProveedor(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+    private void altaProveedor(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         String nombre = request.getParameter("nombre");
         String direccion = request.getParameter("direccion");
         String ciudad = request.getParameter("ciudad");
@@ -71,7 +75,7 @@ public class ControladorProveedor extends HttpServlet {
         String cpString = request.getParameter("cp");
         String telefonoString = request.getParameter("telefono");
         String email = request.getParameter("email");
-//        
+
         if ((nombre != null && !nombre.equals("")) && (direccion != null && !direccion.equals(""))
                 && (ciudad != null && !ciudad.equals("")) && (provincia != null && !provincia.equals(""))
                 && (cpString != null && !cpString.equals("")) && (telefonoString != null && !telefonoString.equals(""))
@@ -79,7 +83,7 @@ public class ControladorProveedor extends HttpServlet {
 
             int cp = Integer.parseInt(cpString);
             int telefono = Integer.parseInt(telefonoString);
-//
+
             Proveedor proveedor = new Proveedor();
             proveedor.setNombre(nombre);
             proveedor.setDireccion(direccion);
@@ -94,61 +98,37 @@ public class ControladorProveedor extends HttpServlet {
             } catch (Exception e) {
                 e.printStackTrace();
             }
-
-            ListarProveedores(request, response);
-
         }
-//        
-//        ArrayList<Proveedor> lista = proveedorService.listProveedores();
-//        request.getSession().setAttribute("proveedores", lista);
-//        
-////        request.getRequestDispatcher("/listarProveedores.jsp").forward(request, response);
-//        request.getRequestDispatcher("/listarProveedoresProductos.jsp").forward(request, response);
+
+        listarProveedores(request, response);
     }
 
-    private void EliminarProveedor(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+    private void eliminarProveedor(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         int idProveedor = Integer.parseInt(request.getParameter("id"));
-        
+
         Proveedor proveedor = new Proveedor();
         proveedor.setId(idProveedor);
-        
-            proveedorService.deleteProveedor(proveedor);
-            
-            ListarProveedores(request, response);
-            
-//            List listaProveedores = proveedorService.listProveedores();
-//            ArrayList<Proveedor> listaArrayProveedores = new ArrayList<>(listaProveedores);
-//            request.getSession().setAttribute("proveedores", listaArrayProveedores);
-//            ///////////
-//            ArrayList<Producto> listaProductos = new ArrayList<>();
-//            request.getSession().setAttribute("productos", listaProductos);
-//            request.getSession().setAttribute("idProveedor", 0);
-//            request.getSession().setAttribute("nombreProveedor", "null");
-//            //////////////
-//            
-////            RequestDispatcher rd = request.getRequestDispatcher("/listarProveedores.jsp");
-//            RequestDispatcher rd = request.getRequestDispatcher("/listarProveedoresProductos.jsp");
-//            rd.forward(request, response);
-//        }catch(Exception e){
-//            e.printStackTrace();
-//        }
+
+        proveedorService.deleteProveedor(proveedor);
+
+        listarProveedores(request, response);
     }
 
-    private void ListarProveedores(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+    private void listarProveedores(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         try {
             List listaProveedores = proveedorService.listProveedores();
 
             ArrayList<Proveedor> listaArrayProveedores = new ArrayList<>(listaProveedores);
             request.getSession().setAttribute("proveedores", listaArrayProveedores);
-            ///////////////////
+
             ArrayList<Producto> listaProductos = new ArrayList<>();
             request.getSession().setAttribute("productos", listaProductos);
             request.getSession().setAttribute("idProveedor", 0);
             request.getSession().setAttribute("nombreProveedor", "null");
-            /////////////////////
+
             Usuario usuario = (Usuario) request.getSession().getAttribute("usuario");
             request.getSession().setAttribute("usuario", usuario);
-            ///////////////////
+
             RequestDispatcher rd = request.getRequestDispatcher("/listarProveedoresProductos.jsp");
             rd.forward(request, response);
         } catch (Exception e) {
@@ -194,5 +174,65 @@ public class ControladorProveedor extends HttpServlet {
     public String getServletInfo() {
         return "Short description";
     }// </editor-fold>
+
+    private void modificarProveedor(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        String accion = request.getParameter("accion");
+
+        if (accion != null && accion.equals("editar")) {
+            String id = request.getParameter("id");
+
+            if (id != null) {
+                Proveedor proveedor = new Proveedor();
+                proveedor.setId(Integer.parseInt(id));
+
+                try {
+                    proveedor = proveedorService.findProveedorById(proveedor);
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+
+                request.getSession().setAttribute("proveedor", proveedor);
+                request.getRequestDispatcher("/modificarProveedor.jsp").forward(request, response);
+            }
+
+        } else if (accion != null && accion.equals("modificar")) {
+
+            int id = Integer.parseInt(request.getParameter("id"));
+            String nombre = request.getParameter("nombre");
+            String direccion = request.getParameter("direccion");
+            String ciudad = request.getParameter("ciudad");
+            String provincia = request.getParameter("provincia");
+            String cpString = request.getParameter("cp");
+            String telefonoString = request.getParameter("telefono");
+            String email = request.getParameter("email");
+
+            if ((nombre != null && !nombre.equals("")) && (direccion != null && !direccion.equals(""))
+                    && (ciudad != null && !ciudad.equals("")) && (provincia != null && !provincia.equals(""))
+                    && (cpString != null && !cpString.equals("")) && (telefonoString != null && !telefonoString.equals(""))
+                    && (email != null && !email.equals(""))) {
+
+                int cp = Integer.parseInt(cpString);
+                int telefono = Integer.parseInt(telefonoString);
+
+                Proveedor proveedor = new Proveedor();
+                proveedor.setId(id);
+                proveedor.setNombre(nombre);
+                proveedor.setDireccion(direccion);
+                proveedor.setCiudad(ciudad);
+                proveedor.setProvincia(provincia);
+                proveedor.setCodigoPostal(cp);
+                proveedor.setTelefono(telefono);
+                proveedor.setEmail(email);
+
+                try {
+                    proveedorService.updateProveedor(proveedor);
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+            }
+
+        }
+        listarProveedores(request, response);
+    }
 
 }

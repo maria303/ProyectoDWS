@@ -22,13 +22,6 @@ public class UsuarioService implements UsuarioServiceLocal {
 
     @EJB
     private UsuarioDAOLocal usuarioDAO;
-    
-//    private static ArrayList<Usuario> lista = new ArrayList<>();
-//    private static int lastId = 2;
-//    
-//    static{
-//        lista.add(new Usuario(1, "Pepe", "Perez", "1234"));
-//    }
 
     // Add business logic below. (Right-click in editor and choose
     // "Insert Code > Add Business Method")
@@ -56,17 +49,11 @@ public class UsuarioService implements UsuarioServiceLocal {
     @Override
     public List listUsuarios() {
         return usuarioDAO.listUsuarios();
-//        return lista;
     }
 
     @Override
     public void deleteUsuario(Usuario usuario) {
         usuarioDAO.deleteUsuario(usuario);
-//        for(int i=0; i<lista.size(); i++){
-//            if(lista.get(i).getId() == usuario.getId()){
-//                lista.remove(i);
-//            }
-//        }
     }
 
     @Override
@@ -87,4 +74,13 @@ public class UsuarioService implements UsuarioServiceLocal {
         return retorno;
     }
     
+    @Override
+    public Usuario findUsuarioById(Usuario usuario) {
+        return usuarioDAO.findUsuarioById(usuario);
+    }
+
+    @Override
+    public void updateUsuario(Usuario usuario) {
+        usuarioDAO.updateUsuario(usuario);
+    }
 }

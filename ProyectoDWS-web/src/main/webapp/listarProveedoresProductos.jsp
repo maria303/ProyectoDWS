@@ -14,7 +14,6 @@
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>JSP Page</title>
-        <!--<link href="css/main.css" rel="stylesheet" type="text/css"/>-->
 
         <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet" type="text/css"/>
         <link href="dist/css/sb-admin-2.css" rel="stylesheet" type="text/css"/>
@@ -32,11 +31,11 @@
                         <span class="icon-bar"></span>
                         <span class="icon-bar"></span>
                     </button>
-                    <a class="navbar-brand" href="index.html">SB Admin v2.0</a>
+                    <a class="navbar-brand" href="#">Administración Restaurante</a>
                 </div>
                 <!-- /.navbar-header -->
                 <% Usuario usuarioSesion = (Usuario) session.getAttribute("usuario");
-                String nombreUsuario = usuarioSesion.getNombre(); %>
+                    String nombreUsuario = usuarioSesion.getNombre();%>
                 <ul class="nav navbar-top-links navbar-right">
                     <!-- /.dropdown -->
                     <li class="dropdown">
@@ -58,9 +57,6 @@
                         <ul class="nav" id="side-menu">
                             <li>
                                 <a href="ListarProveedores"><i class="fa fa-dashboard fa-fw"></i> Proveedores y Productos</a>
-                            </li>
-                            <li>
-                                <a href="PedidosProductos"><i class="fa fa-table fa-fw"></i> Pedidos</a>
                             </li>
                             <li>
                                 <a href="ListarUsuarios"><i class="fa fa-edit fa-fw"></i> Usuarios</a>
@@ -88,7 +84,7 @@
                             </div>
                             <div class="panel-body">
                                 <div class="table-responsive"  style="height: 160px;">
-                                     <table class="table table-striped">
+                                    <table class="table table-striped">
                                         <tr>
                                             <th>Nombre</th>
                                             <th>Dirección</th>
@@ -114,7 +110,7 @@
                                                 int cp = proveedor.getCodigoPostal();
                                                 int telefono = proveedor.getTelefono();
                                                 String email = proveedor.getEmail();
-                                                
+
 
                                         %>
                                         <tr>
@@ -126,6 +122,9 @@
                                             <td><%=telefono%></td>
                                             <td><%=email%></td>
                                             <td>
+                                                <a href="ModificarProveedor?accion=editar&id=<%=id%>" class="boton">
+                                                    <i class="fa fa-pencil" aria-hidden="true"></i>
+                                                </a>
                                                 <a href="EliminarProveedor?id=<%=id%>" class="boton">
                                                     <i class="fa fa-trash" aria-hidden="true"></i>
                                                 </a>
@@ -160,7 +159,7 @@
                                         <th>Stock</th>
                                         <th>Precio</th>
                                         <th>
-                                            <% if(!nombreProveedor.equals("Productos")){%>
+                                            <% if (!nombreProveedor.equals("Productos")) {%>
                                             <a href="agregarProducto.jsp" class="boton">
                                                 <i class="fa fa-plus-square" aria-hidden="true"></i>
                                             </a><%}%>

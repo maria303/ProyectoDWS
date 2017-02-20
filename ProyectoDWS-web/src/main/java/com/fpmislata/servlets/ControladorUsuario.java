@@ -24,7 +24,7 @@ import javax.servlet.http.HttpServletResponse;
  * @author Maria
  */
 @WebServlet(name = "ControladorUsuario", loadOnStartup = 3, urlPatterns = {"/AltaUsuario", "/EliminarUsuario",
-    "ListarUsuarios", "/Login", "/Logout"})
+    "ListarUsuarios", "/Login", "/Logout", "/ModificarUsuario"})
 public class ControladorUsuario extends HttpServlet {
 
     @EJB
@@ -45,27 +45,31 @@ public class ControladorUsuario extends HttpServlet {
 
         String url = request.getServletPath();
         if (url.equals("/AltaUsuario")) {
-            AltaUsuario(request, response);
+            altaUsuario(request, response);
         }
 
         if (url.equals("/EliminarUsuario")) {
-            EliminarUsuario(request, response);
+            eliminarUsuario(request, response);
         }
 
         if (url.equals("/ListarUsuarios")) {
-            ListarUsuarios(request, response);
+            listarUsuarios(request, response);
         }
-        
-        if(url.equals("/Login")){
-            Login(request, response);
+
+        if (url.equals("/Login")) {
+            login(request, response);
         }
-        
-        if(url.equals("/Logout")){
-            Logout(request, response);
+
+        if (url.equals("/Logout")) {
+            logout(request, response);
+        }
+
+        if (url.equals("/ModificarUsuario")) {
+            modificarUsuario(request, response);
         }
     }
 
-    private void AltaUsuario(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+    private void altaUsuario(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         String nombre = request.getParameter("nombre");
         String apellidos = request.getParameter("apellidos");
         String password = request.getParameter("password");
@@ -84,14 +88,10 @@ public class ControladorUsuario extends HttpServlet {
             }
         }
 
-        List lista = usuarioService.listUsuarios();
-        ArrayList<Usuario> listaArray = new ArrayList<>(lista);
-        request.getSession().setAttribute("usuarios", listaArray);
-
-        request.getRequestDispatcher("/listarUsuarios.jsp").forward(request, response);
+        listarUsuarios(request, response);
     }
 
-    private void EliminarUsuario(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+    private void eliminarUsuario(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         int id = Integer.parseInt(request.getParameter("id"));
 
         Usuario usuario = new Usuario();
@@ -103,14 +103,10 @@ public class ControladorUsuario extends HttpServlet {
             e.printStackTrace();
         }
 
-        List lista = usuarioService.listUsuarios();
-        ArrayList<Usuario> listaArray = new ArrayList<>(lista);
-        request.getSession().setAttribute("usuarios", listaArray);
-
-        request.getRequestDispatcher("/listarUsuarios.jsp").forward(request, response);
+        listarUsuarios(request, response);
     }
 
-    private void ListarUsuarios(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+    private void listarUsuarios(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         try {
             List lista = usuarioService.listUsuarios();
             ArrayList<Usuario> listaArray = new ArrayList<>(lista);
@@ -162,7 +158,7 @@ public class ControladorUsuario extends HttpServlet {
         return "Short description";
     }// </editor-fold>
 
-    private void Login(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+    private void login(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         String nombre = request.getParameter("usuario");
         String password = request.getParameter("password");
 
@@ -182,11 +178,57 @@ public class ControladorUsuario extends HttpServlet {
         }
     }
 
-    private void Logout(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+    private void logout(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         request.getSession().setAttribute("usuario", "");
-        
-        RequestDispatcher rd = request.getRequestDispatcher("index.jsp");
+
+        RequestDispatcher rd = request.getRequestDispatcher("ListarProductos");
         rd.forward(request, response);
+    }
+
+    private void modificarUsuario(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        String accion = request.getParameter("accion");
+
+        if (accion != null && accion.equals("editar")) {
+            String id = request.getParameter("id");
+
+            if (id != null) {
+                Usuario usuario = new Usuario();
+                usuario.setId(Integer.parseInt(id));
+
+                try {
+                    usuario = usuarioService.findUsuarioById(usuario);
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+
+                request.getSession().setAttribute("usuario", usuario);
+                request.getRequestDispatcher("/modificarUsuario.jsp").forward(request, response);
+            }
+
+        } else if (accion != null && accion.equals("modificar")) {
+
+            int id = Integer.parseInt(request.getParameter("id"));
+            String nombre = request.getParameter("nombre");
+            String apellidos = request.getParameter("apellidos");
+            String password = request.getParameter("password");
+
+            if ((nombre != null && !nombre.equals("")) && (apellidos != null && !apellidos.equals(""))
+                    && (password != null && !password.equals(""))) {
+
+                Usuario usuario = new Usuario();
+                usuario.setId(id);
+                usuario.setNombre(nombre);
+                usuario.setApellidos(apellidos);
+                usuario.setPassword(password);
+
+                try {
+                    usuarioService.updateUsuario(usuario);
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+            }
+            listarUsuarios(request, response);
+        }
     }
 
 }
