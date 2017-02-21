@@ -201,7 +201,7 @@ public class ControladorUsuario extends HttpServlet {
                     e.printStackTrace();
                 }
 
-                request.getSession().setAttribute("usuario", usuario);
+                request.setAttribute("usuario", usuario);
                 request.getRequestDispatcher("/modificarUsuario.jsp").forward(request, response);
             }
 

@@ -13,6 +13,5 @@
     </head>
     <body>
         <a href="ListarProductos">Restaurante</a>
-        <a href="consultas.jsp">Consulta</a>
     </body>
 </html>
