@@ -28,5 +28,7 @@ public interface NotaServiceLocal {
     void eliminarNota(Nota nota);
 
     Nota encontrarPorId(Nota nota);
+
+    List orderByNumMesa();
     
 }

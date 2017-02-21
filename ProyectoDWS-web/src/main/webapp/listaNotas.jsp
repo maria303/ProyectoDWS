@@ -85,7 +85,12 @@
                                 <div class="table-responsive"  style="height: 160px;">
                                     <table class="table table-striped">
                                         <tr>
-                                            <th>Num. Mesa</th>
+                                            <th>
+                                                Num. Mesa
+                                                <a href="OrdenarNotaPorNumMesa" class="boton">
+                                                    <i class="fa fa-sort" aria-hidden="true"></i>
+                                                </a>
+                                            </th>
                                             <th>Fecha</th>
                                             <th>Hora</th>
                                             <th>Cuenta</th>
@@ -126,6 +131,7 @@
                                 </div>
                             </div>
                         </div>
+                        <a href="OrdenarNotaPorNumMesa">Ordenar por mesa</a>
                     </div>
                 </div>
             </div>

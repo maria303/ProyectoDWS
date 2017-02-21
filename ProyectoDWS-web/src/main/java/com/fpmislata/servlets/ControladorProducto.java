@@ -28,7 +28,7 @@ import javax.servlet.http.HttpServletResponse;
  */
 @WebServlet(name = "ControladorProducto", loadOnStartup = 3, urlPatterns = {"/AltaProducto",
     "/ModificarProducto", "/ListarProductos", "/EliminarProducto", "/ListarProductosPorProveedores",
-    "/ModificarProductoProveedor"})
+    "/ModificarProductoProveedor", "/BuscarProductoPorNombre"})
 public class ControladorProducto extends HttpServlet {
 
     @EJB
@@ -73,6 +73,10 @@ public class ControladorProducto extends HttpServlet {
 
         if (url.equals("/ModificarProductoProveedor")) {
             modificarProductoProveedor(request, response);
+        }
+        
+        if(url.equals("/BuscarProductoPorNombre")){
+            buscarProductoPorNombre(request, response);
         }
     }
 
@@ -344,5 +348,18 @@ public class ControladorProducto extends HttpServlet {
             RequestDispatcher rd = request.getRequestDispatcher("/listarProveedoresProductos.jsp");
             rd.forward(request, response);
         }
+    }
+
+    private void buscarProductoPorNombre(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        String nombre = request.getParameter("nombre");
+        
+        Producto producto = new Producto();
+        producto.setNombre(nombre);
+        
+        producto = productoService.findProductoByNombre(producto);
+        
+        request.setAttribute("producto", producto);
+        RequestDispatcher rd = request.getRequestDispatcher("/consulta2.jsp");
+        rd.forward(request, response);
     }
 }

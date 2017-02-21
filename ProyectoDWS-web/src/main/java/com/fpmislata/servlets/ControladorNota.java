@@ -28,7 +28,8 @@ import javax.servlet.http.HttpServletResponse;
  *
  * @author Maria
  */
-@WebServlet(name = "ControladorNota", loadOnStartup = 3, urlPatterns = {"/NotaNueva", "/NotaMod", "/Notas", "/EliminarNota"})
+@WebServlet(name = "ControladorNota", loadOnStartup = 3, urlPatterns = {"/NotaNueva", "/NotaMod", "/Notas",
+    "/EliminarNota", "/OrdenarNotaPorNumMesa"})
 public class ControladorNota extends HttpServlet {
 
     @EJB
@@ -62,6 +63,10 @@ public class ControladorNota extends HttpServlet {
 
         if (url.equals("/EliminarNota")) {
             eliminarNota(request, response);
+        }
+
+        if (url.equals("/OrdenarNotaPorNumMesa")) {
+            ordenarNotaPorNumMesa(request, response);
         }
     }
 
@@ -204,6 +209,18 @@ public class ControladorNota extends HttpServlet {
         }
 
         notas(request, response);
+    }
+
+    private void ordenarNotaPorNumMesa(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        try {
+            List notas = notaService.orderByNumMesa();
+            ArrayList<Nota> listaDeNotas = new ArrayList<>(notas);
+            request.getSession().setAttribute("notas", listaDeNotas);
+            RequestDispatcher rd = request.getRequestDispatcher("/listaNotas.jsp");
+            rd.forward(request, response);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 
 }

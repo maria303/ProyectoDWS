@@ -9,7 +9,9 @@ import com.fpmislata.domain.Nota;
 import com.fpmislata.repository.NotaDAOLocal;
 import java.util.Date;
 import java.util.List;
+import javax.annotation.Resource;
 import javax.ejb.EJB;
+import javax.ejb.SessionContext;
 import javax.ejb.Stateless;
 
 /**
@@ -22,36 +24,82 @@ public class NotaService implements NotaServiceLocal {
     @EJB
     private NotaDAOLocal notaDAO;
 
+    @Resource
+    private SessionContext context;
+
     // Add business logic below. (Right-click in editor and choose
     // "Insert Code > Add Business Method")
-
     @Override
     public List listadoNotas() {
-        return notaDAO.listadoNotas();
+        try {
+            return notaDAO.listadoNotas();
+        } catch (Exception e) {
+            context.setRollbackOnly();
+            e.printStackTrace();
+            return null;
+        }
     }
 
     @Override
     public void addNota(Nota nota) {
-        notaDAO.addNota(nota);
+        try {
+            notaDAO.addNota(nota);
+        } catch (Exception e) {
+            context.setRollbackOnly();
+            e.printStackTrace();
+        }
     }
 
     @Override
     public void modNota(Nota nota) {
-        notaDAO.modNota(nota);
+        try {
+            notaDAO.modNota(nota);
+        } catch (Exception e) {
+            context.setRollbackOnly();
+            e.printStackTrace();
+        }
     }
 
     @Override
     public Nota encontrarPorFecha(Nota nota) {
-        return notaDAO.encontrarPorFecha(nota);
+        try {
+            return notaDAO.encontrarPorFecha(nota);
+        } catch (Exception e) {
+            context.setRollbackOnly();
+            e.printStackTrace();
+            return null;
+        }
     }
 
     @Override
     public void eliminarNota(Nota nota) {
-        notaDAO.eliminarNota(nota);
+        try {
+            notaDAO.eliminarNota(nota);
+        } catch (Exception e) {
+            context.setRollbackOnly();
+            e.printStackTrace();
+        }
     }
 
     @Override
     public Nota encontrarPorId(Nota nota) {
-        return notaDAO.encontrarPorId(nota);
+        try {
+            return notaDAO.encontrarPorId(nota);
+        } catch (Exception e) {
+            context.setRollbackOnly();
+            e.printStackTrace();
+            return null;
+        }
+    }
+
+    @Override
+    public List orderByNumMesa() {
+        try {
+            return notaDAO.orderByNumMesa();
+        } catch (Exception e) {
+            context.setRollbackOnly();
+            e.printStackTrace();
+            return null;
+        }
     }
 }

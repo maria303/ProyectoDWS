@@ -10,7 +10,9 @@ import com.fpmislata.repository.ProveedorDAOLocal;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
+import javax.annotation.Resource;
 import javax.ejb.EJB;
+import javax.ejb.SessionContext;
 import javax.ejb.Stateless;
 
 /**
@@ -23,32 +25,61 @@ public class ProveedorService implements ProveedorServiceLocal {
     @EJB
     private ProveedorDAOLocal proveedorDAO;
 
+    @Resource
+    private SessionContext context;
+
     // Add business logic below. (Right-click in editor and choose
     // "Insert Code > Add Business Method")
-    
     @Override
     public List listProveedores() {
-        return proveedorDAO.listProveedores();
+        try {
+            return proveedorDAO.listProveedores();
+        } catch (Exception e) {
+            context.setRollbackOnly();
+            e.printStackTrace();
+            return null;
+        }
     }
 
     @Override
     public void addProveedor(Proveedor proveedor) {
-        proveedorDAO.addProveedor(proveedor);
+        try {
+            proveedorDAO.addProveedor(proveedor);
+        } catch (Exception e) {
+            context.setRollbackOnly();
+            e.printStackTrace();
+        }
     }
 
     @Override
     public void updateProveedor(Proveedor proveedor) {
-        proveedorDAO.updateProveedor(proveedor);
+        try {
+            proveedorDAO.updateProveedor(proveedor);
+        } catch (Exception e) {
+            context.setRollbackOnly();
+            e.printStackTrace();
+        }
     }
 
     @Override
     public Proveedor findProveedorById(Proveedor proveedor) {
-        return proveedorDAO.findProveedorById(proveedor);
+        try {
+            return proveedorDAO.findProveedorById(proveedor);
+        } catch (Exception e) {
+            context.setRollbackOnly();
+            e.printStackTrace();
+            return null;
+        }
     }
 
     @Override
     public void deleteProveedor(Proveedor proveedor) {
-        proveedorDAO.deleteProveedor(proveedor);
+        try {
+            proveedorDAO.deleteProveedor(proveedor);
+        } catch (Exception e) {
+            context.setRollbackOnly();
+            e.printStackTrace();
+        }
     }
-    
+
 }

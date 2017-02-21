@@ -50,4 +50,11 @@ public class ProductoDAO implements ProductoDAOLocal {
         producto = findProductoById(producto);
         em.remove(producto);
     }
+
+    @Override
+    public Producto findProductoByNombre(Producto producto) {
+        return em.createNamedQuery("Producto.findByNombre", Producto.class)
+                .setParameter("nombre", producto.getNombre()).getSingleResult();
+    }
+    
 }

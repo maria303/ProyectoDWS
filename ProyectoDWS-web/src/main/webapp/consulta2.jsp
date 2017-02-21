@@ -1,7 +1,7 @@
 <%-- 
-    Document   : index
-    Created on : 16-nov-2016, 9:36:50
-    Author     : alumno
+    Document   : consulta2
+    Created on : 21-feb-2017, 0:38:50
+    Author     : Maria
 --%>
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
@@ -12,7 +12,8 @@
         <title>JSP Page</title>
     </head>
     <body>
-        <a href="ListarProductos">Restaurante</a>
-        <a href="consultas.jsp">Consulta</a>
+        <h1>Hello World!</h1>
+        <input type="text" value="${producto.nombre}"/>
+        <input type="text" value="${producto.descripcion}"/>
     </body>
 </html>

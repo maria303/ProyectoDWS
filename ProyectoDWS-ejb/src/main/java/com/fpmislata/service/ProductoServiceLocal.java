@@ -28,6 +28,6 @@ public interface ProductoServiceLocal {
 
     void deleteProducto(Producto producto);
 
-//    List findProductosByProveedores(Proveedor proveedor);
+    Producto findProductoByNombre(Producto producto);
     
 }

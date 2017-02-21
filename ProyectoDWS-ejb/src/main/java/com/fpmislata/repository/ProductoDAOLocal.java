@@ -26,5 +26,7 @@ public interface ProductoDAOLocal {
     Producto findProductoById(Producto producto);
 
     void deleteProducto(Producto producto);
+
+    Producto findProductoByNombre(Producto producto);
     
 }

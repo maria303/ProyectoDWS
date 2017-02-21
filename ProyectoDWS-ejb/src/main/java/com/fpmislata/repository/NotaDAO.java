@@ -18,13 +18,12 @@ import javax.persistence.PersistenceContext;
  */
 @Stateless
 public class NotaDAO implements NotaDAOLocal {
-    
+
     @PersistenceContext(unitName = "RestaurantePU")
     EntityManager em;
 
     // Add business logic below. (Right-click in editor and choose
     // "Insert Code > Add Business Method")
-    
     @Override
     public List listadoNotas() {
         return em.createNamedQuery("Nota.findAll").getResultList();
@@ -54,5 +53,10 @@ public class NotaDAO implements NotaDAOLocal {
     @Override
     public Nota encontrarPorId(Nota nota) {
         return em.find(Nota.class, nota.getId());
+    }
+
+    @Override
+    public List orderByNumMesa() {
+        return em.createNamedQuery("Nota.OrderByNumMesa").getResultList();
     }
 }

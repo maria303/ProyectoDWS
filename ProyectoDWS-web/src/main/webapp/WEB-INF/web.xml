@@ -24,7 +24,7 @@
         <url-pattern>/EliminarProducto</url-pattern>
         <url-pattern>/ListarProductosPorProveedores</url-pattern>
         <url-pattern>/ModificarProductoProveedor</url-pattern>
-        <url-pattern>/ControladorProducto</url-pattern>
+        <url-pattern>/BuscarProductoPorNombre</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
         <servlet-name>ControladorProveedor</servlet-name>
@@ -32,7 +32,6 @@
         <url-pattern>/EliminarProveedor</url-pattern>
         <url-pattern>/ListarProveedores</url-pattern>
         <url-pattern>/ModificarProveedor</url-pattern>
-        <url-pattern>/ControladorProveedor</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
         <servlet-name>ControladorUsuario</servlet-name>
@@ -42,7 +41,6 @@
         <url-pattern>/Login</url-pattern>
         <url-pattern>/Logout</url-pattern>
         <url-pattern>/ModificarUsuario</url-pattern>
-        <url-pattern>/ControladorUsuario</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
         <servlet-name>ControladorNota</servlet-name>
@@ -50,7 +48,7 @@
         <url-pattern>/NotaMod</url-pattern>
         <url-pattern>/Notas</url-pattern>
         <url-pattern>/EliminarNota</url-pattern>
-        <url-pattern>/ControladorNota</url-pattern>
+        <url-pattern>/OrdenarNotaPorNumMesa</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

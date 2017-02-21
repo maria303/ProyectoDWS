@@ -22,26 +22,28 @@ import javax.persistence.Table;
  */
 @Entity
 @NamedQueries({
-    @NamedQuery(name = "Nota.findAll", query = "SELECT n FROM Nota n ORDER BY n.id")})
+    @NamedQuery(name = "Nota.findAll", query = "SELECT n FROM Nota n ORDER BY n.id"),
+    @NamedQuery(name = "Nota.OrderByNumMesa", query = "SELECT n FROM Nota n ORDER BY n.num_mesa")
+})
 @Table(name = "notas")
 public class Nota implements Serializable {
-    
+
     private static final long serialVersionUID = 1L;
-    
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id_nota")
     private int id;
-    
+
     @Column(nullable = false)
     private int num_mesa;
-    
+
     @Column(nullable = false)
     private Date fecha;
-    
+
     @Column(nullable = false)
     private double cuenta;
-    
+
     @Column(nullable = false, length = 5)
     private String hora;
 
@@ -99,5 +101,5 @@ public class Nota implements Serializable {
     public String toString() {
         return "Nota--> Id: " + id + ", Numero mesa: " + num_mesa + ", Fecha: " + fecha + ", Cuenta: " + cuenta;
     }
-    
+
 }
