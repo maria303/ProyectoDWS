@@ -44,7 +44,7 @@
                         <div class="form-group">
                             <label class="col-sm-2 control-label" for="stock">Stock:</label>
                             <div class="col-sm-4">
-                                <input type="text" name="stock" class="form-control">
+                                <input type="number" name="stock" class="form-control">
                             </div>
                         </div>
 
@@ -52,7 +52,7 @@
                         <div class="form-group">
                             <label class="col-sm-2 control-label" for="precio">Precio:</label>
                             <div class="col-sm-4">
-                                <input type="text" name="precio" class="form-control">
+                                <input type="number" step="any" name="precio" class="form-control">
                             </div>
                         </div>
 

@@ -25,6 +25,7 @@
         <url-pattern>/ListarProductosPorProveedores</url-pattern>
         <url-pattern>/ModificarProductoProveedor</url-pattern>
         <url-pattern>/BuscarProductoPorNombre</url-pattern>
+        <url-pattern>/BuscarProductosPorStock</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
         <servlet-name>ControladorProveedor</servlet-name>

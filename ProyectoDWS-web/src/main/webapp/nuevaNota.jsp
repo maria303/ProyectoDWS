@@ -27,7 +27,7 @@
                         <div class="form-group">
                             <label class="col-sm-4 control-label" for="numMesa">Num. Mesa:</label>
                             <div class="col-sm-6">
-                                <input type="text" name="numMesa" class="form-control">
+                                <input type="number" name="numMesa" class="form-control">
                             </div>
                         </div>
 
@@ -51,7 +51,7 @@
                         <div class="form-group">
                             <label class="col-sm-4 control-label" for="cuenta">Cuenta:</label>
                             <div class="col-sm-6">
-                                <input type="text" name="cuenta" value="0.0" class="form-control">
+                                <input type="number" step="any" name="cuenta" value="0.0" class="form-control">
                             </div>
                         </div>
 

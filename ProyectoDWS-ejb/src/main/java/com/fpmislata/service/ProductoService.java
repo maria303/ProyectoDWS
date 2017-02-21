@@ -93,4 +93,15 @@ public class ProductoService implements ProductoServiceLocal {
             return null;
         }
     }
+    
+    @Override
+    public List findProductosByStock(Producto producto) {
+        try{
+            return productoDAO.findProductosByStock(producto);
+        }catch(Exception e){
+            context.setRollbackOnly();
+            e.printStackTrace();
+            return null;
+        }
+    }
 }

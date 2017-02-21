@@ -1,11 +1,10 @@
 <%-- 
-    Document   : listarUsuarios
-    Created on : 02-dic-2016, 9:43:00
-    Author     : alumno
+    Document   : consultas
+    Created on : 21-feb-2017, 0:16:22
+    Author     : Maria
 --%>
 
 <%@page import="com.fpmislata.domain.Usuario"%>
-<%@page import="java.util.ArrayList"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
@@ -86,7 +85,7 @@
             <div id="page-wrapper">
                 <div class="row">
                     <div class="col-lg-12">
-                        <h1 class="page-header">Listado de usuarios</h1>
+                        <h1 class="page-header">Producto</h1>
                     </div>
                     <!-- /.col-lg-12 -->
                 </div>
@@ -95,44 +94,26 @@
                     <div class="col-lg-12">
                         <div class="panel panel-default">
                             <div class="panel-heading">
-                                Usuarios
+                                Producto
                             </div>
-                            <div class="panel-body">
-                                <div class="table-responsive"  style="height: 160px;">
-                                    <table class="table table-striped">
-                                        <tr>
-                                            <th>Nombre</th>
-                                            <th>Apellidos</th>
-                                            <th>
-                                                <a href="agregarUsuario.jsp">
-                                                    <i class="fa fa-plus-square" aria-hidden="true"></i>
-                                                </a>
-                                            </th>
-                                        </tr>
-                                        <% ArrayList<Usuario> lista = (ArrayList) session.getAttribute("usuarios");
-                                            for (Usuario usuario : lista) {
-                                                int id = usuario.getId();
-                                                String nombre = usuario.getNombre();
-                                                String apellidos = usuario.getApellidos();
-                                        %>
-                                        <tr>
-                                            <td><%=nombre%></td>
-                                            <td><%=apellidos%></td>
-                                            <td>
-                                                <a href="ModificarUsuario?accion=editar&id=<%=id%>" class="boton">
-                                                        <i class="fa fa-pencil" aria-hidden="true"></i>
-                                                    </a>
-                                                <% if(!usuario.getNombre().equals(usuarioSesion.getNombre())){ %>
-                                                <a href="EliminarUsuario?id=<%=id%>">
-                                                    <i class="fa fa-trash" aria-hidden="true"></i>
-                                                </a><% } %>
-                                            </td>
-                                        </tr>
-                                        <%}%>
-                                    </table>
-                                </div>
+                            <div class="panel-body table-responsive" style="height: 160px;">
+                                <table class="table table-striped">
+                                    <tr>
+                                        <th>Nombre</th>
+                                        <th>Descripción</th>
+                                        <th>Stock</th>
+                                        <th>Precio</th>
+                                    </tr>
+                                    <tr>
+                                        <td>${producto.nombre}</td>
+                                        <td>${producto.descripcion}</td>
+                                        <td>${producto.stock}</td>
+                                        <td>${producto.precio}</td>
+                                    </tr>
+                                </table>
                             </div>
                         </div>
+
                     </div>
                 </div>
                 <!-- /.row -->

@@ -57,4 +57,10 @@ public class ProductoDAO implements ProductoDAOLocal {
                 .setParameter("nombre", producto.getNombre()).getSingleResult();
     }
     
+    @Override
+    public List findProductosByStock(Producto producto) {
+        return em.createNamedQuery("Producto.findByStock", Producto.class)
+                .setParameter("stock", producto.getStock()).getResultList();
+    }
+    
 }

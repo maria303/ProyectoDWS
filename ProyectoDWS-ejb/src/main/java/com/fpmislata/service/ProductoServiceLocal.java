@@ -30,4 +30,6 @@ public interface ProductoServiceLocal {
 
     Producto findProductoByNombre(Producto producto);
     
+    List findProductosByStock(Producto producto);
+    
 }

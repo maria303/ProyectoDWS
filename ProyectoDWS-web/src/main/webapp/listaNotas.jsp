@@ -87,7 +87,7 @@
                                         <tr>
                                             <th>
                                                 Num. Mesa
-                                                <a href="OrdenarNotaPorNumMesa" class="boton">
+                                                <a href="OrdenarNotaPorNumMesa">
                                                     <i class="fa fa-sort" aria-hidden="true"></i>
                                                 </a>
                                             </th>
@@ -131,17 +131,14 @@
                                 </div>
                             </div>
                         </div>
-                        <a href="OrdenarNotaPorNumMesa">Ordenar por mesa</a>
                     </div>
                 </div>
             </div>
         </div>
 
-    </div>
-
-    <script src="vendor/jquery/jquery.min.js" type="text/javascript"></script>
-    <script src="vendor/bootstrap/js/bootstrap.min.js" type="text/javascript"></script>
-    <script src="vendor/metisMenu/metisMenu.min.js" type="text/javascript"></script>
-    <script src="dist/js/sb-admin-2.js" type="text/javascript"></script>
-</body>
+        <script src="vendor/jquery/jquery.min.js" type="text/javascript"></script>
+        <script src="vendor/bootstrap/js/bootstrap.min.js" type="text/javascript"></script>
+        <script src="vendor/metisMenu/metisMenu.min.js" type="text/javascript"></script>
+        <script src="dist/js/sb-admin-2.js" type="text/javascript"></script>
+    </body>
 </html>

@@ -61,15 +61,15 @@
                         <div class="form-group">
                             <label class="col-sm-2 control-label" for="cp">Código Postal:</label>
                             <div class="col-sm-4">
-                                <input type="text" name="cp" class="form-control">
+                                <input type="number" name="cp" class="form-control">
                             </div>
                         </div>
 
                         <!-- Text input-->
                         <div class="form-group">
                             <label class="col-sm-2 control-label" for="telefono">Teléfono:</label>
-                            <div class="col-sm-10">
-                                <input type="text" name="telefono" class="form-control">
+                            <div class="col-sm-4">
+                                <input type="number" name="telefono" class="form-control">
                             </div>
                         </div>
 

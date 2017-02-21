@@ -73,50 +73,69 @@
                     <!-- /.col-lg-12 -->
                 </div>
                 <!-- /.row -->
-                    <div class="row">
+                <div class="row">
                     <div class="col-lg-12">
                         <div class="panel panel-default">
                             <div class="panel-heading">
-                                Productos
+                                <div class="row">
+                                    <div class="col-lg-9">
+                                        Productos
+                                    </div>
+                                    <form action="BuscarProductosPorStock" method="POST">
+                                        <div class="col-lg-3">
+                                            <div id="custom-search-input">
+                                                <div class="input-group ">
+                                                    <input type="number" name="stock" class="  search-query form-control" placeholder="Stock" />
+                                                    <span class="input-group-btn">
+                                                        <button class="btn btn-primary" type="submit">
+                                                            <span class=" glyphicon glyphicon-search"></span>
+                                                        </button>
+                                                    </span>
+
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </form>
+                                </div>
                             </div>
                             <div class="panel-body">
                                 <div class="table-responsive"  style="height: 160px;">
-                                     <table class="table table-striped">
+                                    <table class="table table-striped">
                                         <tr>
-                                                <th>Nombre</th>
-                                                <th>Descripción</th>
-                                                <th>Stock</th>
-                                                <th></th>
-                                            </tr>
-                                            <%
-                                                ArrayList<Producto> lista = (ArrayList) session.getAttribute("productos");
-                                                for (Producto producto : lista) {
-                                                    int id = producto.getId();
-                                                    String nombre = producto.getNombre();
-                                                    String descripcion = producto.getDescripcion();
-                                                    int stock = producto.getStock();
-                                            %>
-                                            <tr>
-                                                <td><%=nombre%></td>
-                                                <td><%=descripcion%></td>
-                                                <td><%=stock%></td>
-                                                <td>
-                                                    <a href="ModificarProducto?accion=editar&id=<%=id%>" class="boton">
-                                                        <i class="fa fa-pencil" aria-hidden="true"></i>
-                                                    </a>
-                                                </td>
-                                            </tr>
-                                            <%}%>
-                                        </table>
-                                    </div>
+                                            <th>Nombre</th>
+                                            <th>Descripción</th>
+                                            <th>Stock</th>
+                                            <th></th>
+                                        </tr>
+                                        <%
+                                            ArrayList<Producto> lista = (ArrayList) session.getAttribute("productos");
+                                            for (Producto producto : lista) {
+                                                int id = producto.getId();
+                                                String nombre = producto.getNombre();
+                                                String descripcion = producto.getDescripcion();
+                                                int stock = producto.getStock();
+                                        %>
+                                        <tr>
+                                            <td><%=nombre%></td>
+                                            <td><%=descripcion%></td>
+                                            <td><%=stock%></td>
+                                            <td>
+                                                <a href="ModificarProducto?accion=editar&id=<%=id%>" class="boton">
+                                                    <i class="fa fa-pencil" aria-hidden="true"></i>
+                                                </a>
+                                            </td>
+                                        </tr>
+                                        <%}%>
+                                    </table>
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
-
         </div>
+
+
 
         <script src="vendor/jquery/jquery.min.js" type="text/javascript"></script>
         <script src="vendor/bootstrap/js/bootstrap.min.js" type="text/javascript"></script>

@@ -28,7 +28,7 @@ import javax.servlet.http.HttpServletResponse;
  */
 @WebServlet(name = "ControladorProducto", loadOnStartup = 3, urlPatterns = {"/AltaProducto",
     "/ModificarProducto", "/ListarProductos", "/EliminarProducto", "/ListarProductosPorProveedores",
-    "/ModificarProductoProveedor", "/BuscarProductoPorNombre"})
+    "/ModificarProductoProveedor", "/BuscarProductoPorNombre", "/BuscarProductosPorStock"})
 public class ControladorProducto extends HttpServlet {
 
     @EJB
@@ -74,9 +74,13 @@ public class ControladorProducto extends HttpServlet {
         if (url.equals("/ModificarProductoProveedor")) {
             modificarProductoProveedor(request, response);
         }
-        
-        if(url.equals("/BuscarProductoPorNombre")){
+
+        if (url.equals("/BuscarProductoPorNombre")) {
             buscarProductoPorNombre(request, response);
+        }
+
+        if (url.equals("/BuscarProductosPorStock")) {
+            buscarProductosPorStock(request, response);
         }
     }
 
@@ -165,7 +169,7 @@ public class ControladorProducto extends HttpServlet {
                     e.printStackTrace();
                 }
 
-            listarProductos(request, response);
+                listarProductos(request, response);
 
             }
         }
@@ -352,14 +356,29 @@ public class ControladorProducto extends HttpServlet {
 
     private void buscarProductoPorNombre(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         String nombre = request.getParameter("nombre");
-        
+
         Producto producto = new Producto();
         producto.setNombre(nombre);
-        
+
         producto = productoService.findProductoByNombre(producto);
-        
-        request.setAttribute("producto", producto);
-        RequestDispatcher rd = request.getRequestDispatcher("/consulta2.jsp");
+
+        request.getSession().setAttribute("producto", producto);
+        RequestDispatcher rd = request.getRequestDispatcher("/mostrarProducto.jsp");
+        rd.forward(request, response);
+    }
+
+    private void buscarProductosPorStock(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        int stock = Integer.parseInt(request.getParameter("stock"));
+
+        Producto producto = new Producto();
+        producto.setStock(stock);
+
+        List listaProductos = productoService.findProductosByStock(producto);
+
+        ArrayList<Producto> listaArrayProductos = new ArrayList<>(listaProductos);
+
+        request.getSession().setAttribute("productos", listaArrayProductos);
+        RequestDispatcher rd = request.getRequestDispatcher("/listarProductos.jsp");
         rd.forward(request, response);
     }
 }

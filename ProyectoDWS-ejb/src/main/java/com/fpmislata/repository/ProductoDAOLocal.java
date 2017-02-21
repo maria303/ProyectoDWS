@@ -29,4 +29,6 @@ public interface ProductoDAOLocal {
 
     Producto findProductoByNombre(Producto producto);
     
+    List findProductosByStock(Producto producto);
+    
 }

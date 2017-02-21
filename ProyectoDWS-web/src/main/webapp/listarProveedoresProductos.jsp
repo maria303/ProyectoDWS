@@ -61,6 +61,23 @@
                             <li>
                                 <a href="ListarUsuarios"><i class="fa fa-edit fa-fw"></i> Usuarios</a>
                             </li>
+                            <li>
+                                <form action="BuscarProductoPorNombre" method="POST">
+                                        <div class="col-lg-12">
+                                            <div id="custom-search-input">
+                                                <div class="input-group ">
+                                                    <input type="text" name="nombre" class="search-query form-control" placeholder="Producto" />
+                                                    <span class="input-group-btn">
+                                                        <button class="btn btn-primary" type="submit">
+                                                            <span class=" glyphicon glyphicon-search"></span>
+                                                        </button>
+                                                    </span>
+
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </form>
+                            </li>
                         </ul>
                     </div>
                     <!-- /.sidebar-collapse -->
